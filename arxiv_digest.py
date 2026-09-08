@@ -237,7 +237,12 @@ def load_sent_ids(sent_ids_file: str) -> dict:
         return {}
     try:
         with open(sent_ids_file, "r", encoding="utf-8") as f:
-            return json.load(f)
+            data = json.load(f)
+            if isinstance(data, list):
+                return {k: datetime.now().strftime("%Y-%m-%d") for k in data if isinstance(k, str)}
+            if isinstance(data, dict):
+                return data
+            return {}
     except (json.JSONDecodeError, OSError) as e:
         logger.warning(f"读取已发送记录失败, 将视为空记录: {e}")
         return {}

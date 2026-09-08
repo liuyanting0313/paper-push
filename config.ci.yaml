@@ -61,7 +61,7 @@ llm:
   # LLM 精读要点默认关闭; 若要启用, 在 GitHub Secrets 中配置 LLM_API_KEY, 并将 enabled 设为 true
   enabled: true
   base_url: "https://generativelanguage.googleapis.com/v1beta/openai/"
-  model: "gemini-3.5-flash"
+  model: "gemini-1.5-flash"
   api_key: ""
   timeout: 60
 
