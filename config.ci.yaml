@@ -59,11 +59,11 @@ logging:
 
 llm:
   # LLM 精读要点默认关闭; 若要启用, 在 GitHub Secrets 中配置 LLM_API_KEY, 并将 enabled 设为 true
-  enabled: false
-  base_url: "https://api.deepseek.com/v1"
-  model: "deepseek-chat"
+  enabled: true
+  base_url: "https://generativelanguage.googleapis.com/v1beta/openai/"
+  model: "gemini-3.5-flash"
   api_key: ""
-  timeout: 30
+  timeout: 60
 
 push:
   # Webhook 推送默认关闭; 若要启用, 在 GitHub Secrets 中配置 PUSH_WEBHOOK_URL, 并将 enabled 设为 true

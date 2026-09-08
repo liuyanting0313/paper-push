@@ -481,12 +481,18 @@ def generate_llm_insight(paper, llm_cfg: dict) -> dict:
     timeout = llm_cfg.get("timeout", 30)
 
     prompt = (
-        "你是一名学术助理, 请阅读以下英文论文标题和摘要, 用简洁的中文分别总结:\n"
+        "你是一名学术助理, 请阅读以下英文论文标题和摘要, 完成两部分总结:\n\n"
+        "【第一部分: 大白话人话速读】\n"
+        "假设读者完全没有专业背景, 请用最口语化、最直白的大白话(严禁出现学术行话、数学公式、"
+        "专业术语和缩写), 写2~3句话, 必须依次讲清楚:\n"
+        "  a) 这篇论文实际上是想解决现实中的什么具体痛点/难题;\n"
+        "  b) 它想出了什么办法, 这个办法实际用起来有什么好处。\n\n"
+        "【第二部分: 专业精读要点】用简洁的中文分别总结:\n"
         "1. 创新点(该研究提出了什么新方法/新发现, 一句话)\n"
         "2. 方法(简述所用的技术路线, 一句话)\n"
-        "3. 结论(实验效果或主要结论, 一句话)\n"
-        "请严格按以下 JSON 格式输出, 不要输出多余文字:\n"
-        '{"innovation": "...", "method": "...", "conclusion": "..."}\n\n'
+        "3. 结论(实验效果或主要结论, 一句话)\n\n"
+        "请严格按以下 JSON 格式输出, 不要输出多余文字, 不要使用 markdown 代码块:\n"
+        '{"plain_explain": "...", "innovation": "...", "method": "...", "conclusion": "..."}\n\n'
         f"标题: {paper.title}\n摘要: {paper.summary or ''}"
     )
 
@@ -517,6 +523,7 @@ def generate_llm_insight(paper, llm_cfg: dict) -> dict:
         content = re.sub(r"^```(json)?|```$", "", content, flags=re.MULTILINE).strip()
         result = json.loads(content)
         return {
+            "plain_explain": str(result.get("plain_explain", "")).strip(),
             "innovation": str(result.get("innovation", "")).strip(),
             "method": str(result.get("method", "")).strip(),
             "conclusion": str(result.get("conclusion", "")).strip(),
@@ -580,6 +587,17 @@ def build_email_html(papers: list, keywords: list, llm_cfg: dict = None) -> str:
         insight = generate_llm_insight(p, llm_cfg or {})
         insight_html = ""
         zh_summary_html = ""
+        plain_explain_html = ""
+        plain_explain = (insight or {}).get("plain_explain", "").strip()
+        if plain_explain:
+            plain_explain_html = f"""
+            <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读</p>
+                <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                    {html.escape(plain_explain)}
+                </p>
+            </div>
+            """
         if insight:
             insight_html = f"""
             <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
@@ -633,6 +651,7 @@ def build_email_html(papers: list, keywords: list, llm_cfg: dict = None) -> str:
             {comment_html}
             {journal_ref_html}
             {matched_kw_html}
+            {plain_explain_html}
             {insight_html}
             {zh_summary_html}
             <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
