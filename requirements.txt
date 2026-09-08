@@ -1,0 +1,5 @@
+arxiv==4.0.1
+PyYAML==6.0.3
+deep-translator==1.11.4
+beautifulsoup4==4.15.0
+requests==2.32.3

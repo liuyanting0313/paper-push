@@ -1,0 +1,73 @@
+# arXiv 论文周报 - GitHub Actions 专用配置(会被提交到 git 仓库)
+# 与本地的 config.yaml 不同: 本文件不包含真实密码, 密码统一从环境变量 EMAIL_PASSWORD 读取
+# (在 GitHub 仓库的 Settings -> Secrets and variables -> Actions 中配置 EMAIL_PASSWORD)
+#
+# 提醒: 本文件包含发件人/收件人邮箱地址, 建议将本仓库设为私有(Private)仓库以保护隐私
+
+arxiv:
+  categories:
+    - cs.RO
+    - eess.SY
+    - cs.SY
+    - cs.AI
+    - cs.LG
+
+  keywords:
+    - "unmanned surface vessel"
+    - "USV"
+    - "surface vehicle"
+    - "autonomous vessel"
+    - "trajectory tracking"
+    - "path following"
+    - "sensor fusion"
+    - "state estimation"
+    - "obstacle avoidance"
+    - "underactuated surface vessel"
+    - "autonomous ship"
+
+  exclude_keywords: []
+
+  keyword_weights:
+    "unmanned surface vessel": 3
+    "USV": 2
+
+  # 每周汇总模式: 覆盖过去 7 天
+  days_back: 7
+  max_results: 120
+  max_send: 20
+
+email:
+  enabled: true
+  smtp_server: smtp.qq.com
+  smtp_port: 465
+  use_ssl: true
+  sender: "2549388745@qq.com"
+  sender_name: "无人船学术速递"
+  # 占位符, 实际发信时会被环境变量 EMAIL_PASSWORD(GitHub Secrets)覆盖, 本字段不会被使用
+  password: "__set_via_EMAIL_PASSWORD_env_var__"
+  receiver: "contact@liuyanting0313.com"
+  subject_prefix: "[arXiv无人船与智能控制前沿]"
+
+storage:
+  # sent_ids.json 在 GitHub Actions 中会被工作流自动 commit & push 回仓库, 用于跨次运行去重
+  sent_ids_file: "sent_ids.json"
+  sent_ids_retention_days: 60
+  ignore_version_in_dedup: true
+
+logging:
+  log_file: "logs/arxiv_digest.log"
+
+llm:
+  # LLM 精读要点默认关闭; 若要启用, 在 GitHub Secrets 中配置 LLM_API_KEY, 并将 enabled 设为 true
+  enabled: false
+  base_url: "https://api.deepseek.com/v1"
+  model: "deepseek-chat"
+  api_key: ""
+  timeout: 30
+
+push:
+  # Webhook 推送默认关闭; 若要启用, 在 GitHub Secrets 中配置 PUSH_WEBHOOK_URL, 并将 enabled 设为 true
+  enabled: false
+  channel: "wecom"
+  webhook_url: ""
+  max_items: 10

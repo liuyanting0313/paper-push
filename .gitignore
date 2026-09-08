@@ -1,0 +1,13 @@
+# 本项目的敏感/本地文件
+config.yaml
+logs/
+*.log
+
+# 说明: sent_ids.json 不包含隐私信息(仅 arXiv 论文编号与日期),
+# 需要保持被 git 跟踪, 以便 GitHub Actions 可以 commit/push 更新, 实现跨运行去重
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

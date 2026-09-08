@@ -1,0 +1,107 @@
+# arXiv 每日论文摘要 - 配置文件模板
+# 使用方法: 复制本文件为 config.yaml, 并填写真实的邮箱/授权码/关键词/分类
+# config.yaml 已被 .gitignore 忽略, 不会被提交到 git 仓库
+
+arxiv:
+  # arXiv 分类列表(OR 关系), 常用分类参考: https://arxiv.org/category_taxonomy
+  # 覆盖机器人、控制系统与智能算法方向, 可根据研究方向自行调整
+  categories:
+    - cs.RO
+    - eess.SY
+    - cs.SY
+    - cs.AI
+    - cs.LG
+
+  # 关键词列表(OR 关系), 会在论文标题和摘要中匹配, 支持短语(自动加引号精确匹配)
+  keywords:
+    - "unmanned surface vessel"
+    - "USV"
+    - "surface vehicle"
+    - "autonomous vessel"
+    - "trajectory tracking"
+    - "path following"
+    - "sensor fusion"
+    - "state estimation"
+    - "obstacle avoidance"
+    - "underactuated surface vessel"
+    - "autonomous ship"
+
+  # 排除关键词列表(OR 关系): 命中标题或摘要的论文会被直接过滤掉, 用于剔除明显不相关的噱头论文
+  exclude_keywords: []
+
+  # 关键词权重(可选): 未列出的关键词默认权重为 1, 数值越大在排序中越靠前, 用于影响相关度排序
+  keyword_weights: {}
+
+  # 关键词与分类的组合方式: 两者都必须满足(AND), 若只想用其中一种过滤,
+  # 把另一项留空列表 [] 即可
+  # 最终查询语义: (分类1 OR 分类2 ...) AND (关键词1 OR 关键词2 ...)
+
+  # 只保留最近 N 天内提交(或更新)的论文, 采用每周汇总模式, 设为 7 天覆盖一整周
+  days_back: 7
+
+  # 从 arXiv 拉取候选论文的最大数量(拉取后再按 days_back / 关键词分类等条件过滤)
+  max_results: 120
+
+  # 单次邮件最多包含的论文数量, 避免论文过多导致邮件过长
+  max_send: 20
+
+email:
+  # 是否发送邮件, 设为 false 时只会在控制台/日志中打印摘要, 便于调试
+  enabled: true
+
+  # 发件邮箱的 SMTP 服务器信息(默认已填 QQ 邮箱)
+  smtp_server: smtp.qq.com
+  smtp_port: 465
+  use_ssl: true
+
+  # 发件人邮箱地址, 请替换为你自己的 QQ 邮箱
+  sender: "your_qq_number@qq.com"
+
+  # 发件人显示名称(可选)
+  sender_name: "arXiv 论文周报"
+
+  # QQ 邮箱的 SMTP 授权码(不是 QQ 密码!), 获取方式:
+  # QQ邮箱网页版 -> 设置 -> 账户 -> POP3/IMAP/SMTP服务 -> 开启服务并生成授权码
+  # 注意: 授权码会优先从环境变量 EMAIL_PASSWORD 读取(用于 GitHub Actions Secrets),
+  # 本地运行时若未设置该环境变量, 才会使用这里填写的值
+  password: "your_smtp_auth_code"
+
+  # 收件人邮箱地址(可以和发件邮箱相同, 即发给自己)
+  receiver: "your_receiver_email@example.com"
+
+  # 邮件主题前缀
+  subject_prefix: "[arXiv论文周报]"
+
+storage:
+  # 记录已发送论文 ID 的文件路径, 避免同一篇论文重复推送
+  sent_ids_file: "sent_ids.json"
+
+  # sent_ids.json 中保留记录的最长天数, 超过则自动清理(避免文件无限增长)
+  sent_ids_retention_days: 14
+
+  # 去重时是否忽略论文的版本号(v1/v2...), 默认 true: 同一篇论文改版后不会重复推送
+  ignore_version_in_dedup: true
+
+logging:
+  # 日志文件路径
+  log_file: "logs/arxiv_digest.log"
+
+llm:
+  # 是否启用 LLM 中文精读要点(创新点/方法/结论), 启用后会替代普通机器翻译, 默认关闭
+  # 需要配置 api_key(建议用环境变量 LLM_API_KEY), 默认适配 DeepSeek 的 OpenAI 兼容接口
+  # 也可切换为 OpenAI/Moonshot 等其他 OpenAI 兼容接口, 修改 base_url 和 model 即可
+  enabled: false
+  base_url: "https://api.deepseek.com/v1"
+  model: "deepseek-chat"
+  api_key: ""
+  timeout: 30
+
+push:
+  # 是否同时推送到 Webhook 机器人(企业微信/飞书/Slack), 默认关闭
+  # 邮件发送失败不影响该推送, 反之该推送失败也不影响邮件发送
+  enabled: false
+  # channel 可选: wecom(企业微信) / feishu(飞书) / slack
+  channel: "wecom"
+  # 建议通过环境变量 PUSH_WEBHOOK_URL 配置, 避免把地址提交到 git 仓库
+  webhook_url: ""
+  max_items: 10

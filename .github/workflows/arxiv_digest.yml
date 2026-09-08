@@ -1,0 +1,54 @@
+name: arXiv Weekly Digest
+
+on:
+  schedule:
+    # UTC 每周六 04:30 = 北京时间(UTC+8) 每周六 12:30
+    - cron: "30 4 * * 6"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  run-digest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run arXiv digest (weekly)
+        env:
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          PUSH_WEBHOOK_URL: ${{ secrets.PUSH_WEBHOOK_URL }}
+        run: python arxiv_digest.py --config config.ci.yaml
+
+      - name: Show log tail (for debugging in Actions UI)
+        if: always()
+        run: |
+          if [ -f logs/arxiv_digest.log ]; then tail -n 100 logs/arxiv_digest.log; fi
+
+      - name: Commit and push updated sent_ids.json
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sent_ids.json
+          if git diff --staged --quiet; then
+            echo "sent_ids.json 无变化, 跳过提交"
+          else
+            git commit -m "chore: update sent_ids.json [skip ci]"
+            git push
+          fi
