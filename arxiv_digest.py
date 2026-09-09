@@ -236,7 +236,7 @@ def load_sent_ids(sent_ids_file: str) -> dict:
     if not os.path.exists(sent_ids_file):
         return {}
     try:
-        with open(sent_ids_file, "r", encoding="utf-8") as f:
+        with open(sent_ids_file, "r", encoding="utf-8-sig") as f:
             data = json.load(f)
             if isinstance(data, list):
                 return {k: datetime.now().strftime("%Y-%m-%d") for k in data if isinstance(k, str)}
