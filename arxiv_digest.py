@@ -540,7 +540,8 @@ def generate_llm_insight(paper, llm_cfg: dict) -> dict:
 
 
 
-def build_email_html(papers: list, keywords: list, llm_cfg: dict = None) -> str:
+def build_email_html(papers: list, keywords: list, llm_cfg: dict = None,
+                      keyword_weights: dict = None) -> str:
     """将论文列表渲染为学术日报风格的 HTML 邮件正文"""
     today_str = datetime.now().strftime("%Y-%m-%d")
     items_html = []
@@ -571,7 +572,7 @@ def build_email_html(papers: list, keywords: list, llm_cfg: dict = None) -> str:
             date_line += f" &nbsp;|&nbsp; 最近更新: {updated_str}"
 
         matched_kw = find_matched_keywords(p, keywords)
-        score = compute_relevance_score(p, keywords) if keywords else 0
+        score = compute_relevance_score(p, keywords, keyword_weights) if keywords else 0
         matched_kw_html = ""
         if matched_kw:
             chips = "".join(
@@ -720,7 +721,8 @@ def _normalize_receivers(receiver_cfg) -> list:
 
 
 
-def send_email(email_cfg: dict, papers: list, keywords: list, llm_cfg: dict = None) -> None:
+def send_email(email_cfg: dict, papers: list, keywords: list, llm_cfg: dict = None,
+                keyword_weights: dict = None) -> None:
     """通过 SMTP 发送论文摘要邮件(HTML + 纯文本兜底), 支持多收件人, 发送失败自动重试"""
     today_str = datetime.now().strftime("%Y-%m-%d")
     subject_prefix = email_cfg.get("subject_prefix", "[arXiv每日论文摘要]")
@@ -737,7 +739,7 @@ def send_email(email_cfg: dict, papers: list, keywords: list, llm_cfg: dict = No
     msg["To"] = ", ".join(receivers)
 
     plain_body = build_plain_text_body(papers, keywords)
-    html_body = build_email_html(papers, keywords, llm_cfg)
+    html_body = build_email_html(papers, keywords, llm_cfg, keyword_weights)
     msg.attach(MIMEText(plain_body, "plain", "utf-8"))
     msg.attach(MIMEText(html_body, "html", "utf-8"))
 
@@ -892,7 +894,7 @@ def run(config_path: str, dry_run: bool = False) -> int:
 
     if email_cfg.get("enabled", True):
         try:
-            send_email(email_cfg, new_papers, keywords, llm_cfg)
+            send_email(email_cfg, new_papers, keywords, llm_cfg, keyword_weights)
         except Exception as e:
             logger.error(f"任务失败: 邮件发送出错 - {e}")
             return 1

@@ -60,8 +60,10 @@ logging:
 llm:
   # LLM 精读要点默认关闭; 若要启用, 在 GitHub Secrets 中配置 LLM_API_KEY, 并将 enabled 设为 true
   enabled: true
-  base_url: "https://generativelanguage.googleapis.com/v1beta/openai/"
-  model: "gemini-1.5-flash"
+  # 使用 OpenRouter 的 OpenAI 兼容接口, 配合 OpenRouter 账户下新建的 API Key(LLM_API_KEY)
+  base_url: "https://openrouter.ai/api/v1"
+  # OpenRouter 上的免费模型, 需带 :free 后缀; 免费额度和限流以 OpenRouter 账户当前状态为准
+  model: "nex-agi/nex-n2.5-mini:free"
   api_key: ""
   timeout: 60
 
