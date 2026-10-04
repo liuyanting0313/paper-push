@@ -327,13 +327,19 @@ def fetch_semantic_scholar_papers(arxiv_cfg: dict) -> list:
 
     def _call():
         resp = requests.get(url, params=params, headers=headers, timeout=timeout)
+        if resp.status_code == 429:
+            # 遵循服务端返回的 Retry-After 头(秒数)等待, 没有该头时退回默认的指数退避延迟
+            retry_after = resp.headers.get("Retry-After")
+            wait_seconds = float(retry_after) if retry_after and retry_after.isdigit() else 5.0
+            logger.warning(f"Semantic Scholar 请求被限流(429), 按服务端提示等待 {wait_seconds:.1f}s 后重试")
+            time.sleep(wait_seconds)
         resp.raise_for_status()
         return resp.json()
 
     try:
         data = retry_call(_call, max_retries=3, base_delay=3.0, logger_prefix="Semantic Scholar 请求 ")
     except Exception as e:
-        logger.warning(f"从 Semantic Scholar 拉取论文失败, 本次跳过该来源: {e}")
+        logger.warning(f"从 Semantic Scholar 拉取论文失败, 本次跳过该来源(不影响 arXiv 主流程): {e}")
         return []
 
     results = []
