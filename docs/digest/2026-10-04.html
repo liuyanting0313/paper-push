@@ -1,0 +1,508 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>无人船学术速递 - 2026-10-04 完整详情</title>
+    </head>
+    <body style="font-family:'Segoe UI', Arial, sans-serif;color:#222;max-width:860px;margin:0 auto;padding:16px;">
+        <h2 style="margin:0 0 4px 0;">无人船学术速递 - 2026-10-04 (完整详情)</h2>
+        <p style="color:#666;margin:0 0 20px 0;">本次共 <strong>7</strong> 篇新论文, 含完整摘要/AI精读要点/中文翻译/BibTeX</p>
+        
+        <div id="2609.39416v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                1. <a href="http://arxiv.org/abs/2609.39416v1" style="color:#0b5cab;text-decoration:none;">Communication-Free Distributed Multi-Robot Task Allocation under Partial Observations Using Labeled Multi-Bernoulli Filtering</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Takumi Ito, Akiya Kamimura</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">eess.SY (Systems and Control)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2609.39416v1 &nbsp;|&nbsp; 首发日期: 2026-09-30 09:56 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2609.39416v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2609.39416v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        很多机器人要一起去不同地点干活，但彼此不能发消息，也看不全周围情况，容易分错活儿或漏活儿。它们各自根据自己看到的信息猜旁边机器人在哪，然后自己抢着分活儿，边干边重新调整。这样不用互相联系也能把活儿分好，就算看得不准也不容易乱。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        一群机器人要一起完成去不同地点干活，但现场没法互相通话，还常常看不全周围情况，容易重复跑或漏掉地点。这篇论文让每个机器人只靠自己看到的情况，猜一猜附近同伴大概在哪、要去哪，再各自挑一个眼下最合适的地点行动。这样一来，它们不用互相联系也能配合起来，而且外面有干扰、看不清时也比较稳。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                <p style="margin:4px 0;color:#777;font-size:13px;">备注: This paper has been submitted to IEEE ICRA 2027 for possible publication</p>
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种无需通信、仅依赖局部观测的多机器人任务分配框架，通过LMB滤波估计邻居位置并在线重分配任务。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 每个机器人使用LMB滤波估计邻近机器人状态，并基于贪心拍卖策略独立分配任务，执行中持续更新估计与重分配。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 蒙特卡洛仿真表明该方法可在无机器人间通信条件下实现有效协作任务分配，并对量测杂波和观测不确定性具有鲁棒性。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种仅基于局部观测、无需机器人间显式通信的分布式多机器人任务分配框架，核心是用LMB滤波器估计邻居状态并以贪婪拍卖实现独立分配。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 每个机器人通过LMB滤波估计邻近机器人的位置，基于贪婪拍卖策略独立选择任务，并在执行过程中持续更新估计和重新分配。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 蒙特卡洛仿真表明，所提方法在没有机器人间通信的情况下仍能实现有效的协作任务分配，并对量测杂波和观测不确定性保持鲁棒。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        This paper proposes a communication-free multi-robot task allocation framework based solely on local observations. In this study, tasks are defined as reaching target locations. Each robot estimates the positions of neighboring robots using a Labeled Multi-Bernoulli (LMB) filter and independently assigns tasks through a greedy auction-based strategy. By continuously updating state estimates and reallocating tasks during execution, the proposed method enables decentralized coordination without explicit communication. Monte Carlo simulations demonstrate that the proposed method enables effective cooperative task allocation without inter-robot communication while remaining robust to measurement clutter and observation uncertainty.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Ito2026260939416,
+      title={Communication-Free Distributed Multi-Robot Task Allocation under Partial Observations Using Labeled Multi-Bernoulli Filtering},
+      author={Takumi Ito and Akiya Kamimura},
+      year={2026},
+      eprint={2609.39416v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={http://arxiv.org/abs/2609.39416v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2609.36510v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                2. <a href="http://arxiv.org/abs/2609.36510v1" style="color:#0b5cab;text-decoration:none;">Expediting AC Contingency Analysis using a Basecase Machine Learning Model</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Md Obaidur Rahman, Vassilis Kekatos</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">eess.SY (Systems and Control)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2609.36510v1 &nbsp;|&nbsp; 首发日期: 2026-09-29 02:05 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2609.36510v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2609.36510v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        电网里线路随时可能断开，工程师需要很快算出断开后电网会不会出问题，但精确计算太慢，而让电脑学习又常常要为每种故障单独准备大量数据。这篇论文只用电网正常时的数据训练一个预测工具，再用反复修正的办法算出某条不是特别关键的线路断开后的状态，这样不用为每种故障都重新准备数据，既快又比较准。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        电网里某条线路突然断掉时，工作人员要很快判断其他线路会不会出问题；但精确计算很慢，而且以前往往要为每种断线情况分别准备大量数据和计算，费时费力。这项研究想出的办法是：只用电网平时正常运行时的情况，做一个通用的快速估算工具，再通过反复微调来推算任意一条普通线路断掉后的结果。这样既能很快给出答案，又比较准，还省去了为每种故障单独准备数据的麻烦。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                <p style="margin:4px 0;color:#777;font-size:13px;">备注: 10 page, 7 figures</p>
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种只用基准拓扑数据训练的单一模型，通过固定点迭代预测非关键单线故障后交流潮流状态的方法。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 在直流近似下分析固定点收敛性，刻画模型训练区域并推导预测误差界，以基准数据训练模型迭代估计故障后状态。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在6717节点合成德州系统上所有非关键单线故障均收敛，预测误差接近基准情况，兼顾直流求解速度和牛顿拉夫逊精度。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种固定点框架，仅使用基础场景拓扑数据训练单个机器学习模型，通过迭代复用预测任意非关键单线故障后的交流潮流状态，避免逐故障训练或多拓扑数据训练的高昂离线成本。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 先用基础场景数据训练单个机器学习模型，再在固定点迭代中调用该模型预测故障后状态，并从直流近似下的收敛性、收敛率、训练区域和预测误差界进行分析，最后在合成德州系统上验证。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在6717节点合成德州系统中，所有非关键单线故障均收敛，预测误差接近基础场景，实现了接近直流求解器速度与牛顿-拉夫逊精度的折中。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Grid planning and operation under increasingly variable operating conditions require fast and accurate AC power flow (AC-PF) contingency analysis for numerous line outages. While ML models can accelerate these computations, existing approaches often require either training separate models for different contingencies or a single model using data from multiple topologies. Both approaches incur substantial offline data generation and training costs. To address this gap, this work proposes a fixed-point framework that reuses a single ML model trained exclusively on basecase topology data to predict post-contingency AC-PF states under any non-critical single-line outage. We analyze the proposed method&#x27;s convergence under the DC model approximation and derive its convergence rate in terms of network parameters. As a side result, we show that power transfer distribution factors (PTDFs) for non-critical lines have magnitudes less than one. We further characterize the ML training region to accommodate PF specifications encountered during fixed-point iterations and derive bounds on ML prediction errors for post-contingency state estimates. Numerical tests on a 6,717-bus synthetic Texas system demonstrate convergence across all non-critical single-line outages, with prediction errors remaining close to those of basecase. The proposed framework offers a favorable tradeoff between the speed of DC solvers and Newton-Raphson accuracy.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Rahman2026260936510,
+      title={Expediting AC Contingency Analysis using a Basecase Machine Learning Model},
+      author={Md Obaidur Rahman and Vassilis Kekatos},
+      year={2026},
+      eprint={2609.36510v1},
+      archivePrefix={arXiv},
+      primaryClass={eess.SY},
+      url={http://arxiv.org/abs/2609.36510v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2609.36292v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                3. <a href="http://arxiv.org/abs/2609.36292v1" style="color:#0b5cab;text-decoration:none;">Fully Decentralized and Safety-Aware Multi-Agent Reinforcement Learning for Control on Networks</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Theodore Rogalski, Shirantha Welikala</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">eess.SY (Systems and Control)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.MA (Multiagent Systems)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2609.36292v1 &nbsp;|&nbsp; 首发日期: 2026-09-28 21:22 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2609.36292v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2609.36292v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        很多机器人要一起看住一片区域，但每个机器人只能看到自己附近的情况，又没有总指挥，很容易漏掉重要位置，还可能做出危险动作。这篇论文给每个机器人配了一个会自己学习的小助手，让它根据自己看到的信息猜出哪里可能出问题，并且加了一道安全提醒，避免它选危险做法。这样不用总指挥也能把事办得更好，还更不容易漏掉某个地方。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        现实里，很多分散的机器要一起看住一大片区域或持续巡逻，但它们只能看到自己附近，彼此又没法共享全局信息，所以既难配合，又容易漏掉一些地方。这篇论文让每个机器只根据自己看到的一小段历史和周围情况来自己做决定，并加了一个防止漏掉任何地点的提醒机制。这样不用中央统一指挥也能一起完成任务，效果比中央指挥还好，对现场情况的掌握也更清楚，接近一种更费劲但更复杂的做法。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                <p style="margin:4px 0;color:#777;font-size:13px;">备注: Accepted and to be presented at IEEE HKN&#x27;s Innovating the Future conference (11/6/2026 - 11/8/2026)</p>
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种面向网络控制的安全且完全去中心化多智能体强化学习方法，通过局部观测历史和内置安全约束提升系统感知并降低有害策略风险。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将局部观测历史输入图编码与状态估计两个并行分支，再接入演员评论家网络，并用离散时间控制屏障启发式过滤不安全动作。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 仿真显示该方法平均不确定性比集中式控制低26.3%，且与更复杂注意力算法性能差距在1%以内。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种全去中心化且安全感知的多智能体强化学习算法，通过融合图编码、状态估计和离散时间控制屏障启发式来提升网络控制中的协调性与安全性。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将局部观测历史输入并行的图编码器与状态估计器，再结合 actor-critic 网络，并利用离散时间控制屏障启发式约束控制策略。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在自定义仿真环境中，该方法平均不确定性较集中式控制降低 26.3%，且与带注意力层的更复杂算法性能差距在 1% 以内。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        This paper develops a safe and fully decentralized multi-agent reinforcement learning (MARL) algorithm to solve a class of discrete-time control problems on networks, including the persistent monitoring problem. Fully decentralized control of agents, while offering numerous benefits, faces issues such as exponentially increasing sample complexity, lack of global information about the system, and challenges in coordinating between agents. To address these issues, this paper introduces a fully decentralized multi-agent reinforcement learning algorithm that integrates deep reinforcement learning with safety considerations. This method feeds a history of local observations of the network&#x27;s state into two parallel neural-network branches: the graph encoder, which adds structural information and correlations among nodes, and a state estimator, which predicts the uncertainty at each node in the graph. Additionally, the result of feeding that input into an actor-critic network is passed through a discrete-time control barrier heuristic to reduce the likelihood that any node will be neglected. This approach enables teams of fully decentralized agents to solve challenging problems by increasing system awareness and incorporating built-in safety measures to prevent the adoption of potentially harmful control policies. Numerical results from a custom simulation environment demonstrate that the proposed algorithm achieves 26.3 percent lower average uncertainty than a centralized control policy and is within 1 percent of the uncertainty performance of a more computationally complex algorithm with added attention layers.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Rogalski2026260936292,
+      title={Fully Decentralized and Safety-Aware Multi-Agent Reinforcement Learning for Control on Networks},
+      author={Theodore Rogalski and Shirantha Welikala},
+      year={2026},
+      eprint={2609.36292v1},
+      archivePrefix={arXiv},
+      primaryClass={eess.SY},
+      url={http://arxiv.org/abs/2609.36292v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2609.34993v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                4. <a href="http://arxiv.org/abs/2609.34993v1" style="color:#0b5cab;text-decoration:none;">LIVE-RIS: A Comprehensive In-Flight Dataset for UAV-Mounted RIS Channel Measurements</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> David Müller, Kevin Weinberger, Aydin Sezgin, Martin Mönnigmann</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">eess.SP (Signal Processing)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">eess.SY (Systems and Control)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2609.34993v1 &nbsp;|&nbsp; 首发日期: 2026-09-28 12:02 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2609.34993v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2609.34993v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        以前研究把一块能调整无线信号走向的板子装到飞行器上时，大多只在电脑里模拟，没考虑真实飞行中的晃动、干扰和设备限制，也缺少大家能直接用的实测记录。他们做了一个能飞的实物，在飞行中根据位置变化实时调整这块板，并把多次飞行的真实测量结果整理出来。这样别人研究时不用全靠想象，结果会更接近真实使用。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        现实中，手机或设备在偏远、遮挡多的地方常常信号差，人们想用无人机带着一块能调节反射方向的板子飞到空中，把信号更灵活地送到需要的地方；但以前大多是电脑模拟，没把真实飞行中的晃动、风、定位误差算进去，所以到底能不能用不清楚。这篇论文把多次真实飞行实验的数据整理并公开，里面有无人机位置估计、真实位置、板子设置和信号强弱等记录，方便别人不再只靠模拟，能拿真实数据检验和改进方案。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                <p style="margin:4px 0;color:#777;font-size:13px;">备注: 6 pages, 5 figures, Submitted to ICC2027</p>
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出首个面向无人机载可重构智能表面飞行场景的综合实测数据集，填补真实飞行条件下信道测量数据空白。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 利用无人机扩展卡尔曼滤波实时估计状态并驱动可重构智能表面重构，在多次飞行实验中同步采集状态估计、真值、表面配置和S21信道数据。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 真实飞行实验验证了无人机载可重构智能表面系统的可行性，实时重构可缓解干扰并维持链路性能增益，所发布数据集可为后续研究提供实测基础。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 本研究提供了面向无人机搭载RIS系统的综合在飞实验数据集，包含EKF状态估计、真值测量、RIS配置和S21信道数据。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 基于无人机搭载RIS原型，利用无人机EKF进行实时RIS重配置，并通过多次真实飞行实验采集多类测量数据。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 实验验证了无人机搭载RIS系统的可行性，EKF实时重配置可有效缓解扰动并保持RIS链路的性能增益，同时公开数据集以促进后续研究。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        The dynamic control of the wireless propagation environment enabled by reconfigurable intelligent surfaces (RISs) makes them a promising technology for sixth-generation (6G) wireless networks. Beyond conventional fixed-position deployments, integrating a RIS with an unmanned aerial vehicle (UAV) provides additional spatial flexibility, facilitating favorable Line-of-Sight (LoS) conditions and broadening the range of potential applications. Although UAV-mounted RIS systems have attracted significant research interest, existing studies rely predominantly on numerical simulations and often overlook the impact of practical constraints and real-world disturbances. To address this gap, the authors recently presented the first UAV-mounted RIS prototype and experimentally validated its feasibility through real-world experiments. By using the UAV&#x27;s extended Kalman Filter (EKF) for real-time RIS reconfiguration, the proposed system effectively mitigates disturbance effects and preserves the performance gains of the RIS-enabled link. To further advance UAV-mounted RIS research and facilitate broader access to real-world experimental insights, this work provides a comprehensive dataset collected from multiple flight experiments. The dataset includes EKF state estimates, ground-truth measurements, corresponding RIS configurations, and S21 channel data.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Mller2026260934993,
+      title={LIVE-RIS: A Comprehensive In-Flight Dataset for UAV-Mounted RIS Channel Measurements},
+      author={David Müller and Kevin Weinberger and Aydin Sezgin and Martin Mönnigmann},
+      year={2026},
+      eprint={2609.34993v1},
+      archivePrefix={arXiv},
+      primaryClass={eess.SP},
+      url={http://arxiv.org/abs/2609.34993v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2609.34018v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                5. <a href="http://arxiv.org/abs/2609.34018v1" style="color:#0b5cab;text-decoration:none;">Estimate, Don&#x27;t Imitate: Reusing Differentiable State-Based Policies for Visuomotor Control</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Denis Shcherba, Adrian Abel, Eckart Cobo-Briesewitz, Paul Mattes, Wojciech Samek, Marc Toussaint</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.LG (Machine Learning)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2609.34018v1 &nbsp;|&nbsp; 首发日期: 2026-09-27 23:26 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2609.34018v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2609.34018v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        让机器人靠摄像头干活时，它常常猜不准自己周围到底发生了什么，直接模仿别人动作容易学歪。这篇论文的办法是先让机器人把摄像头里的画面翻译成有用的现场信息，再交给一个已经会干活的旧程序去决定动作。这样既不用从头重学动作，又更稳，真实机器人上也能直接用上。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        机器人先在电脑模拟里学会了怎么抓取、移动东西，但到了真实世界只能靠摄像头看，画面又糊又不全，直接照画面重新学动作往往学不好，还会把原来已经会的本领丢掉。这篇论文的办法是：保留原来会控制动作的“老手”，只给它加一个从画面猜出缺失信息的“眼睛”，并且训练这个“眼睛”时不光看猜得准不准，还看猜错会不会让动作跟着出错，把影响大的错误重点改。这样在多个任务和真实机械臂上都更稳，真实操作成功率能到七成多，而且不用重新训练原来的“老手”。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                <p style="margin:4px 0;color:#777;font-size:13px;">备注: 9 pages, 4 figures, video: https://youtu.be/G3_gS-dAztk</p>
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出不重新学习动作，而是复用可微的状态策略并训练视觉状态估计器，使估计误差服务于下游控制。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 使用直接状态监督和通过冻结专家反向传播的动作一致性损失，按调度逐步优化视觉状态估计。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在五个操控任务中优于直接像素到动作模仿，并在真实 Panda 机器人上无需重训专家达到 76% 成功率。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出在复用冻结的基于状态的专家策略时，训练视觉状态估计器同时使用直接状态监督和经可微分专家回传的动作一致性损失，并按课程逐步强调影响控制动作的估计误差。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将模拟中训练的状态策略作为冻结且可微的专家，训练视觉状态估计器重建缺失状态；先以状态监督建立估计，再联合动作一致性损失微调，使估计服务于下游控制。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在五个目标条件操作任务中，保留专家优于从同一示范数据直接进行像素到动作模仿；并在真实 Panda 机器人上无需重训专家实现 76% 成功率。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Simulation-trained manipulation policies can exploit privileged state information to learn effective contact-rich behaviours, but deployment requires acting from partial observations such as noisy camera images. A common solution is teacher-student distillation, in which a visuomotor policy is trained to reproduce the actions of the privileged expert. This requires the student to jointly infer the task-relevant state and relearn the expert&#x27;s action mapping that is already available. An alternative is to reuse the state-based expert and learn only a perceptual interface that reconstructs its missing state inputs. However, minimising the state estimate error alone does not necessarily minimise the downstream control error induced by these estimates. To bridge this gap, we train a visual state estimator using both direct state supervision and an action-consistency loss backpropagated through the frozen, differentiable expert. A scheduled objective first establishes a physically meaningful state estimate and progressively emphasises errors that affect the expert&#x27;s actions. Across five goal-conditioned manipulation tasks, retaining the expert consistently outperforms direct pixel-to-action imitation from the same expert demonstration corpus. We further demonstrate sim-to-real transfer on a physical Panda robot, achieving 76% success without retraining the underlying expert.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Shcherba2026260934018,
+      title={Estimate, Don&#x27;t Imitate: Reusing Differentiable State-Based Policies for Visuomotor Control},
+      author={Denis Shcherba and Adrian Abel and Eckart Cobo-Briesewitz and Paul Mattes and Wojciech Samek and Marc Toussaint},
+      year={2026},
+      eprint={2609.34018v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={http://arxiv.org/abs/2609.34018v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2609.33681v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                6. <a href="http://arxiv.org/abs/2609.33681v1" style="color:#0b5cab;text-decoration:none;">Observability-Informed Optimal Sensor Placement for Soft Robots</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Samuel Smocot, James Richard Forbes, Audrey Sedal</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2609.33681v1 &nbsp;|&nbsp; 首发日期: 2026-09-27 15:42 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2609.33681v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2609.33681v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        软软的机器人一弯一扭，里面到底变成什么形状、当前位置在哪里，很难直接看出来；如果到处都装测量装置又太麻烦，装在哪里才最有用也没有通用答案。这篇论文想出一套算位置的聪明办法，帮人选出最值得安装测量装置的地方，并在一个软软的长手臂上做了真机测试。结果显示，用这套办法选的测量点来推算机器人状态，比随便选的方案更准，误差能小到几毫米，而且这套思路以后也许能用到其他形状的软机器人上。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                <p style="margin:4px 0;color:#777;font-size:13px;">备注: Published in IEEE Robosoft 2026. 8 pages, 4 figures, 6 tables</p>
+                <p style="margin:4px 0;color:#777;font-size:13px;">期刊/会议信息: Proc. IEEE Int. Conf. Soft Robotics (RoboSoft) 2026, pp. 430-437</p>
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 将基于可观测性Gramian指标的凸优化传感器布置方法应用于软体机器人，并进行了实验验证。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 利用凸优化最大化可观测性Gramian指标以求解最优传感器配置，在软连续臂上采集位置与应变测量，并用卡尔曼滤波评估状态估计。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 最优布置下卡尔曼滤波状态估计在所有正弦输入试验中重建误差均低于基线，提升约毫米级；表明线性控制理论工具可指导软体机器人传感器布置并可能推广到其他形态。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        This paper presents the application and experimental evaluation of a systematic method for optimal sensor placement in soft robots. Existing methods either lack generalizability across different soft robot morphologies or do not account for system dynamics. The applied method uses convex optimization to find the optimal sensor configuration that maximizes an observability Gramian-based metric. The framework is experimentally evaluated using position and strain measurements on a soft continuum arm. Kalman filter state estimates using optimal sensor placements yield lower reconstruction error than a baseline across all sinusoidal input trials, with improvements on the order of millimeters. This case study shows that linear control theory tools can guide optimal sensor placement in soft robots, suggesting an interpretable approach to sensor placement that may extend to other morphologies.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Smocot2026260933681,
+      title={Observability-Informed Optimal Sensor Placement for Soft Robots},
+      author={Samuel Smocot and James Richard Forbes and Audrey Sedal},
+      year={2026},
+      eprint={2609.33681v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={http://arxiv.org/abs/2609.33681v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2609.33630v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                7. <a href="http://arxiv.org/abs/2609.33630v1" style="color:#0b5cab;text-decoration:none;">lapanda: A Matrix-Free Differentiable Solver for Nonconvex Constrained Optimization Layers</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Yuankun Chen, Zifei Nie, Kangyu Lin, Ján Drgoňa, Liang Wu</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">math.OC (Optimization and Control)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.LG (Machine Learning)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">eess.SY (Systems and Control)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2609.33630v1 &nbsp;|&nbsp; 首发日期: 2026-09-27 14:48 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2609.33630v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2609.33630v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        很多机器在学习时要同时满足各种现实限制，但这类带限制的选择题很难直接交给普通学习流程，而且现有工具又慢又占内存，还只能处理很特殊的情况。这篇论文做了一个更通用的解题器，把大问题拆成很多小步来算，不用存一大堆中间数据，所以算得更快、占内存更少，还能让机器在遵守限制的同时学得更稳。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        很多智能系统在做判断时，既要让结果尽量好，又必须满足安全、资源等一堆硬要求；可现有办法遇到这些复杂要求时，往往算得特别慢、特别占地方，或者只能应付很窄的情况。这篇论文做了一个新的计算工具，把大难题拆成一串更容易处理的小问题，一边算一边调整，还能顺带算出该怎么让系统变得更好。这样用起来速度更快、占地方更少，结果也比较可靠，不容易违反那些硬要求。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出 lapanda，一种面向一般约束非凸问题的无矩阵可微优化层求解器。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将原问题改写为增广拉格朗日子问题序列，用带自适应线搜索的近端平均拟牛顿一阶算法前向求解，并以无矩阵子问题敏感性近似反向传播。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在 Rosenbrock 基准、约束最优控制模仿学习和嵌入式机器人避障任务中，相比现有可微求解器显著降低计算时间与内存占用，同时保持约束满足和学习性能。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出 lapanda，一个面向一般非凸约束优化的无矩阵可微求解器，通过增广拉格朗日重构和反向敏感性对齐，兼顾建模表达能力与前向、反向计算效率。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将原问题转化为一系列增广拉格朗日子问题，用带自适应线搜索的近端平均拟牛顿一阶内层方法求解，并在反向用无矩阵方式计算最终子问题敏感性作为精确优化器敏感性的近似，同时建立局部适定性与外层收敛性。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在非凸约束 Rosenbrock 基准、约束最优控制模仿学习和机器人避障任务上，lapanda 相比最先进可微求解器显著减少计算时间和内存占用，同时保持可靠约束满足和学习性能。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Differentiable optimization brings the structural guarantees of mathematical optimization to network pipelines, allowing them to be trained end-to-end. However, its application remains challenging for nonconvex constrained problems, as existing differentiable solvers often suffer from limited modeling expressiveness due to their reliance on specialized problem structures, while also incurring substantial computation time and memory overhead in both the forward and backward passes. To address these challenges, we propose lapanda, a matrix-free differentiable solver for nonconvex optimization with general constraints. It reformulates the problem to a sequence of augmented Lagrangian subproblems, each handled by a first-order inner solver through a proximal averaged quasi-Newton algorithm with adaptive linesearch, thus enabling efficient forward optimization. We establish local well-posedness of the solution map and convergence of the outer iterations, and further derive a sensitivity alignment between the original problem and the final subproblem in the backward pass, demonstrating that the subproblem sensitivity, which can be computed efficiently in a matrix-free manner, provides a principled approximation to the exact optimizer sensitivity. We evaluate lapanda on nonconvex constrained Rosenbrock benchmarks, imitation learning with several representative constrained optimal control problems, and embedded robotic obstacle-avoidance tasks. Compared with state-of-the-art differentiable solvers, lapanda delivers substantial reductions in computation time and memory footprint while maintaining reliable constraint satisfaction and learning performance.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Chen2026260933630,
+      title={lapanda: A Matrix-Free Differentiable Solver for Nonconvex Constrained Optimization Layers},
+      author={Yuankun Chen and Zifei Nie and Kangyu Lin and Ján Drgoňa and Liang Wu},
+      year={2026},
+      eprint={2609.33630v1},
+      archivePrefix={arXiv},
+      primaryClass={math.OC},
+      url={http://arxiv.org/abs/2609.33630v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <p style="color:#999;font-size:12px;margin-top:24px;border-top:1px solid #eee;padding-top:12px;">
+            本页面由 arxiv_digest 定时任务自动生成, 数据来源于 arXiv 官方 API
+        </p>
+    </body>
+    </html>
+    
