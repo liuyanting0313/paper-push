@@ -28,16 +28,9 @@
             
             
                 <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
-                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
-                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
-                        很多机器人要一起去不同地点干活，但彼此不能发消息，也看不全周围情况，容易分错活儿或漏活儿。它们各自根据自己看到的信息猜旁边机器人在哪，然后自己抢着分活儿，边干边重新调整。这样不用互相联系也能把活儿分好，就算看得不准也不容易乱。
-                    </p>
-                </div>
-                
-                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
                     <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
                     <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
-                        一群机器人要一起完成去不同地点干活，但现场没法互相通话，还常常看不全周围情况，容易重复跑或漏掉地点。这篇论文让每个机器人只靠自己看到的情况，猜一猜附近同伴大概在哪、要去哪，再各自挑一个眼下最合适的地点行动。这样一来，它们不用互相联系也能配合起来，而且外面有干扰、看不清时也比较稳。
+                        好几台机器人要分头赶往不同的目标点干活，可它们身上没有对讲机、彼此联系不上，只能靠自己眼前看到的一点点情况来判断该往哪走，很容易撞车或者白跑。这篇论文的办法是让每台机器人自己猜一猜旁边的伙伴大概在什么位置、可能要去哪儿，然后各自挑一个还没人抢的目标出发，中途发现情况变了还能随时改主意。这样不用互相喊话也能配合得不错，而且就算看东西看不太清、周围有干扰，也不容易出岔子。
                     </p>
                 </div>
                 
@@ -46,17 +39,10 @@
                 
                 
             <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
-                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种无需通信、仅依赖局部观测的多机器人任务分配框架，通过LMB滤波估计邻居位置并在线重分配任务。</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 每个机器人使用LMB滤波估计邻近机器人状态，并基于贪心拍卖策略独立分配任务，执行中持续更新估计与重分配。</p>
-                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 蒙特卡洛仿真表明该方法可在无机器人间通信条件下实现有效协作任务分配，并对量测杂波和观测不确定性具有鲁棒性。</p>
-            </div>
-            
-            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
                 <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种仅基于局部观测、无需机器人间显式通信的分布式多机器人任务分配框架，核心是用LMB滤波器估计邻居状态并以贪婪拍卖实现独立分配。</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 每个机器人通过LMB滤波估计邻近机器人的位置，基于贪婪拍卖策略独立选择任务，并在执行过程中持续更新估计和重新分配。</p>
-                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 蒙特卡洛仿真表明，所提方法在没有机器人间通信的情况下仍能实现有效的协作任务分配，并对量测杂波和观测不确定性保持鲁棒。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种仅依赖局部观测、无需机器人间任何通信的分布式多机器人任务分配框架，用LMB滤波估计邻居位置并结合贪婪拍卖实现自主任务分配。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 每台机器人通过Labeled Multi-Bernoulli滤波器从本地观测中估计邻近机器人状态，据此以贪婪拍卖式策略独立分配目标任务，并在执行过程中持续更新估计并重新分配。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 蒙特卡洛仿真表明，该方法无需机器人间通信即可实现有效的协同任务分配，并对测量杂波和观测不确定性保持鲁棒。</p>
             </div>
             
                 
@@ -102,14 +88,14 @@
                 <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
                     <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
                     <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
-                        电网里线路随时可能断开，工程师需要很快算出断开后电网会不会出问题，但精确计算太慢，而让电脑学习又常常要为每种故障单独准备大量数据。这篇论文只用电网正常时的数据训练一个预测工具，再用反复修正的办法算出某条不是特别关键的线路断开后的状态，这样不用为每种故障都重新准备数据，既快又比较准。
+                        电网里线路随时可能断开，调度人员需要很快知道每条线路断开后电网会不会出问题，但精确计算太慢，简单粗算又不够准。他们只用电网正常状态的数据训练一个预测工具，再用反复修正的方式把它套用到各种单条线路断开的情形，不用为每种故障重新准备数据或训练新工具。这样既比最精确的算法快很多，又比简单粗算更准，还能在大型电网里稳定工作。
                     </p>
                 </div>
                 
                 <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
                     <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
                     <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
-                        电网里某条线路突然断掉时，工作人员要很快判断其他线路会不会出问题；但精确计算很慢，而且以前往往要为每种断线情况分别准备大量数据和计算，费时费力。这项研究想出的办法是：只用电网平时正常运行时的情况，做一个通用的快速估算工具，再通过反复微调来推算任意一条普通线路断掉后的结果。这样既能很快给出答案，又比较准，还省去了为每种故障单独准备数据的麻烦。
+                        电网一旦某条线路突然断掉，工作人员需要很快算清楚整个电网的电压和电流会变成什么样，但要把所有可能的断线情况都提前算一遍或分别训练模型，既费时又费钱。这篇论文想出办法：只用平时正常运行的电网数据训练一个模型，遇到任意一条不太关键的线路断掉时，反复套用它来推算断线后的状态曲线就能得到答案。这样做既省掉了大量准备数据的工作，又能算得又快又准，接近传统精细算法的准确度。
                     </p>
                 </div>
                 
@@ -119,16 +105,16 @@
                 
             <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
                 <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种只用基准拓扑数据训练的单一模型，通过固定点迭代预测非关键单线故障后交流潮流状态的方法。</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 在直流近似下分析固定点收敛性，刻画模型训练区域并推导预测误差界，以基准数据训练模型迭代估计故障后状态。</p>
-                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在6717节点合成德州系统上所有非关键单线故障均收敛，预测误差接近基准情况，兼顾直流求解速度和牛顿拉夫逊精度。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一个只用基准工况数据训练单一机器学习模型、通过固定点迭代预测非关键单线故障后交流潮流状态的框架。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 在直流近似下构建固定点迭代，利用基准拓扑训练的机器学习模型预测故障后状态，并分析收敛性、训练区域和预测误差界。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在6717节点合成德州系统上，所有非关键单线故障均收敛且预测误差接近基准工况，兼顾直流求解速度与交流计算精度。</p>
             </div>
             
             <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
                 <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种固定点框架，仅使用基础场景拓扑数据训练单个机器学习模型，通过迭代复用预测任意非关键单线故障后的交流潮流状态，避免逐故障训练或多拓扑数据训练的高昂离线成本。</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 先用基础场景数据训练单个机器学习模型，再在固定点迭代中调用该模型预测故障后状态，并从直流近似下的收敛性、收敛率、训练区域和预测误差界进行分析，最后在合成德州系统上验证。</p>
-                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在6717节点合成德州系统中，所有非关键单线故障均收敛，预测误差接近基础场景，实现了接近直流求解器速度与牛顿-拉夫逊精度的折中。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种不动点框架，仅复用基于基态拓扑数据训练的单一机器学习模型，即可预测任意非关键单线故障后的交流潮流状态。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 在直流潮流近似下分析该不动点迭代的收敛性并推导与网络参数相关的收敛速率，刻画机器学习训练区域并给出预测误差界，最后在6717节点合成德州系统上做数值验证。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在全部非关键单线故障上迭代均收敛，预测误差接近基态水平，整体在直流求解器的速度与牛顿-拉夫逊法的精度之间取得了良好折中。</p>
             </div>
             
                 
@@ -172,16 +158,9 @@
             
             
                 <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
-                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
-                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
-                        很多机器人要一起看住一片区域，但每个机器人只能看到自己附近的情况，又没有总指挥，很容易漏掉重要位置，还可能做出危险动作。这篇论文给每个机器人配了一个会自己学习的小助手，让它根据自己看到的信息猜出哪里可能出问题，并且加了一道安全提醒，避免它选危险做法。这样不用总指挥也能把事办得更好，还更不容易漏掉某个地方。
-                    </p>
-                </div>
-                
-                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
                     <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
                     <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
-                        现实里，很多分散的机器要一起看住一大片区域或持续巡逻，但它们只能看到自己附近，彼此又没法共享全局信息，所以既难配合，又容易漏掉一些地方。这篇论文让每个机器只根据自己看到的一小段历史和周围情况来自己做决定，并加了一个防止漏掉任何地点的提醒机制。这样不用中央统一指挥也能一起完成任务，效果比中央指挥还好，对现场情况的掌握也更清楚，接近一种更费劲但更复杂的做法。
+                        现实里，很多分散的小设备各自只能看到附近一点点情况，却要一起盯住一大片区域里的每个位置，既容易漏看，又难协调，还可能采取不安全做法。这篇论文让每个设备根据自己过去看到的情况，一边理解位置之间的关系，一边估计哪里最不确定，并在行动前加一道防漏防危险的检查。这样它们不用知道全局也能更安全地配合，盯得比统一指挥更准，接近更复杂方法的水平。
                     </p>
                 </div>
                 
@@ -190,17 +169,10 @@
                 
                 
             <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
-                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种面向网络控制的安全且完全去中心化多智能体强化学习方法，通过局部观测历史和内置安全约束提升系统感知并降低有害策略风险。</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将局部观测历史输入图编码与状态估计两个并行分支，再接入演员评论家网络，并用离散时间控制屏障启发式过滤不安全动作。</p>
-                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 仿真显示该方法平均不确定性比集中式控制低26.3%，且与更复杂注意力算法性能差距在1%以内。</p>
-            </div>
-            
-            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
                 <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种全去中心化且安全感知的多智能体强化学习算法，通过融合图编码、状态估计和离散时间控制屏障启发式来提升网络控制中的协调性与安全性。</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将局部观测历史输入并行的图编码器与状态估计器，再结合 actor-critic 网络，并利用离散时间控制屏障启发式约束控制策略。</p>
-                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在自定义仿真环境中，该方法平均不确定性较集中式控制降低 26.3%，且与带注意力层的更复杂算法性能差距在 1% 以内。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种全分布式且安全感知的多智能体强化学习算法，通过图编码器、状态估计器与控制障碍启发式结合，在不依赖全局信息下实现网络控制中的安全协调。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将局部观测历史同时输入图编码器和状态估计器，利用 actor-critic 网络学习策略，并用离散时间控制障碍启发式降低节点被忽略的风险。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在自定义仿真环境中，所提算法的平均不确定性比集中式控制策略低26.3%，并与带注意力层的更复杂算法差距在1%以内。</p>
             </div>
             
                 
@@ -246,14 +218,14 @@
                 <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
                     <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
                     <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
-                        以前研究把一块能调整无线信号走向的板子装到飞行器上时，大多只在电脑里模拟，没考虑真实飞行中的晃动、干扰和设备限制，也缺少大家能直接用的实测记录。他们做了一个能飞的实物，在飞行中根据位置变化实时调整这块板，并把多次飞行的真实测量结果整理出来。这样别人研究时不用全靠想象，结果会更接近真实使用。
+                        现在人们想让空中设备帮忙把网络信号调得更稳，但以前大多只在电脑里模拟，没考虑真实飞行中的晃动、遮挡和干扰。他们做了一个能飞在空中、还能根据位置实时改变信号方向的小面板，并做了真实飞行测试。这样收集到的真实数据能帮别人更准确地设计空中连网设备，减少实际使用中的变慢或断连。
                     </p>
                 </div>
                 
                 <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
                     <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
                     <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
-                        现实中，手机或设备在偏远、遮挡多的地方常常信号差，人们想用无人机带着一块能调节反射方向的板子飞到空中，把信号更灵活地送到需要的地方；但以前大多是电脑模拟，没把真实飞行中的晃动、风、定位误差算进去，所以到底能不能用不清楚。这篇论文把多次真实飞行实验的数据整理并公开，里面有无人机位置估计、真实位置、板子设置和信号强弱等记录，方便别人不再只靠模拟，能拿真实数据检验和改进方案。
+                        现实中，人们想用会飞的小飞机带着一种能调节反射方向的板子来增强无线信号，但很多研究只靠电脑模拟，没考虑飞行中抖动、位置变化等真实干扰，结果不一定靠谱。他们真的做出样机，飞行时根据小飞机的位置不断调整这块板，以减少干扰、保持信号增强，并把多次飞行测到的数据公开出来，方便别人验证和改进。
                     </p>
                 </div>
                 
@@ -263,16 +235,16 @@
                 
             <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
                 <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出首个面向无人机载可重构智能表面飞行场景的综合实测数据集，填补真实飞行条件下信道测量数据空白。</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 利用无人机扩展卡尔曼滤波实时估计状态并驱动可重构智能表面重构，在多次飞行实验中同步采集状态估计、真值、表面配置和S21信道数据。</p>
-                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 真实飞行实验验证了无人机载可重构智能表面系统的可行性，实时重构可缓解干扰并维持链路性能增益，所发布数据集可为后续研究提供实测基础。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出并发布首个面向无人机搭载可重构智能表面的飞行实测信道数据集。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 利用无人机扩展卡尔曼滤波实时估计状态并驱动可重构智能表面重构，通过多次飞行实验采集状态估计、真值、配置和S21信道数据。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 实验表明该系统能缓解真实飞行干扰并保持链路性能增益，所发布数据集可为后续研究提供真实信道测量依据。</p>
             </div>
             
             <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
                 <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 本研究提供了面向无人机搭载RIS系统的综合在飞实验数据集，包含EKF状态估计、真值测量、RIS配置和S21信道数据。</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 基于无人机搭载RIS原型，利用无人机EKF进行实时RIS重配置，并通过多次真实飞行实验采集多类测量数据。</p>
-                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 实验验证了无人机搭载RIS系统的可行性，EKF实时重配置可有效缓解扰动并保持RIS链路的性能增益，同时公开数据集以促进后续研究。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提供了面向无人机载可重构智能表面信道测量的综合在飞实测数据集，弥补现有研究多依赖仿真、缺乏真实数据的不足。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 基于无人机载RIS原型开展多次飞行实验，利用无人机EKF实时重配置RIS，并同步采集EKF状态估计、真值、RIS配置和S21信道数据。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 实验验证了无人机载RIS系统在真实干扰下的可行性，EKF实时重配置可减轻干扰并保持RIS链路性能增益，所公开数据集可支撑后续研究。</p>
             </div>
             
                 
@@ -318,14 +290,14 @@
                 <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
                     <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
                     <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
-                        让机器人靠摄像头干活时，它常常猜不准自己周围到底发生了什么，直接模仿别人动作容易学歪。这篇论文的办法是先让机器人把摄像头里的画面翻译成有用的现场信息，再交给一个已经会干活的旧程序去决定动作。这样既不用从头重学动作，又更稳，真实机器人上也能直接用上。
+                        机器人靠摄像头看东西时，画面有噪声、信息不全，直接学动作很容易出错。他们不让机器人从头模仿整套动作，而是先让它猜出关键情况，再交给已经会干活的模型做决定。这样更稳，还能从电脑模拟搬到真实机器人上，成功率也不错。
                     </p>
                 </div>
                 
                 <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
                     <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
                     <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
-                        机器人先在电脑模拟里学会了怎么抓取、移动东西，但到了真实世界只能靠摄像头看，画面又糊又不全，直接照画面重新学动作往往学不好，还会把原来已经会的本领丢掉。这篇论文的办法是：保留原来会控制动作的“老手”，只给它加一个从画面猜出缺失信息的“眼睛”，并且训练这个“眼睛”时不光看猜得准不准，还看猜错会不会让动作跟着出错，把影响大的错误重点改。这样在多个任务和真实机械臂上都更稳，真实操作成功率能到七成多，而且不用重新训练原来的“老手”。
+                        在电脑里学会干活的机器人，到了真实世界只能靠摄像头看，容易看不清、判断不准，原来在电脑里练熟的本事常常用不上。这个研究不让机器人从头模仿动作，而是保留原来会干活的本事，只训练一个“眼睛”把画面变成它需要的判断，并且让这个判断直接帮助它把活干好。这样在多个任务和真实机械臂上更容易成功，不用重新训练原来的本事也能达到七成六的成功率。
                     </p>
                 </div>
                 
@@ -335,16 +307,16 @@
                 
             <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
                 <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出不重新学习动作，而是复用可微的状态策略并训练视觉状态估计器，使估计误差服务于下游控制。</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 使用直接状态监督和通过冻结专家反向传播的动作一致性损失，按调度逐步优化视觉状态估计。</p>
-                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在五个操控任务中优于直接像素到动作模仿，并在真实 Panda 机器人上无需重训专家达到 76% 成功率。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出重用可微状态策略，只训练视觉状态估计器，并用动作一致性损失让估计误差服务于最终控制。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 通过直接状态监督和冻结可微专家反向传播的动作一致性损失，以调度目标训练视觉状态估计器。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在五个目标条件操作任务中优于直接像素到动作模仿，并在真实 Panda 机器人上无需重训专家达到 76% 成功率。</p>
             </div>
             
             <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
                 <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出在复用冻结的基于状态的专家策略时，训练视觉状态估计器同时使用直接状态监督和经可微分专家回传的动作一致性损失，并按课程逐步强调影响控制动作的估计误差。</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将模拟中训练的状态策略作为冻结且可微的专家，训练视觉状态估计器重建缺失状态；先以状态监督建立估计，再联合动作一致性损失微调，使估计服务于下游控制。</p>
-                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在五个目标条件操作任务中，保留专家优于从同一示范数据直接进行像素到动作模仿；并在真实 Panda 机器人上无需重训专家实现 76% 成功率。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出“估计而非模仿”的视觉运动控制框架，复用冻结的可微状态专家，仅学习状态估计器。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 以直接状态监督和经冻结可微专家反传的动作一致性损失训练视觉状态估计器，并用调度目标逐步强调影响专家动作的估计误差。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在五项目标条件操作任务中优于像素到动作模仿，并在真实 Panda 机器人上无需重训专家取得76%成功率。</p>
             </div>
             
                 
@@ -388,9 +360,16 @@
             
             
                 <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        软软的机器人身体会弯来扭去，想知道它到底弯成什么样，就得在身上放传感器，但放哪里最有用一直很难定，而且不同形状不能照搬。这篇论文用一套自动计算的办法，根据机器人怎么动来挑出最能看清身体哪里弯了、扭了的位置。实际测试里，这样放传感器比原来的放法更准，误差能小几毫米，以后别的软软的机器人也能参考。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
                     <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
                     <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
-                        软软的机器人一弯一扭，里面到底变成什么形状、当前位置在哪里，很难直接看出来；如果到处都装测量装置又太麻烦，装在哪里才最有用也没有通用答案。这篇论文想出一套算位置的聪明办法，帮人选出最值得安装测量装置的地方，并在一个软软的长手臂上做了真机测试。结果显示，用这套办法选的测量点来推算机器人状态，比随便选的方案更准，误差能小到几毫米，而且这套思路以后也许能用到其他形状的软机器人上。
+                        软软的机器人身体会弯来弯去，想知道它现在到底弯成什么样子很难，而且不同形状的软机器人又很难用同一套办法决定该在哪里装感应器。研究者用一种自动找出最佳安装位置的办法，在一条软手臂上试了试，结果比原来随便装的办法更能准确还原它的动作，误差小到几毫米，而且这套思路以后也许能用到别的形状上。
                     </p>
                 </div>
                 
@@ -399,10 +378,17 @@
                 <p style="margin:4px 0;color:#777;font-size:13px;">期刊/会议信息: Proc. IEEE Int. Conf. Soft Robotics (RoboSoft) 2026, pp. 430-437</p>
                 
             <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种面向软机器人的可观测性驱动最优传感器布置方法，用凸优化最大化可观性指标并考虑系统动力学。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 基于线性控制理论的可观性 Gramian 指标，通过凸优化求解最优传感器配置，并在软连续臂上用位置和应变测量结合卡尔曼滤波进行实验验证。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 实验表明，最优传感器布置下卡尔曼滤波的状态估计在所有正弦输入试验中重构误差均低于基线，改善约毫米级，说明线性控制工具可指导软机器人传感器布置并具扩展潜力。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
                 <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 将基于可观测性Gramian指标的凸优化传感器布置方法应用于软体机器人，并进行了实验验证。</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 利用凸优化最大化可观测性Gramian指标以求解最优传感器配置，在软连续臂上采集位置与应变测量，并用卡尔曼滤波评估状态估计。</p>
-                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 最优布置下卡尔曼滤波状态估计在所有正弦输入试验中重建误差均低于基线，提升约毫米级；表明线性控制理论工具可指导软体机器人传感器布置并可能推广到其他形态。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 该研究将基于可观测性格拉姆矩阵的凸优化传感器布置方法系统应用于软体机器人，并通过实验评估来弥补现有方法通用性不足或忽略系统动力学的问题。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 以最大化可观测性格拉姆矩阵指标为目标，用凸优化求解最优传感器配置，并在软连续臂上结合位置与应变测量和卡尔曼滤波进行实验评估。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 最优传感器布置使卡尔曼滤波状态估计在所有正弦输入试验中均优于基线，重建误差降低约毫米级，表明线性控制理论可指导软体机器人传感器布置并可能推广至其他形态。</p>
             </div>
             
                 
@@ -446,16 +432,9 @@
             
             
                 <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
-                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
-                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
-                        很多机器在学习时要同时满足各种现实限制，但这类带限制的选择题很难直接交给普通学习流程，而且现有工具又慢又占内存，还只能处理很特殊的情况。这篇论文做了一个更通用的解题器，把大问题拆成很多小步来算，不用存一大堆中间数据，所以算得更快、占内存更少，还能让机器在遵守限制的同时学得更稳。
-                    </p>
-                </div>
-                
-                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
                     <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
                     <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
-                        很多智能系统在做判断时，既要让结果尽量好，又必须满足安全、资源等一堆硬要求；可现有办法遇到这些复杂要求时，往往算得特别慢、特别占地方，或者只能应付很窄的情况。这篇论文做了一个新的计算工具，把大难题拆成一串更容易处理的小问题，一边算一边调整，还能顺带算出该怎么让系统变得更好。这样用起来速度更快、占地方更少，结果也比较可靠，不容易违反那些硬要求。
+                        很多会自己做决定的电脑程序必须同时遵守一堆复杂又难搞的硬性规则，比如机器人不能撞墙、控制设备不能超出安全范围；可现在的办法要么只能处理比较简单的规则，要么在让程序从数据里学习时又慢又占内存。这篇论文想出一套新的计算办法，把大难题拆成很多小步，一边算一边处理，不把所有中间结果都存起来，这样训练更快、更省内存，还能尽量保证规则不被违反。
                     </p>
                 </div>
                 
@@ -464,17 +443,10 @@
                 
                 
             <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
-                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出 lapanda，一种面向一般约束非凸问题的无矩阵可微优化层求解器。</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将原问题改写为增广拉格朗日子问题序列，用带自适应线搜索的近端平均拟牛顿一阶算法前向求解，并以无矩阵子问题敏感性近似反向传播。</p>
-                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在 Rosenbrock 基准、约束最优控制模仿学习和嵌入式机器人避障任务中，相比现有可微求解器显著降低计算时间与内存占用，同时保持约束满足和学习性能。</p>
-            </div>
-            
-            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
                 <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出 lapanda，一个面向一般非凸约束优化的无矩阵可微求解器，通过增广拉格朗日重构和反向敏感性对齐，兼顾建模表达能力与前向、反向计算效率。</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将原问题转化为一系列增广拉格朗日子问题，用带自适应线搜索的近端平均拟牛顿一阶内层方法求解，并在反向用无矩阵方式计算最终子问题敏感性作为精确优化器敏感性的近似，同时建立局部适定性与外层收敛性。</p>
-                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在非凸约束 Rosenbrock 基准、约束最优控制模仿学习和机器人避障任务上，lapanda 相比最先进可微求解器显著减少计算时间和内存占用，同时保持可靠约束满足和学习性能。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出 lapanda，一种面向非凸一般约束优化层的无矩阵可微求解器，可高效前向求解并得到有原则的梯度近似。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将问题转化为一系列增广拉格朗日子问题，以带自适应线搜索的近端平均拟牛顿一阶内层求解，并通过子问题灵敏度对齐实现无矩阵反向传播。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在非凸约束 Rosenbrock 基准、约束最优控制模仿学习和机器人避障任务中，较先进可微求解器显著降低时间与内存开销，同时保持约束满足和学习性能。</p>
             </div>
             
                 
