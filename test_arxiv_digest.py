@@ -9,11 +9,14 @@
 
 import unittest
 from datetime import datetime, timezone
+from unittest.mock import patch, MagicMock
 
+import arxiv_digest
 from arxiv_digest import (
     compute_relevance_score,
     sort_papers_by_relevance,
     build_email_html,
+    resolve_llm_model,
 )
 
 
@@ -76,6 +79,66 @@ class TestKeywordWeights(unittest.TestCase):
         )
         # 高权重关键词命中的论文应排在前面
         self.assertIs(papers[0], self.paper)
+
+
+class TestResolveLlmModel(unittest.TestCase):
+    """针对 OpenRouter 免费模型自动下线/轮换时, 自动回退到当前可用模型的回归测试"""
+
+    def setUp(self):
+        # 每个用例都重置进程内缓存, 避免用例间相互污染
+        arxiv_digest._openrouter_model_cache = {
+            "checked": False, "available_ids": set(), "free_text_models": []
+        }
+
+    def _mock_models_response(self, model_ids_with_free_text):
+        """构造一个模拟的 OpenRouter /models 响应: model_ids_with_free_text 为 (id, is_free_text) 列表"""
+        data = []
+        for model_id, is_free_text in model_ids_with_free_text:
+            data.append({
+                "id": model_id,
+                "context_length": 100000,
+                "architecture": {"output_modalities": ["text"] if is_free_text else ["image"]},
+            })
+        mock_resp = MagicMock()
+        mock_resp.json.return_value = {"data": data}
+        mock_resp.raise_for_status.return_value = None
+        return mock_resp
+
+    @patch("arxiv_digest.requests.get")
+    def test_model_still_available_returns_unchanged(self, mock_get):
+        mock_get.return_value = self._mock_models_response([
+            ("some-provider/still-here:free", True),
+        ])
+        result = resolve_llm_model(
+            "https://openrouter.ai/api/v1", "some-provider/still-here:free"
+        )
+        self.assertEqual(result, "some-provider/still-here:free")
+
+    @patch("arxiv_digest.requests.get")
+    def test_model_offline_falls_back_to_available_free_model(self, mock_get):
+        mock_get.return_value = self._mock_models_response([
+            ("some-provider/replacement:free", True),
+            ("some-provider/image-model:free", False),  # 非文本模型, 不应被选中
+        ])
+        result = resolve_llm_model(
+            "https://openrouter.ai/api/v1", "nex-agi/nex-n2.5-mini:free"
+        )
+        self.assertEqual(result, "some-provider/replacement:free")
+
+    @patch("arxiv_digest.requests.get")
+    def test_non_openrouter_base_url_skips_check(self, mock_get):
+        result = resolve_llm_model(
+            "https://api.deepseek.com/v1", "deepseek-chat"
+        )
+        self.assertEqual(result, "deepseek-chat")
+        mock_get.assert_not_called()
+
+    @patch("arxiv_digest.requests.get", side_effect=Exception("network down"))
+    def test_fetch_failure_keeps_configured_model(self, mock_get):
+        result = resolve_llm_model(
+            "https://openrouter.ai/api/v1", "nex-agi/nex-n2.5-mini:free"
+        )
+        self.assertEqual(result, "nex-agi/nex-n2.5-mini:free")
 
 
 if __name__ == "__main__":

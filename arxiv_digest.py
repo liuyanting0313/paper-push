@@ -467,6 +467,64 @@ def translate_to_chinese(text: str) -> str:
         return ""
 
 
+# 进程内缓存: 一次运行中 OpenRouter 的可用模型列表只探测一次, 避免每篇论文都发一次请求
+_openrouter_model_cache = {"checked": False, "available_ids": set(), "free_text_models": []}
+
+
+def _fetch_openrouter_models(timeout: float = 10) -> dict:
+    """拉取并缓存 OpenRouter 当前的模型列表(含 id 集合, 以及按 context_length 排序的免费文本模型列表)"""
+    if _openrouter_model_cache["checked"]:
+        return _openrouter_model_cache
+
+    _openrouter_model_cache["checked"] = True
+    try:
+        resp = requests.get("https://openrouter.ai/api/v1/models", timeout=timeout)
+        resp.raise_for_status()
+        models = resp.json().get("data", [])
+        _openrouter_model_cache["available_ids"] = {m.get("id") for m in models}
+        free_text_models = [
+            m for m in models
+            if m.get("id", "").endswith(":free")
+            and m.get("architecture", {}).get("output_modalities") == ["text"]
+        ]
+        free_text_models.sort(key=lambda m: m.get("context_length") or 0, reverse=True)
+        _openrouter_model_cache["free_text_models"] = [m["id"] for m in free_text_models]
+    except Exception as e:
+        logger.warning(f"获取 OpenRouter 模型列表失败, 本次运行将跳过模型可用性校验: {e}")
+
+    return _openrouter_model_cache
+
+
+def resolve_llm_model(base_url: str, configured_model: str) -> str:
+    """
+    校验配置中的模型是否仍在 OpenRouter 可用模型列表中; 若已下线/改名(即将收到 404),
+    自动回退到当前可用的免费文本模型, 避免因免费模型轮换导致整批请求失败
+    仅对 OpenRouter 接口生效(通过 base_url 判断); 探测失败或非 OpenRouter 接口时原样返回配置值
+    """
+    if "openrouter.ai" not in base_url:
+        return configured_model
+
+    cache = _fetch_openrouter_models()
+    available_ids = cache["available_ids"]
+    if not available_ids or configured_model in available_ids:
+        return configured_model
+
+    free_text_models = cache["free_text_models"]
+    if not free_text_models:
+        logger.warning(
+            f"配置的模型 {configured_model} 已不在 OpenRouter 可用列表中, "
+            f"且未获取到可替换的免费模型, 将继续使用原配置(可能请求失败)"
+        )
+        return configured_model
+
+    fallback_model = free_text_models[0]
+    logger.warning(
+        f"配置的模型 {configured_model} 已不在 OpenRouter 可用列表中(可能已下线/改名), "
+        f"本次运行自动切换到当前可用的免费模型: {fallback_model}"
+    )
+    return fallback_model
+
+
 def generate_llm_insight(paper, llm_cfg: dict) -> dict:
     """
     调用 OpenAI 兼容接口(如 DeepSeek/Moonshot/OpenAI 等)对论文摘要生成中文精读要点:
@@ -482,7 +540,7 @@ def generate_llm_insight(paper, llm_cfg: dict) -> dict:
         return {}
 
     base_url = llm_cfg.get("base_url", "https://api.deepseek.com/v1").rstrip("/")
-    model = llm_cfg.get("model", "deepseek-chat")
+    model = resolve_llm_model(base_url, llm_cfg.get("model", "deepseek-chat"))
     timeout = llm_cfg.get("timeout", 30)
 
     prompt = (

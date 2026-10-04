@@ -62,8 +62,9 @@ llm:
   enabled: true
   # 使用 OpenRouter 的 OpenAI 兼容接口, 配合 OpenRouter 账户下新建的 API Key(LLM_API_KEY)
   base_url: "https://openrouter.ai/api/v1"
-  # OpenRouter 上的免费模型, 需带 :free 后缀; 免费额度和限流以 OpenRouter 账户当前状态为准
-  model: "nex-agi/nex-n2.5-mini:free"
+  # OpenRouter 上的免费模型, 需带 :free 后缀; 免费模型会不定期下线/轮换, 若收到 404 需去
+  # https://openrouter.ai/models?max_price=0 核对最新可用的模型 id 并更新此处
+  model: "qwen/qwen3.8-27b:free"
   api_key: ""
   timeout: 60
 
