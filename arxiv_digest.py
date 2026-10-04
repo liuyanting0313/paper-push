@@ -1176,6 +1176,7 @@ def write_detail_page(papers: list, keywords: list, llm_cfg: dict, keyword_weigh
     return {p.get_short_id(): f"{page_url}#{p.get_short_id()}" for p in papers}
 
 
+def _normalize_receivers(receiver_cfg) -> list:
     """将 email.receiver 归一化为列表: 支持单个字符串或字符串列表两种写法"""
     if not receiver_cfg:
         return []
