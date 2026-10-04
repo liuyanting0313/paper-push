@@ -36,6 +36,17 @@ arxiv:
   max_results: 120
   max_send: 20
 
+  # 文献检索来源列表: arxiv(默认) / semantic_scholar(免费 API, 覆盖期刊/会议论文, 含引用数据)
+  sources:
+    - arxiv
+    - semantic_scholar
+
+  semantic_scholar:
+    max_results: 50
+    timeout: 20
+    # 建议通过环境变量 SEMANTIC_SCHOLAR_API_KEY 配置(可选, 未配置也可用但限流配额更低)
+    api_key: ""
+
 email:
   enabled: true
   smtp_server: smtp.qq.com
@@ -60,6 +71,7 @@ logging:
 llm:
   # LLM 精读要点默认关闭; 若要启用, 在 GitHub Secrets 中配置 LLM_API_KEY, 并将 enabled 设为 true
   enabled: true
+  label: "免费模型"
   # 使用 OpenRouter 的 OpenAI 兼容接口, 配合 OpenRouter 账户下新建的 API Key(LLM_API_KEY)
   base_url: "https://openrouter.ai/api/v1"
   # OpenRouter 上的免费模型, 需带 :free 后缀; 免费模型会不定期下线/轮换, 若收到 404 需去
@@ -67,6 +79,26 @@ llm:
   model: "qwen/qwen3.8-27b:free"
   api_key: ""
   timeout: 60
+  # 备用模型候选链(可选): 若 model 改名/下线导致调用报错(404/模型不存在), 会自动依次尝试
+  # 这里列出的备用模型; OpenRouter 还会额外做一次全量可用模型列表比对作为更可靠的首选探测方式
+  fallback_models:
+    - "nvidia/nemotron-3-super-120b-a12b:free"
+    - "google/gemma-4-31b-it:free"
+
+  # 对比模型: 同时调用已付费的 DeepSeek, 邮件中两段大白话速读并列展示, 便于对比效果
+  # 需要在 GitHub Secrets 中配置 DEEPSEEK_API_KEY; 不需要对比时将 enabled 设为 false 即可(节省额度)
+  compare:
+    enabled: true
+    label: "DeepSeek"
+    base_url: "https://api.deepseek.com/v1"
+    model: "deepseek-flash"
+    api_key_env: "DEEPSEEK_API_KEY"
+    api_key: ""
+    timeout: 60
+    # DeepSeek 若未来改名/下线当前模型, 会自动依次尝试这里列出的备用模型
+    fallback_models:
+      - "deepseek-chat"
+      - "deepseek-reasoner"
 
 push:
   # Webhook 推送默认关闭; 若要启用, 在 GitHub Secrets 中配置 PUSH_WEBHOOK_URL, 并将 enabled 设为 true

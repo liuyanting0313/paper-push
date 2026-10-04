@@ -89,12 +89,29 @@ logging:
 llm:
   # 是否启用 LLM 中文精读要点(创新点/方法/结论), 启用后会替代普通机器翻译, 默认关闭
   # 需要配置 api_key(建议用环境变量 LLM_API_KEY), 默认适配 DeepSeek 的 OpenAI 兼容接口
-  # 也可切换为 OpenAI/Moonshot 等其他 OpenAI 兼容接口, 修改 base_url 和 model 即可
+  # 也可切换为 OpenAI/Moonshot/OpenRouter 等其他 OpenAI 兼容接口, 修改 base_url 和 model 即可
   enabled: false
+  label: "主模型"
   base_url: "https://api.deepseek.com/v1"
-  model: "deepseek-chat"
+  model: "deepseek-flash"
   api_key: ""
   timeout: 30
+  # 备用模型候选链(可选): 若 model 改名/下线导致调用报错(404/模型不存在), 会自动依次尝试
+  # 这里列出的备用模型, 适用于任意 OpenAI 兼容接口厂商(不限于 OpenRouter)
+  fallback_models:
+    - "deepseek-chat"
+
+  # 对比模型(可选): 与上面的主模型同时调用, 邮件中两段大白话速读并列展示, 便于对比效果
+  # 不需要对比时把 enabled 设为 false 或整段删除即可
+  compare:
+    enabled: false
+    label: "对比模型"
+    base_url: "https://openrouter.ai/api/v1"
+    model: "qwen/qwen3.8-27b:free"
+    api_key_env: "LLM_API_KEY"
+    api_key: ""
+    timeout: 30
+    fallback_models: []
 
 push:
   # 是否同时推送到 Webhook 机器人(企业微信/飞书/Slack), 默认关闭

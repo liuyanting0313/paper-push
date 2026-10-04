@@ -220,6 +220,70 @@ def fetch_recent_papers(arxiv_cfg: dict) -> list:
     return results
 
 
+class _SimpleAuthor:
+    """最小化的作者对象, 仅提供 .name 属性, 用于适配非 arXiv 来源的论文到统一渲染接口"""
+
+    def __init__(self, name: str):
+        self.name = name
+
+
+class SemanticScholarPaper:
+    """
+    将 Semantic Scholar Graph API 返回的论文数据适配为与 arxiv.Result 一致的只读接口
+    (title/summary/entry_id/categories/primary_category/authors/published/updated/
+    comment/journal_ref/pdf_url/get_short_id()), 使其可直接复用现有的排序/去重/渲染逻辑
+    """
+
+    def __init__(self, raw: dict):
+        self._raw = raw
+        self.title = (raw.get("title") or "").strip()
+        self.summary = (raw.get("abstract") or "").strip()
+        self.authors = [
+            _SimpleAuthor(a.get("name", "")) for a in (raw.get("authors") or []) if a.get("name")
+        ]
+
+        fields = raw.get("fieldsOfStudy") or raw.get("s2FieldsOfStudy") or []
+        field_names = []
+        for f in fields:
+            name = f.get("category") if isinstance(f, dict) else f
+            if name:
+                field_names.append(name)
+        self.categories = field_names or ["Semantic Scholar"]
+        self.primary_category = self.categories[0] if self.categories else "Semantic Scholar"
+
+        pub_date_str = raw.get("publicationDate")
+        if pub_date_str:
+            try:
+                self.published = datetime.strptime(pub_date_str, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+            except ValueError:
+                self.published = datetime.now(timezone.utc)
+        else:
+            year = raw.get("year")
+            self.published = (
+                datetime(int(year), 1, 1, tzinfo=timezone.utc) if year else datetime.now(timezone.utc)
+            )
+        self.updated = self.published
+
+        venue = raw.get("venue") or ""
+        self.journal_ref = venue if venue else None
+        self.comment = None
+
+        self.entry_id = raw.get("url") or f"https://www.semanticscholar.org/paper/{raw.get('paperId', '')}"
+        open_access = raw.get("openAccessPdf") or {}
+        self.pdf_url = open_access.get("url") or self.entry_id
+
+        self._paper_id = raw.get("paperId", "")
+        external_ids = raw.get("externalIds") or {}
+        self.arxiv_id = external_ids.get("ArXiv")
+        self.doi = external_ids.get("DOI")
+
+    def get_short_id(self) -> str:
+        """返回用于去重/展示的短 ID: 若关联了 arXiv 编号则复用该编号(便于跨源去重), 否则用 S2 的 paperId"""
+        if self.arxiv_id:
+            return self.arxiv_id
+        return f"s2-{self._paper_id}" if self._paper_id else "s2-unknown"
+
+
 def base_arxiv_id(short_id: str) -> str:
     """去掉论文短 ID 尾部的版本号(如 v1/v2), 用于忽略改版号的去重"""
     return re.sub(r"v\d+$", "", short_id)
@@ -229,6 +293,87 @@ def get_dedup_key(paper, ignore_version: bool = True) -> str:
     """计算论文的去重 key: 默认忽略版本号(同一论文的 v1/v2 视为同一篇, 不重复推送)"""
     short_id = paper.get_short_id()
     return base_arxiv_id(short_id) if ignore_version else short_id
+
+
+def fetch_semantic_scholar_papers(arxiv_cfg: dict) -> list:
+    """
+    调用 Semantic Scholar 免费 Graph API, 按关键词补充检索候选论文(覆盖范围比单一 arXiv 源更广,
+    含期刊/会议论文及引用数据), 并按 days_back 过滤发布时间
+    返回 SemanticScholarPaper 列表, 查询或网络失败时返回空列表并记录警告(不影响 arXiv 主流程)
+    """
+    keywords = arxiv_cfg.get("keywords") or []
+    if not keywords:
+        return []
+
+    s2_cfg = arxiv_cfg.get("semantic_scholar") or {}
+    days_back = arxiv_cfg.get("days_back", 1)
+    max_results = s2_cfg.get("max_results", 50)
+    timeout = s2_cfg.get("timeout", 20)
+    cutoff = datetime.now(timezone.utc) - timedelta(days=days_back)
+
+    # Semantic Scholar 的全文检索不支持过长的 OR 查询语法, 用空格拼接关键词走其默认的相关性检索
+    query = " ".join(k.strip() for k in keywords if k.strip())
+    url = "https://api.semanticscholar.org/graph/v1/paper/search"
+    params = {
+        "query": query,
+        "limit": min(max_results, 100),
+        "fields": "title,abstract,authors,year,publicationDate,venue,url,"
+                  "externalIds,openAccessPdf,fieldsOfStudy",
+    }
+    headers = {}
+    api_key = os.environ.get("SEMANTIC_SCHOLAR_API_KEY") or s2_cfg.get("api_key")
+    if api_key:
+        headers["x-api-key"] = api_key
+
+    def _call():
+        resp = requests.get(url, params=params, headers=headers, timeout=timeout)
+        resp.raise_for_status()
+        return resp.json()
+
+    try:
+        data = retry_call(_call, max_retries=3, base_delay=3.0, logger_prefix="Semantic Scholar 请求 ")
+    except Exception as e:
+        logger.warning(f"从 Semantic Scholar 拉取论文失败, 本次跳过该来源: {e}")
+        return []
+
+    results = []
+    for raw in data.get("data", []):
+        if not raw.get("title") or not raw.get("abstract"):
+            continue
+        paper = SemanticScholarPaper(raw)
+        if paper.published >= cutoff:
+            results.append(paper)
+
+    logger.info(f"从 Semantic Scholar 拉取到 {len(results)} 篇 {days_back} 天内的候选论文")
+    return results
+
+
+def fetch_all_sources(arxiv_cfg: dict) -> list:
+    """
+    按 arxiv.sources 配置(默认仅 arxiv)从多个来源拉取候选论文并合并, 对跨源重复的论文去重
+    (Semantic Scholar 结果若关联了 arXiv 编号, 会与 arXiv 来源的同一篇论文合并为一条, 避免重复推送)
+    """
+    sources = [s.strip().lower() for s in (arxiv_cfg.get("sources") or ["arxiv"])]
+
+    arxiv_papers = []
+    if "arxiv" in sources:
+        arxiv_papers = fetch_recent_papers(arxiv_cfg)
+
+    all_papers = list(arxiv_papers)
+    if "semantic_scholar" in sources:
+        seen_arxiv_ids = {base_arxiv_id(p.get_short_id()) for p in arxiv_papers}
+        s2_papers = fetch_semantic_scholar_papers(arxiv_cfg)
+        added = 0
+        for p in s2_papers:
+            dedup_id = base_arxiv_id(p.get_short_id())
+            if dedup_id in seen_arxiv_ids:
+                continue
+            seen_arxiv_ids.add(dedup_id)
+            all_papers.append(p)
+            added += 1
+        logger.info(f"Semantic Scholar 补充了 {added} 篇与 arXiv 不重复的新论文")
+
+    return all_papers
 
 
 def load_sent_ids(sent_ids_file: str) -> dict:
@@ -395,31 +540,48 @@ def highlight_keywords(text: str, keywords: list) -> str:
 
 
 def build_bibtex(paper) -> str:
-    """为单篇论文生成 BibTeX 引用条目(misc 类型, 适用于 arXiv 预印本)"""
+    """
+    为单篇论文生成 BibTeX 引用条目: arXiv 来源用 misc + eprint/archivePrefix 字段(标准 arXiv 预印本格式),
+    非 arXiv 来源(如 Semantic Scholar)则省略 eprint/archivePrefix, 改用 note 字段标注来源链接
+    """
     short_id = paper.get_short_id()
+    is_arxiv_source = not short_id.startswith("s2-")
     first_author_last = ""
     if paper.authors:
         name_parts = paper.authors[0].name.strip().split()
         if name_parts:
             first_author_last = re.sub(r"[^A-Za-z]", "", name_parts[-1])
     year = paper.published.strftime("%Y")
-    key_suffix = short_id.split("v")[0].replace(".", "")
-    bib_key = f"{first_author_last or 'arxiv'}{year}{key_suffix}"
+    key_suffix = re.sub(r"[^A-Za-z0-9]", "", short_id.split("v")[0])
+    bib_key = f"{first_author_last or 'paper'}{year}{key_suffix}"
 
     authors_bib = " and ".join(a.name for a in paper.authors) if paper.authors else "Unknown"
     primary_category = paper.primary_category or (paper.categories[0] if paper.categories else "")
 
-    bibtex = (
-        f"@misc{{{bib_key},\n"
-        f"      title={{{paper.title}}},\n"
-        f"      author={{{authors_bib}}},\n"
-        f"      year={{{year}}},\n"
-        f"      eprint={{{short_id}}},\n"
-        f"      archivePrefix={{arXiv}},\n"
-        f"      primaryClass={{{primary_category}}},\n"
-        f"      url={{{paper.entry_id}}}\n"
-        f"}}"
-    )
+    if is_arxiv_source:
+        bibtex = (
+            f"@misc{{{bib_key},\n"
+            f"      title={{{paper.title}}},\n"
+            f"      author={{{authors_bib}}},\n"
+            f"      year={{{year}}},\n"
+            f"      eprint={{{short_id}}},\n"
+            f"      archivePrefix={{arXiv}},\n"
+            f"      primaryClass={{{primary_category}}},\n"
+            f"      url={{{paper.entry_id}}}\n"
+            f"}}"
+        )
+    else:
+        doi_line = f"      doi={{{paper.doi}}},\n" if getattr(paper, "doi", None) else ""
+        bibtex = (
+            f"@misc{{{bib_key},\n"
+            f"      title={{{paper.title}}},\n"
+            f"      author={{{authors_bib}}},\n"
+            f"      year={{{year}}},\n"
+            f"{doi_line}"
+            f"      note={{retrieved via Semantic Scholar}},\n"
+            f"      url={{{paper.entry_id}}}\n"
+            f"}}"
+        )
     return bibtex
 
 
@@ -525,25 +687,53 @@ def resolve_llm_model(base_url: str, configured_model: str) -> str:
     return fallback_model
 
 
-def generate_llm_insight(paper, llm_cfg: dict) -> dict:
+def _is_model_unavailable_error(exc: Exception) -> bool:
     """
-    调用 OpenAI 兼容接口(如 DeepSeek/Moonshot/OpenAI 等)对论文摘要生成中文精读要点:
-    创新点/方法/结论三段式总结, 用于替代或增强机器翻译
-    未启用或调用失败时返回空字典, 邮件会自动回退到普通机器翻译
+    判断异常是否属于'模型不存在/已下线/改名'这类问题(而非网络抖动/鉴权失败/限流等), 用于决定
+    是否应该切换到候选链里的下一个模型。覆盖常见 OpenAI 兼容接口厂商(OpenRouter/DeepSeek/
+    OpenAI/Moonshot 等)的典型报错模式: HTTP 404, 或 400/422 报错正文中包含模型相关关键字
     """
-    if not llm_cfg or not llm_cfg.get("enabled"):
-        return {}
+    status_code = getattr(getattr(exc, "response", None), "status_code", None)
+    if status_code == 404:
+        return True
+    if status_code in (400, 422):
+        body = ""
+        try:
+            body = (exc.response.text or "").lower()
+        except Exception:
+            body = str(exc).lower()
+        model_error_hints = (
+            "model_not_found", "does not exist", "invalid model",
+            "unknown model", "unsupported model", "model is not supported",
+        )
+        return any(hint in body for hint in model_error_hints)
+    return False
 
-    api_key = os.environ.get("LLM_API_KEY") or llm_cfg.get("api_key")
-    if not api_key:
-        logger.warning("LLM 功能已启用但未配置 api_key, 跳过精读要点生成")
-        return {}
 
-    base_url = llm_cfg.get("base_url", "https://api.deepseek.com/v1").rstrip("/")
-    model = resolve_llm_model(base_url, llm_cfg.get("model", "deepseek-chat"))
-    timeout = llm_cfg.get("timeout", 30)
+def _build_model_candidates(base_url: str, cfg: dict) -> list:
+    """
+    构造本次调用要依次尝试的模型候选列表(按优先级排序, 去重保持顺序):
+    1. OpenRouter 场景下先经过 resolve_llm_model 校验/替换的首选模型
+    2. 配置项 model(非 OpenRouter 场景, 或 resolve_llm_model 未改变时的原值)
+    3. 配置项 fallback_models 中依次列出的备用模型(适用于任意 OpenAI 兼容接口厂商)
+    """
+    configured_model = cfg.get("model", "deepseek-flash")
+    primary = resolve_llm_model(base_url, configured_model)
+    candidates = [primary, configured_model]
+    candidates.extend(cfg.get("fallback_models") or [])
 
-    prompt = (
+    seen = set()
+    unique_candidates = []
+    for m in candidates:
+        if m and m not in seen:
+            seen.add(m)
+            unique_candidates.append(m)
+    return unique_candidates
+
+
+def _build_insight_prompt(paper) -> str:
+    """构造用于生成'大白话速读 + 专业精读要点'的 LLM prompt, 两路模型共用同一套 prompt 以便公平对比"""
+    return (
         "你是一名学术助理, 请阅读以下英文论文标题和摘要, 完成两部分总结:\n\n"
         "【第一部分: 大白话人话速读】\n"
         "假设读者完全没有专业背景, 请用最口语化、最直白的大白话(严禁出现学术行话、数学公式、"
@@ -559,41 +749,115 @@ def generate_llm_insight(paper, llm_cfg: dict) -> dict:
         f"标题: {paper.title}\n摘要: {paper.summary or ''}"
     )
 
-    payload = {
-        "model": model,
-        "messages": [
-            {"role": "system", "content": "你是一名严谨、简洁的学术论文速读助手。"},
-            {"role": "user", "content": prompt},
-        ],
-        "temperature": 0.3,
-    }
+
+def _call_llm_for_insight(paper, cfg: dict, source_label: str = "") -> dict:
+    """
+    调用单路 OpenAI 兼容接口(如 DeepSeek/OpenRouter 等)对论文摘要生成中文精读要点
+    cfg 需包含 enabled/base_url/model/api_key/timeout; api_key_env 可指定专属环境变量名,
+    未配置时回退到 LLM_API_KEY(兼容原有单模型用法); fallback_models 可配置备用模型候选列表,
+    当前模型遇到'不存在/已下线'类错误(如改名/被厂商下架)时会自动依次尝试候选链中的下一个,
+    使任意 OpenAI 兼容接口厂商(不限于 OpenRouter)都具备模型变更后的自愈能力
+    未启用、未配置 api_key 或全部候选调用失败时返回空字典, 调用方据此决定是否回退展示
+    """
+    if not cfg or not cfg.get("enabled"):
+        return {}
+
+    api_key_env = cfg.get("api_key_env") or "LLM_API_KEY"
+    api_key = os.environ.get(api_key_env) or cfg.get("api_key")
+    if not api_key:
+        logger.warning(f"{source_label}LLM 功能已启用但未配置 api_key, 跳过精读要点生成")
+        return {}
+
+    base_url = cfg.get("base_url", "https://api.deepseek.com/v1").rstrip("/")
+    timeout = cfg.get("timeout", 30)
+    candidates = _build_model_candidates(base_url, cfg)
+
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
     }
 
-    def _call():
+    def _call_with_model(model: str):
+        payload = {
+            "model": model,
+            "messages": [
+                {"role": "system", "content": "你是一名严谨、简洁的学术论文速读助手。"},
+                {"role": "user", "content": _build_insight_prompt(paper)},
+            ],
+            "temperature": 0.3,
+        }
         resp = requests.post(
             f"{base_url}/chat/completions", headers=headers, json=payload, timeout=timeout
         )
         resp.raise_for_status()
         return resp.json()
 
-    try:
-        data = retry_call(_call, max_retries=2, base_delay=3.0, logger_prefix="LLM 请求 ")
-        content = data["choices"][0]["message"]["content"].strip()
-        # 兼容模型偶尔用 ```json 包裹输出的情况
-        content = re.sub(r"^```(json)?|```$", "", content, flags=re.MULTILINE).strip()
-        result = json.loads(content)
-        return {
-            "plain_explain": str(result.get("plain_explain", "")).strip(),
-            "innovation": str(result.get("innovation", "")).strip(),
-            "method": str(result.get("method", "")).strip(),
-            "conclusion": str(result.get("conclusion", "")).strip(),
-        }
-    except Exception as e:
-        logger.warning(f"LLM 精读要点生成失败, 将回退到机器翻译: {e}")
-        return {}
+    last_exc = None
+    for idx, model in enumerate(candidates):
+        try:
+            data = retry_call(
+                lambda m=model: _call_with_model(m),
+                max_retries=2, base_delay=3.0, logger_prefix=f"{source_label}LLM 请求({model}) "
+            )
+            if idx > 0:
+                logger.warning(f"{source_label}已自动切换到候选模型 {model} 并调用成功")
+            content = data["choices"][0]["message"]["content"].strip()
+            # 兼容模型偶尔用 ```json 包裹输出的情况
+            content = re.sub(r"^```(json)?|```$", "", content, flags=re.MULTILINE).strip()
+            result = json.loads(content)
+            return {
+                "plain_explain": str(result.get("plain_explain", "")).strip(),
+                "innovation": str(result.get("innovation", "")).strip(),
+                "method": str(result.get("method", "")).strip(),
+                "conclusion": str(result.get("conclusion", "")).strip(),
+            }
+        except Exception as e:
+            last_exc = e
+            is_last_candidate = idx == len(candidates) - 1
+            if not is_last_candidate and _is_model_unavailable_error(e):
+                logger.warning(
+                    f"{source_label}模型 {model} 不可用(可能已下线/改名): {e}, "
+                    f"尝试切换到下一个候选模型 {candidates[idx + 1]}"
+                )
+                continue
+            # 非模型失效类错误(网络/鉴权/解析失败等)换模型也无法解决, 直接放弃本次调用
+            break
+
+    logger.warning(f"{source_label}LLM 精读要点生成失败: {last_exc}")
+    return {}
+
+
+
+def generate_llm_insight(paper, llm_cfg: dict) -> dict:
+    """
+    调用 OpenAI 兼容接口对论文摘要生成中文精读要点: 创新点/方法/结论三段式总结, 用于替代或增强机器翻译
+    未启用或调用失败时返回空字典, 邮件会自动回退到普通机器翻译
+    """
+    return _call_llm_for_insight(paper, llm_cfg, source_label="")
+
+
+def generate_llm_insights(paper, llm_cfg: dict) -> list:
+    """
+    生成本篇论文的全部 LLM 速读结果列表, 支持同时调用"主模型"和 llm.compare 中配置的"对比模型"
+    (例如免费模型 + 已付费的 DeepSeek), 用于邮件中并列展示对比效果
+    返回列表, 每项为 {"label": 展示名称, "insight": {...}}, 调用失败或未启用的模型不会出现在列表中
+    """
+    llm_cfg = llm_cfg or {}
+    results = []
+
+    primary = _call_llm_for_insight(paper, llm_cfg, source_label="[主模型] ")
+    if primary:
+        primary_label = llm_cfg.get("label") or f"{llm_cfg.get('model', '')} 速读"
+        results.append({"label": primary_label, "insight": primary})
+
+    compare_cfg = llm_cfg.get("compare")
+    if compare_cfg and compare_cfg.get("enabled"):
+        compare = _call_llm_for_insight(paper, compare_cfg, source_label="[对比模型] ")
+        if compare:
+            compare_label = compare_cfg.get("label") or f"{compare_cfg.get('model', '')} 速读"
+            results.append({"label": compare_label, "insight": compare})
+
+    return results
 
 
 
@@ -647,30 +911,39 @@ def build_email_html(papers: list, keywords: list, llm_cfg: dict = None,
         abstract_raw = re.sub(r"\s+", " ", (p.summary or "")).strip()
         abstract_html = highlight_keywords(abstract_raw, matched_kw)
 
-
-        insight = generate_llm_insight(p, llm_cfg or {})
-        insight_html = ""
+        # 支持同时调用"主模型"(如免费模型) + llm.compare 配置的"对比模型"(如已付费 DeepSeek),
+        # 两者的大白话速读都默认展开展示, 便于对比效果; 专业精读要点/中文翻译折叠收起
+        insights = generate_llm_insights(p, llm_cfg or {})
+        plain_explain_blocks_html = ""
+        insight_detail_html = ""
         zh_summary_html = ""
-        plain_explain_html = ""
-        plain_explain = (insight or {}).get("plain_explain", "").strip()
-        if plain_explain:
-            plain_explain_html = f"""
-            <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
-                <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读</p>
-                <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
-                    {html.escape(plain_explain)}
-                </p>
-            </div>
-            """
-        if insight:
-            insight_html = f"""
-            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
-                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> {html.escape(insight.get('innovation',''))}</p>
-                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> {html.escape(insight.get('method',''))}</p>
-                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> {html.escape(insight.get('conclusion',''))}</p>
-            </div>
-            """
+
+        if insights:
+            plain_cards = []
+            insight_cards = []
+            for item in insights:
+                label = html.escape(item["label"])
+                insight = item["insight"]
+                plain_explain = (insight.get("plain_explain") or "").strip()
+                if plain_explain:
+                    plain_cards.append(f"""
+                    <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                        <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · {label}</p>
+                        <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                            {html.escape(plain_explain)}
+                        </p>
+                    </div>
+                    """)
+                insight_cards.append(f"""
+                <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · {label}</p>
+                    <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> {html.escape(insight.get('innovation',''))}</p>
+                    <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> {html.escape(insight.get('method',''))}</p>
+                    <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> {html.escape(insight.get('conclusion',''))}</p>
+                </div>
+                """)
+            plain_explain_blocks_html = "".join(plain_cards)
+            insight_detail_html = "".join(insight_cards)
         else:
             zh_summary = translate_to_chinese(abstract_raw)
             if zh_summary:
@@ -712,22 +985,27 @@ def build_email_html(papers: list, keywords: list, llm_cfg: dict = None,
                 <a href="{p.entry_id}" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
                 <a href="{p.pdf_url}" style="color:#0b5cab;">PDF 直达</a>
             </p>
-            {comment_html}
-            {journal_ref_html}
             {matched_kw_html}
-            {plain_explain_html}
-            {insight_html}
-            {zh_summary_html}
-            <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
-                <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
-                <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
-                    {abstract_html}
-                </p>
-            </div>
-            <details style="margin-top:12px;">
-                <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
-                <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
-                            font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">{bibtex_html}</pre>
+            {plain_explain_blocks_html}
+            <details style="margin-top:14px;">
+                <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">查看英文摘要 / AI 精读要点 / 中文翻译 / BibTeX(点击展开/折叠)</summary>
+                <div style="margin-top:10px;">
+                    {comment_html}
+                    {journal_ref_html}
+                    {insight_detail_html}
+                    {zh_summary_html}
+                    <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                        <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                        <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                            {abstract_html}
+                        </p>
+                    </div>
+                    <details style="margin-top:12px;">
+                        <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                        <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                    font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">{bibtex_html}</pre>
+                    </details>
+                </div>
             </details>
         </div>
         """)
@@ -925,7 +1203,7 @@ def run(config_path: str, dry_run: bool = False) -> int:
     ignore_version = storage_cfg.get("ignore_version_in_dedup", True)
 
     try:
-        papers = fetch_recent_papers(arxiv_cfg)
+        papers = fetch_all_sources(arxiv_cfg)
     except Exception as e:
         logger.error(f"任务失败: 拉取论文出错 - {e}")
         return 1
