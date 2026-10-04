@@ -113,6 +113,13 @@ llm:
     timeout: 30
     fallback_models: []
 
+site:
+  # 详情页(完整摘要/AI精读要点/翻译/BibTeX)的发布地址(可选功能, 默认留空不生成详情页)
+  # 若填写, 需要先在仓库 Settings -> Pages 中启用 "Deploy from a branch" -> main -> /docs 目录,
+  # 并把 base_url 换成你自己的 GitHub Pages 地址(形如 https://<用户名>.github.io/<仓库名>)
+  base_url: ""
+  output_dir: "docs/digest"
+
 push:
   # 是否同时推送到 Webhook 机器人(企业微信/飞书/Slack), 默认关闭
   # 邮件发送失败不影响该推送, 反之该推送失败也不影响邮件发送

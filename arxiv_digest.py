@@ -868,151 +868,172 @@ def generate_llm_insights(paper, llm_cfg: dict) -> list:
 
 
 
+def _build_paper_context(p, keywords: list, llm_cfg: dict, keyword_weights: dict) -> dict:
+    """
+    计算单篇论文渲染所需的全部数据/HTML 片段, 供'邮件简版'和'详情页完整版'两处渲染共用,
+    避免重复实现同一套作者/分类/相关度/双模型速读/翻译/BibTeX 的拼接逻辑
+    """
+    short_id = p.get_short_id()
+    authors_list = [a.name for a in p.authors] if p.authors else []
+    authors_html = html.escape(", ".join(authors_list)) if authors_list else "未知作者"
+
+    primary_cat = p.primary_category or (p.categories[0] if p.categories else "")
+    secondary_cats = [c for c in (p.categories or []) if c != primary_cat]
+    primary_cat_html = (
+        f'<span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;'
+        f'font-size:12px;margin-right:6px;">{html.escape(category_label(primary_cat))}</span>'
+        if primary_cat else ""
+    )
+    secondary_cats_html = "".join(
+        f'<span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;'
+        f'font-size:12px;margin-right:6px;">{html.escape(category_label(c))}</span>'
+        for c in secondary_cats
+    )
+
+    published_str = p.published.strftime("%Y-%m-%d %H:%M UTC")
+    updated_str = p.updated.strftime("%Y-%m-%d %H:%M UTC") if p.updated else published_str
+    is_updated_version = p.updated and p.updated.date() != p.published.date()
+    date_line = f"首发日期: {published_str}"
+    if is_updated_version:
+        date_line += f" &nbsp;|&nbsp; 最近更新: {updated_str}"
+
+    matched_kw = find_matched_keywords(p, keywords)
+    score = compute_relevance_score(p, keywords, keyword_weights) if keywords else 0
+    matched_kw_html = ""
+    if matched_kw:
+        chips = "".join(
+            f'<span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;'
+            f'font-size:12px;margin-right:6px;">key {html.escape(kw)}</span>'
+            for kw in matched_kw
+        )
+        score_chip = (
+            f'<span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;'
+            f'font-size:12px;margin-right:6px;">相关度 {score}</span>'
+        )
+        matched_kw_html = f'<p style="margin:8px 0 0 0;">{score_chip}{chips}</p>'
+
+    abstract_raw = re.sub(r"\s+", " ", (p.summary or "")).strip()
+    abstract_html = highlight_keywords(abstract_raw, matched_kw)
+
+    # 支持同时调用"主模型"(如免费模型) + llm.compare 配置的"对比模型"(如已付费 DeepSeek),
+    # 两者的大白话速读都默认展开展示, 便于对比效果; 专业精读要点/中文翻译收进详情页
+    insights = generate_llm_insights(p, llm_cfg or {})
+    plain_explain_blocks_html = ""
+    insight_detail_html = ""
+    zh_summary_html = ""
+
+    if insights:
+        plain_cards = []
+        insight_cards = []
+        for item in insights:
+            label = html.escape(item["label"])
+            insight = item["insight"]
+            plain_explain = (insight.get("plain_explain") or "").strip()
+            if plain_explain:
+                plain_cards.append(f"""
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · {label}</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        {html.escape(plain_explain)}
+                    </p>
+                </div>
+                """)
+            insight_cards.append(f"""
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · {label}</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> {html.escape(insight.get('innovation',''))}</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> {html.escape(insight.get('method',''))}</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> {html.escape(insight.get('conclusion',''))}</p>
+            </div>
+            """)
+        plain_explain_blocks_html = "".join(plain_cards)
+        insight_detail_html = "".join(insight_cards)
+    else:
+        zh_summary = translate_to_chinese(abstract_raw)
+        if zh_summary:
+            zh_summary_html = f"""
+            <div style="margin-top:12px;padding:12px 14px;background:#f0f7ff;border-left:3px solid #2f8f4e;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#2f8f4e;text-transform:uppercase;letter-spacing:0.5px;">中文摘要翻译</p>
+                <p style="margin:0;line-height:1.75;font-size:14px;color:#222;">
+                    {html.escape(zh_summary)}
+                </p>
+            </div>
+            """
+
+    bibtex = build_bibtex(p)
+    bibtex_html = html.escape(bibtex)
+
+    comment_html = (
+        f'<p style="margin:4px 0;color:#777;font-size:13px;">备注: {html.escape(p.comment)}</p>'
+        if getattr(p, "comment", None) else ""
+    )
+    journal_ref_html = (
+        f'<p style="margin:4px 0;color:#777;font-size:13px;">期刊/会议信息: {html.escape(p.journal_ref)}</p>'
+        if getattr(p, "journal_ref", None) else ""
+    )
+
+    return {
+        "short_id": short_id,
+        "title_html": html.escape(p.title),
+        "entry_id": p.entry_id,
+        "pdf_url": p.pdf_url,
+        "authors_html": authors_html,
+        "primary_cat_html": primary_cat_html,
+        "secondary_cats_html": secondary_cats_html,
+        "date_line": date_line,
+        "matched_kw_html": matched_kw_html,
+        "plain_explain_blocks_html": plain_explain_blocks_html,
+        "insight_detail_html": insight_detail_html,
+        "zh_summary_html": zh_summary_html,
+        "abstract_html": abstract_html,
+        "bibtex_html": bibtex_html,
+        "comment_html": comment_html,
+        "journal_ref_html": journal_ref_html,
+    }
+
+
 def build_email_html(papers: list, keywords: list, llm_cfg: dict = None,
-                      keyword_weights: dict = None) -> str:
-    """将论文列表渲染为学术日报风格的 HTML 邮件正文"""
+                      keyword_weights: dict = None, detail_urls: dict = None) -> str:
+    """
+    将论文列表渲染为学术日报风格的 HTML 邮件正文(精简版): 仅包含标题/作者/分类/相关度/
+    双模型大白话速读, 完整的摘要/AI精读要点/翻译/BibTeX 收进独立的详情页(见 build_detail_page_html),
+    邮件内放一个"查看完整详情"链接跳转过去, 避免依赖邮件客户端对 <details> 折叠标签的支持
+    (iPhone Gmail 等移动端客户端普遍不支持折叠交互, 用独立详情页规避这个限制)
+    detail_urls: 可选的 {short_id: 详情页URL} 映射; 未提供或某篇论文没有对应链接时不显示该链接
+    """
     today_str = datetime.now().strftime("%Y-%m-%d")
+    detail_urls = detail_urls or {}
     items_html = []
 
     for i, p in enumerate(papers, 1):
-        short_id = p.get_short_id()
-        authors_list = [a.name for a in p.authors] if p.authors else []
-        authors_html = html.escape(", ".join(authors_list)) if authors_list else "未知作者"
-
-        primary_cat = p.primary_category or (p.categories[0] if p.categories else "")
-        secondary_cats = [c for c in (p.categories or []) if c != primary_cat]
-        primary_cat_html = (
-            f'<span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;'
-            f'font-size:12px;margin-right:6px;">{html.escape(category_label(primary_cat))}</span>'
-            if primary_cat else ""
+        ctx = _build_paper_context(p, keywords, llm_cfg, keyword_weights)
+        detail_url = detail_urls.get(ctx["short_id"])
+        detail_link_html = (
+            f'<p style="margin:10px 0 0 0;">'
+            f'<a href="{html.escape(detail_url)}" style="color:#0b5cab;font-size:13px;">'
+            f'查看完整详情(摘要/AI精读要点/中文翻译/BibTeX) →</a></p>'
+            if detail_url else ""
         )
-        secondary_cats_html = "".join(
-            f'<span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;'
-            f'font-size:12px;margin-right:6px;">{html.escape(category_label(c))}</span>'
-            for c in secondary_cats
-        )
-
-        published_str = p.published.strftime("%Y-%m-%d %H:%M UTC")
-        updated_str = p.updated.strftime("%Y-%m-%d %H:%M UTC") if p.updated else published_str
-        is_updated_version = p.updated and p.updated.date() != p.published.date()
-        date_line = f"首发日期: {published_str}"
-        if is_updated_version:
-            date_line += f" &nbsp;|&nbsp; 最近更新: {updated_str}"
-
-        matched_kw = find_matched_keywords(p, keywords)
-        score = compute_relevance_score(p, keywords, keyword_weights) if keywords else 0
-        matched_kw_html = ""
-        if matched_kw:
-            chips = "".join(
-                f'<span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;'
-                f'font-size:12px;margin-right:6px;">key {html.escape(kw)}</span>'
-                for kw in matched_kw
-            )
-            score_chip = (
-                f'<span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;'
-                f'font-size:12px;margin-right:6px;">相关度 {score}</span>'
-            )
-            matched_kw_html = f'<p style="margin:8px 0 0 0;">{score_chip}{chips}</p>'
-
-        abstract_raw = re.sub(r"\s+", " ", (p.summary or "")).strip()
-        abstract_html = highlight_keywords(abstract_raw, matched_kw)
-
-        # 支持同时调用"主模型"(如免费模型) + llm.compare 配置的"对比模型"(如已付费 DeepSeek),
-        # 两者的大白话速读都默认展开展示, 便于对比效果; 专业精读要点/中文翻译折叠收起
-        insights = generate_llm_insights(p, llm_cfg or {})
-        plain_explain_blocks_html = ""
-        insight_detail_html = ""
-        zh_summary_html = ""
-
-        if insights:
-            plain_cards = []
-            insight_cards = []
-            for item in insights:
-                label = html.escape(item["label"])
-                insight = item["insight"]
-                plain_explain = (insight.get("plain_explain") or "").strip()
-                if plain_explain:
-                    plain_cards.append(f"""
-                    <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
-                        <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · {label}</p>
-                        <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
-                            {html.escape(plain_explain)}
-                        </p>
-                    </div>
-                    """)
-                insight_cards.append(f"""
-                <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
-                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · {label}</p>
-                    <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> {html.escape(insight.get('innovation',''))}</p>
-                    <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> {html.escape(insight.get('method',''))}</p>
-                    <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> {html.escape(insight.get('conclusion',''))}</p>
-                </div>
-                """)
-            plain_explain_blocks_html = "".join(plain_cards)
-            insight_detail_html = "".join(insight_cards)
-        else:
-            zh_summary = translate_to_chinese(abstract_raw)
-            if zh_summary:
-                zh_summary_html = f"""
-                <div style="margin-top:12px;padding:12px 14px;background:#f0f7ff;border-left:3px solid #2f8f4e;border-radius:4px;">
-                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#2f8f4e;text-transform:uppercase;letter-spacing:0.5px;">中文摘要翻译</p>
-                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;">
-                        {html.escape(zh_summary)}
-                    </p>
-                </div>
-                """
-
-        bibtex = build_bibtex(p)
-        bibtex_html = html.escape(bibtex)
-
-        comment_html = (
-            f'<p style="margin:4px 0;color:#777;font-size:13px;">备注: {html.escape(p.comment)}</p>'
-            if getattr(p, "comment", None) else ""
-        )
-        journal_ref_html = (
-            f'<p style="margin:4px 0;color:#777;font-size:13px;">期刊/会议信息: {html.escape(p.journal_ref)}</p>'
-            if getattr(p, "journal_ref", None) else ""
-        )
-
 
         items_html.append(f"""
         <div style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
             <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
-                {i}. <a href="{p.entry_id}" style="color:#0b5cab;text-decoration:none;">{html.escape(p.title)}</a>
+                {i}. <a href="{ctx['entry_id']}" style="color:#0b5cab;text-decoration:none;">{ctx['title_html']}</a>
             </h3>
-            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> {authors_html}</p>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> {ctx['authors_html']}</p>
             <p style="margin:6px 0;color:#555;font-size:13px;">
-                {primary_cat_html}{secondary_cats_html}
+                {ctx['primary_cat_html']}{ctx['secondary_cats_html']}
             </p>
             <p style="margin:4px 0;color:#555;font-size:13px;">
-                <strong>arXiv 编号:</strong> {short_id} &nbsp;|&nbsp; {date_line}
+                <strong>arXiv 编号:</strong> {ctx['short_id']} &nbsp;|&nbsp; {ctx['date_line']}
             </p>
             <p style="margin:4px 0;color:#555;font-size:13px;">
-                <a href="{p.entry_id}" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
-                <a href="{p.pdf_url}" style="color:#0b5cab;">PDF 直达</a>
+                <a href="{ctx['entry_id']}" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="{ctx['pdf_url']}" style="color:#0b5cab;">PDF 直达</a>
             </p>
-            {matched_kw_html}
-            {plain_explain_blocks_html}
-            <details style="margin-top:14px;">
-                <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">查看英文摘要 / AI 精读要点 / 中文翻译 / BibTeX(点击展开/折叠)</summary>
-                <div style="margin-top:10px;">
-                    {comment_html}
-                    {journal_ref_html}
-                    {insight_detail_html}
-                    {zh_summary_html}
-                    <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
-                        <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
-                        <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
-                            {abstract_html}
-                        </p>
-                    </div>
-                    <details style="margin-top:12px;">
-                        <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
-                        <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
-                                    font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">{bibtex_html}</pre>
-                    </details>
-                </div>
-            </details>
+            {ctx['matched_kw_html']}
+            {ctx['plain_explain_blocks_html']}
+            {detail_link_html}
         </div>
         """)
 
@@ -1029,6 +1050,76 @@ def build_email_html(papers: list, keywords: list, llm_cfg: dict = None,
     </html>
     """
     return body
+
+
+def build_detail_page_html(papers: list, keywords: list, llm_cfg: dict = None,
+                            keyword_weights: dict = None) -> str:
+    """
+    生成完整版详情页 HTML(独立静态页面, 通过浏览器打开, 不受邮件客户端限制):
+    包含英文摘要/双模型 AI 精读要点/中文翻译/BibTeX, 并保留 <details> 折叠交互
+    (浏览器环境下折叠能正常工作, 跟邮件场景的客户端兼容性问题无关)
+    """
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    items_html = []
+
+    for i, p in enumerate(papers, 1):
+        ctx = _build_paper_context(p, keywords, llm_cfg, keyword_weights)
+        items_html.append(f"""
+        <div id="{ctx['short_id']}" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                {i}. <a href="{ctx['entry_id']}" style="color:#0b5cab;text-decoration:none;">{ctx['title_html']}</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> {ctx['authors_html']}</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                {ctx['primary_cat_html']}{ctx['secondary_cats_html']}
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> {ctx['short_id']} &nbsp;|&nbsp; {ctx['date_line']}
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="{ctx['entry_id']}" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="{ctx['pdf_url']}" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            {ctx['matched_kw_html']}
+            {ctx['plain_explain_blocks_html']}
+            <div style="margin-top:14px;">
+                {ctx['comment_html']}
+                {ctx['journal_ref_html']}
+                {ctx['insight_detail_html']}
+                {ctx['zh_summary_html']}
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        {ctx['abstract_html']}
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">{ctx['bibtex_html']}</pre>
+                </details>
+            </div>
+        </div>
+        """)
+
+    return f"""
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>无人船学术速递 - {today_str} 完整详情</title>
+    </head>
+    <body style="font-family:'Segoe UI', Arial, sans-serif;color:#222;max-width:860px;margin:0 auto;padding:16px;">
+        <h2 style="margin:0 0 4px 0;">无人船学术速递 - {today_str} (完整详情)</h2>
+        <p style="color:#666;margin:0 0 20px 0;">本次共 <strong>{len(papers)}</strong> 篇新论文, 含完整摘要/AI精读要点/中文翻译/BibTeX</p>
+        {''.join(items_html)}
+        <p style="color:#999;font-size:12px;margin-top:24px;border-top:1px solid #eee;padding-top:12px;">
+            本页面由 arxiv_digest 定时任务自动生成, 数据来源于 arXiv 官方 API
+        </p>
+    </body>
+    </html>
+    """
 
 
 
@@ -1051,7 +1142,40 @@ def build_plain_text_body(papers: list, keywords: list) -> str:
     return "\n".join(lines)
 
 
-def _normalize_receivers(receiver_cfg) -> list:
+def write_detail_page(papers: list, keywords: list, llm_cfg: dict, keyword_weights: dict,
+                       site_cfg: dict) -> dict:
+    """
+    生成本期详情页 HTML 并写入到 site_cfg 指定的输出目录(默认 docs/digest), 文件名按日期命名
+    (同一天多次运行会覆盖同一个文件)。返回 {short_id: 完整URL} 映射, 供邮件内生成跳转链接;
+    若未配置 base_url 或写入失败, 返回空字典(邮件会自动不显示详情页链接, 不影响主流程)
+    """
+    base_url = (site_cfg or {}).get("base_url", "").rstrip("/")
+    if not base_url:
+        logger.info("未配置 site.base_url, 跳过详情页生成(邮件将不包含详情页链接)")
+        return {}
+
+    output_dir = (site_cfg or {}).get("output_dir", "docs/digest")
+    if not os.path.isabs(output_dir):
+        output_dir = os.path.join(BASE_DIR, output_dir)
+
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    file_name = f"{today_str}.html"
+
+    try:
+        os.makedirs(output_dir, exist_ok=True)
+        detail_html = build_detail_page_html(papers, keywords, llm_cfg, keyword_weights)
+        file_path = os.path.join(output_dir, file_name)
+        with open(file_path, "w", encoding="utf-8") as f:
+            f.write(detail_html)
+        logger.info(f"详情页已生成: {file_path}")
+    except Exception as e:
+        logger.warning(f"生成详情页失败, 邮件将不包含详情页链接(不影响邮件发送): {e}")
+        return {}
+
+    page_url = f"{base_url}/digest/{file_name}"
+    return {p.get_short_id(): f"{page_url}#{p.get_short_id()}" for p in papers}
+
+
     """将 email.receiver 归一化为列表: 支持单个字符串或字符串列表两种写法"""
     if not receiver_cfg:
         return []
@@ -1064,7 +1188,7 @@ def _normalize_receivers(receiver_cfg) -> list:
 
 
 def send_email(email_cfg: dict, papers: list, keywords: list, llm_cfg: dict = None,
-                keyword_weights: dict = None) -> None:
+                keyword_weights: dict = None, detail_urls: dict = None) -> None:
     """通过 SMTP 发送论文摘要邮件(HTML + 纯文本兜底), 支持多收件人, 发送失败自动重试"""
     today_str = datetime.now().strftime("%Y-%m-%d")
     subject_prefix = email_cfg.get("subject_prefix", "[arXiv每日论文摘要]")
@@ -1081,7 +1205,7 @@ def send_email(email_cfg: dict, papers: list, keywords: list, llm_cfg: dict = No
     msg["To"] = ", ".join(receivers)
 
     plain_body = build_plain_text_body(papers, keywords)
-    html_body = build_email_html(papers, keywords, llm_cfg, keyword_weights)
+    html_body = build_email_html(papers, keywords, llm_cfg, keyword_weights, detail_urls)
     msg.attach(MIMEText(plain_body, "plain", "utf-8"))
     msg.attach(MIMEText(html_body, "html", "utf-8"))
 
@@ -1201,6 +1325,7 @@ def run(config_path: str, dry_run: bool = False) -> int:
     storage_cfg = config.get("storage", {})
     llm_cfg = config.get("llm", {})
     push_cfg = config.get("push", {})
+    site_cfg = config.get("site", {})
 
     sent_ids_file = storage_cfg.get("sent_ids_file", "sent_ids.json")
     if not os.path.isabs(sent_ids_file):
@@ -1236,7 +1361,8 @@ def run(config_path: str, dry_run: bool = False) -> int:
 
     if email_cfg.get("enabled", True):
         try:
-            send_email(email_cfg, new_papers, keywords, llm_cfg, keyword_weights)
+            detail_urls = write_detail_page(new_papers, keywords, llm_cfg, keyword_weights, site_cfg)
+            send_email(email_cfg, new_papers, keywords, llm_cfg, keyword_weights, detail_urls)
         except Exception as e:
             logger.error(f"任务失败: 邮件发送出错 - {e}")
             return 1

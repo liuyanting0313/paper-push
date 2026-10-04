@@ -100,6 +100,14 @@ llm:
       - "deepseek-chat"
       - "deepseek-reasoner"
 
+site:
+  # 详情页(完整摘要/AI精读要点/翻译/BibTeX)的发布地址, 通过 GitHub Pages 托管
+  # 需要在仓库 Settings -> Pages 中选择 "Deploy from a branch" -> main -> /docs 目录
+  # 邮件正文只放精简内容 + 本链接, 规避部分邮件客户端(如 iPhone Gmail App)不支持
+  # <details> 折叠标签的问题; 详情页本身是普通网页, 折叠交互不受邮件客户端限制
+  base_url: "https://liuyanting0313.github.io/paper-push"
+  output_dir: "docs/digest"
+
 push:
   # Webhook 推送默认关闭; 若要启用, 在 GitHub Secrets 中配置 PUSH_WEBHOOK_URL, 并将 enabled 设为 true
   enabled: false
