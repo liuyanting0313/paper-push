@@ -807,10 +807,26 @@ def _call_llm_for_insight(paper, cfg: dict, source_label: str = "") -> dict:
             )
             if idx > 0:
                 logger.warning(f"{source_label}已自动切换到候选模型 {model} 并调用成功")
-            content = data["choices"][0]["message"]["content"].strip()
+
+            message = data["choices"][0]["message"]
+            content = message.get("content")
+            if not content:
+                finish_reason = data["choices"][0].get("finish_reason", "unknown")
+                raise ValueError(f"模型未返回有效文本内容(finish_reason={finish_reason}), 可能被截断或触发内容过滤")
+
+            content = content.strip()
             # 兼容模型偶尔用 ```json 包裹输出的情况
             content = re.sub(r"^```(json)?|```$", "", content, flags=re.MULTILINE).strip()
-            result = json.loads(content)
+            try:
+                result = json.loads(content)
+            except json.JSONDecodeError:
+                # 模型偶尔会在 JSON 前后多输出解释性文字, 或在字符串内直接换行导致解析失败,
+                # 尝试提取最外层 {...} 边界后重新解析, 仍失败则放弃(走下面的异常处理/候选切换逻辑)
+                match = re.search(r"\{.*\}", content, flags=re.DOTALL)
+                if not match:
+                    raise
+                result = json.loads(match.group(0))
+
             return {
                 "plain_explain": str(result.get("plain_explain", "")).strip(),
                 "innovation": str(result.get("innovation", "")).strip(),

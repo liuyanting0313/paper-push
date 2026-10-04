@@ -394,5 +394,57 @@ class TestModelFallbackChain(unittest.TestCase):
         self.assertEqual(result.get("plain_explain"), "照常工作")
 
 
+class TestLlmResponseEdgeCases(unittest.TestCase):
+    """
+    针对真实运行中观察到的两类 LLM 响应异常的回归测试:
+    1. OpenRouter/免费模型偶尔返回 content=None(被截断或触发内容过滤), 之前会直接抛 AttributeError
+    2. 模型在 JSON 前后多输出解释性文字导致 json.loads 直接失败, 需要尝试提取 {...} 边界重新解析
+    """
+
+    def setUp(self):
+        self.paper = FakePaper(
+            title="A Study on USV Navigation",
+            summary="This paper focuses on the unmanned surface vessel control problem.",
+        )
+        self.cfg = {
+            "enabled": True, "base_url": "https://api.deepseek.com/v1",
+            "model": "deepseek-flash", "api_key": "fake-key",
+        }
+
+    @patch("arxiv_digest.requests.post")
+    def test_none_content_returns_empty_without_crash(self, mock_post):
+        mock_resp = MagicMock()
+        mock_resp.raise_for_status.return_value = None
+        mock_resp.json.return_value = {
+            "choices": [{"message": {"content": None}, "finish_reason": "content_filter"}]
+        }
+        mock_post.return_value = mock_resp
+        result = _call_llm_for_insight(self.paper, self.cfg)
+        self.assertEqual(result, {})
+
+    @patch("arxiv_digest.requests.post")
+    def test_json_with_surrounding_text_is_recovered(self, mock_post):
+        mock_resp = MagicMock()
+        mock_resp.raise_for_status.return_value = None
+        content = (
+            '好的, 这是分析结果:\n'
+            '{"plain_explain": "简单说就是这样", "innovation": "i", "method": "m", "conclusion": "c"}\n'
+            '希望对你有帮助!'
+        )
+        mock_resp.json.return_value = {"choices": [{"message": {"content": content}}]}
+        mock_post.return_value = mock_resp
+        result = _call_llm_for_insight(self.paper, self.cfg)
+        self.assertEqual(result.get("plain_explain"), "简单说就是这样")
+
+    @patch("arxiv_digest.requests.post")
+    def test_truly_malformed_json_still_fails_gracefully(self, mock_post):
+        mock_resp = MagicMock()
+        mock_resp.raise_for_status.return_value = None
+        mock_resp.json.return_value = {"choices": [{"message": {"content": "not json at all, no braces"}}]}
+        mock_post.return_value = mock_resp
+        result = _call_llm_for_insight(self.paper, self.cfg)
+        self.assertEqual(result, {})
+
+
 if __name__ == "__main__":
     unittest.main()
