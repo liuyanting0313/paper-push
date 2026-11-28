@@ -1,0 +1,1458 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>无人船学术速递 - 2026-11-28 完整详情</title>
+    </head>
+    <body style="font-family:'Segoe UI', Arial, sans-serif;color:#222;max-width:860px;margin:0 auto;padding:16px;">
+        <h2 style="margin:0 0 4px 0;">无人船学术速递 - 2026-11-28 (完整详情)</h2>
+        <p style="color:#666;margin:0 0 20px 0;">本次共 <strong>20</strong> 篇新论文, 含完整摘要/AI精读要点/中文翻译/BibTeX</p>
+        
+        <div id="2611.30387v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                1. <a href="http://arxiv.org/abs/2611.30387v1" style="color:#0b5cab;text-decoration:none;">IP-GNO: An Inductive Physics-Informed Graph Neural Operator for Automated Distribution System State Estimation</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Sakshi Kumar, Chhavi Jhari, Ajay Singh, Subho Paul</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.LG (Machine Learning)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">eess.SY (Systems and Control)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.30387v1 &nbsp;|&nbsp; 首发日期: 2026-11-23 09:48 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.30387v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.30387v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 5</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key state estimation</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        现在电网里用电忽高忽低，想实时知道每个位置的状态很难；更麻烦的是，一套已经训练好的方法换到另一个大小或接线方式不同的电网上往往就不灵了，还得重新训练。这篇论文让模型直接学习电网线路连接和电流电压之间的规律，因此在一个小电网上学会后，能直接用到没见过的、甚至大得多的电网上，不用重新调整，既省事又能保持准确。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        电力公司要实时掌握电网各处的电压，但不同电网大小和接线方式不一样，现有智能办法在一个电网上学好后换个电网往往就不准，只能重新做一遍。这篇论文想出了一种把电学基本规律和电网结构信息结合起来的办法，让方法学到更通用的规律。这样只在一个小电网上学好，就能直接用到没见过的不同规模电网上，省去重新训练和调试，还能保持较准。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                <p style="margin:4px 0;color:#777;font-size:13px;">备注: 15 pages, 7 figures, 5 tables</p>
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种归纳式物理信息图神经算子（IP-GNO），通过导纳参数化核、物理嵌入树编码和正余弦输出实现可扩展、可跨电网迁移的配电网状态估计。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将母线电压估计建模为受逆母线导纳矩阵Neumann级数启发的算子学习问题，并融合导纳参数化核、自导纳门控、源注入跳连、PETE位置特征及正余弦输出。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 仅用IEEE 33节点系统训练即可零样本迁移到四个未见配电网（最大2522节点），且性能优于现有先进DSSE工具。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种归纳式物理信息图神经算子IP-GNO，通过导纳参数化核、物理嵌入树编码和正余弦输出实现可扩展、可零样本跨电网迁移的配电网状态估计。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 以逆节点导纳矩阵的Neumann级数展开为启发，将母线电压估计建模为算子学习问题，并结合自导纳门控、源注入跨层跳连、五种规模不变位置特征及正余弦相位输出进行训练。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 仅在IEEE 33节点系统训练后直接零样本评估于69、123、136和2522节点等未见网络，IP-GNO性能优于现有DSSE方法，可实现异构配电网的可扩展状态估计。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Distribution System <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">State Estimation</mark> (DSSE) is a crucial tool for real-time monitoring, operation, and control of the new-age distribution systems (DSs) due to intensified voltage fluctuations and operational uncertainties introduced by volatile power injection at the nodes. Existing GNN-based approaches generally exhibit limited generalization across networks with different sizes and topologies, making zero-shot cross-grid transfer to unseen DSs a significant challenge. To overcome the aforementioned challenges, this article proposes an Inductive Physics-Informed Graph Neural Operator (IP-GNO) for scalable and transferable DSSE. The proposed framework frames complex bus voltage estimation as an operator-learning problem inspired by the Neumann series expansion of the inverse bus admittance matrix. An admittance-parameterized kernel, incorporating a self-admittance gate in the zeroth-order term and a persistent source-injection skip connection across network layers, captures the underlying electrical dependencies. Additionally, a Physics-Embedded Tree Encoding (PETE) scheme introduces five grid-size-invariant positional features derived from path impedance and a DC-linearized phase-angle prior. A sine-cosine output formulation is further employed to address phase-angle periodicity and ensure stable training. The proposed IP-GNO module is evaluated on two small (IEEE 33- and 69-bus), two medium (IEEE 123- and 136-bus), and one large (2522-bus) sized DSs. Particularly, its zero-shot cross-grid generalization capability is investigated by training the model exclusively on the IEEE 33-bus system and directly evaluating it on four unseen distribution networks of different sizes without retraining or fine-tuning. A detailed comparative analysis with the existing state-of-the-art DSSE tools proves the superiority of IP-GNO, enabling scalable DSSE across heterogeneous DSs.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Kumar2026261130387,
+      title={IP-GNO: An Inductive Physics-Informed Graph Neural Operator for Automated Distribution System State Estimation},
+      author={Sakshi Kumar and Chhavi Jhari and Ajay Singh and Subho Paul},
+      year={2026},
+      eprint={2611.30387v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={http://arxiv.org/abs/2611.30387v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.29510v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                2. <a href="http://arxiv.org/abs/2611.29510v1" style="color:#0b5cab;text-decoration:none;">GeoFusion: An Uncertain Machine Learning Framework for Sensor Fusion</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Basant Ahmed Mounir Abdelhamid, Amr T. Abdel-Hamid</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.LG (Machine Learning)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">stat.ML (Machine Learning (Statistics))</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.29510v1 &nbsp;|&nbsp; 首发日期: 2026-11-22 14:27 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.29510v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.29510v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 5</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key sensor fusion</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        手机自带的定位芯片常常不够准，尤其在便宜手机上，想靠它获得很精确的位置仍然很难。这篇论文把每次定位结果看成“有把握程度”的模糊范围，而不是一个死点，再把多部手机对同一地点的定位合在一起互相校正。这样做的实际好处是，用普通手机也能把定位误差压到大约三米，接近目前最好的单手机定位水平。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        很多手机导航应用都需要知道位置很准，但便宜手机自带的定位常常不够准，这是现实中的难题。这篇论文让同一个地方的多部手机分别报出位置，并把每个位置看成“不太确定的一圈”而不是死点，再把大家的信息合在一起计算并进一步修正。这样做的好处是，不用换昂贵设备，也能让便宜手机的位置更可靠，测试中的平均误差能接近甚至略好于三米。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                <p style="margin:4px 0;color:#777;font-size:13px;">备注: Accepted into IEEE Access</p>
+                <p style="margin:4px 0;color:#777;font-size:13px;">期刊/会议信息: IEEE Access, vol. 14, 2026</p>
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出 GeoFusion 三阶段不确定性机器学习框架，将每次 GPS 观测建模为不确定对象，并进行协同聚类与估计精化。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 先用 volcano 函数或数据驱动的 mountain 函数建模观测不确定性，再按位置事件进行划分式/图聚类，最后用滤波式和学习式估计器精化簇估计。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在 Google Smartphone Decimeter Challenge 数据上，mountain 函数显著优于仅基于几何的 volcano 函数，不确定性感知的 UK-medoids 显著优于 k-medoids，推荐配置在留出测试行程上达到 2.90±0.15 米平均绝对误差，接近并平均优于约 3 米的最佳单手机精度。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出GeoFusion三阶段不确定性机器学习协同传感器融合框架，将GPS观测建模为不确定对象并融合多手机观测以提升廉价智能手机定位精度。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 首先用基于卫星几何的火山函数和基于真实数据统计的山函数建模观测不确定性，随后按位置事件进行划分聚类与图聚类，最后用滤波型和学习型估计器精化簇估计并在Google Smartphone Decimeter Challenge数据集上验证。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 实验表明山函数显著优于仅依赖几何的火山函数，不确定性感知UK-medoids显著优于k-medoids，后聚类深度神经网络进一步精化估计，推荐配置在留出测试行驶上达到2.90±0.15米平均绝对误差，与最佳单手机约3米精度相当且平均更低。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        High positioning precision is a critical requirement in many Global Positioning System (GPS) applications, yet achieving it with affordable smartphone sensors remains an open challenge. Existing approaches treat each GPS observation as an absolute point, discarding the uncertainty inherent in the measurement conditions and leaving the cooperative potential of multiple phones observing the same location untapped. In this work, we propose GeoFusion, a three-stage uncertain machine learning framework for cooperative <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">sensor fusion</mark>. In the first stage, each GPS observation is modeled as an uncertain object using one of two proposed models: the volcano function, grounded in satellite geometry, and the empirically derived mountain function, built from the statistical structure of real smartphone data. In the second stage, uncertain objects are clustered by location event using partitional and graph-based algorithms. In the third stage, the cluster output is refined using filter-based and learning-based estimators. Experiments on the Google Smartphone Decimeter Challenge dataset show that uncertainty modeling is a primary driver of precision gains: the mountain function significantly outperforms the geometry-only volcano function, and uncertainty-aware UK-medoids significantly outperforms its certain counterpart, k-medoids. A post-clustering deep neural network further refines the cluster estimates, and the recommended configuration achieves a mean absolute error of 2.90 +/- 0.15 meters on held-out test drives, comparable to and on average below the best reported single-phone precision of approximately 3 meters, demonstrating the potential of cooperative uncertainty-aware fusion for affordable GPS sensors.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Abdelhamid2026261129510,
+      title={GeoFusion: An Uncertain Machine Learning Framework for Sensor Fusion},
+      author={Basant Ahmed Mounir Abdelhamid and Amr T. Abdel-Hamid},
+      year={2026},
+      eprint={2611.29510v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={http://arxiv.org/abs/2611.29510v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.32185v2" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                3. <a href="http://arxiv.org/abs/2611.32185v2" style="color:#0b5cab;text-decoration:none;">OVOK: A Recursive Self-Improving Agentic Framework for Video-Based Articulated Robot State Estimation</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Cheng Dai, Renkai Luo, Guanfeng Tang, Siming Li, Hao Zhao</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.CV (Computer Vision and Pattern Recognition)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.32185v2 &nbsp;|&nbsp; 首发日期: 2026-11-24 08:35 UTC &nbsp;|&nbsp; 最近更新: 2026-11-25 13:44 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.32185v2" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.32185v2" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 4</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key state estimation</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        现实中，人们希望只靠一段普通视频就判断出机器人各个关节是怎么摆的，但这件事很难，因为相机不同、拍摄角度不同，画面看起来可能差不多，过去每换一种机器人或场景往往都要重新采数据、重新教，费时费力还容易不准。作者让一个会自动反复尝试和改进的“助手”从视频里摸索出一套更靠谱的做法，并把验证有效的做法固定下来使用，好处是判断更准更稳，换机器人或换场景时也更省事。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        从一段录像里看出机械臂每个关节转到什么位置并不容易，因为不同的拍摄设置、拍摄角度和关节角度可能看起来差不多；以前的方法往往要事先知道摄像头情况、为每台机器大量采集和训练，换个场景就不灵，直接拿现成聪明模型来用又不够准。他们做了一个会自己反复改进的流程：先按人定的规则准备某台机械臂的示例，再让几个分工不同的程序根据反馈不断改工具和步骤，只有验证确实变好才保留，最后固定这套流程来用。好处是能更稳更准地从录像里判断机械臂各关节的位置，并在两个测试任务上达到最好效果。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                <p style="margin:4px 0;color:#777;font-size:13px;">备注: 24 pages, including appendix</p>
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出递归自改进的智能体框架OVOK，通过自动构建机器人专用数据并协同进化工具与可执行工作流来完成视频关节状态估计。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 在人工编写协议下由智能体初始化构建OVOK-4k，再利用提议—执行—验证闭环迭代更新工具和工作流，仅保留验证为正向提升的版本并冻结用于推理。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在DREAM-V和RoboKeyGen-V上取得最先进结果，能够提供稳健且准确的机器人状态估计。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出递归自改进的智能体框架，通过验证器驱动工具与可执行工作流的联合演化，用于视频中关节机器人状态估计。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 在人工协议下由智能体初始化器构建机器人特定的OVOK-4k，再利用提议—执行—验证循环根据反馈联合演化工具和工作流，仅接受验证为正改进的更新，并冻结保留的工作流用于推理。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 演化后的工作流在DREAM-V和RoboKeyGen-V上取得最先进结果，估计稳健且准确。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Recovering articulated robot state from video supports metric spatial sensing for manipulation, scene reconstruction, and action planning. Yet the problem is ill-posed: different intrinsics, camera-to-robot poses, and joint angles can explain similar observations. Prior task-specific regressors typically assume known intrinsics, fit one robot through laborious data collection and robot-specific training, and still transfer poorly across scenes. Foundation models apply to any robot zero-shot, but their estimates have large errors. We present OVOK (One Video to Kinetics), a recursive self-improving agentic framework for this task. Under a human-authored protocol, an agentic initializer constructs robot-specific OVOK-4k; a proposer--executor--verifier loop then jointly evolves tools and executable workflows from feedback. Updated tools and workflows are accepted only when the verifier judges a positive improvement. The retained workflow is frozen for accurate inference. Experiments demonstrate that the evolved workflow achieves state-of-the-art results on DREAM-V and RoboKeyGen-V, delivering robust and accurate estimates.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Dai2026261132185,
+      title={OVOK: A Recursive Self-Improving Agentic Framework for Video-Based Articulated Robot State Estimation},
+      author={Cheng Dai and Renkai Luo and Guanfeng Tang and Siming Li and Hao Zhao},
+      year={2026},
+      eprint={2611.32185v2},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={http://arxiv.org/abs/2611.32185v2}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.31889v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                4. <a href="http://arxiv.org/abs/2611.31889v1" style="color:#0b5cab;text-decoration:none;">Barrier-Based Safety Filtering for Quadrotor Flight in Cluttered Environments Under Acceleration Limits</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Andi Rahmadiansah</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">eess.SY (Systems and Control)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.31889v1 &nbsp;|&nbsp; 首发日期: 2026-11-24 03:49 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.31889v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.31889v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 2</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key trajectory tracking</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        无人机在障碍物多的地方按预定路线飞时，光跟得准还不够，离障碍太近或动力不够就可能撞上。论文给它加了一个“安全把关”的办法：平时照原路线飞，只有快撞上时才改动作，尽量不牺牲原来的飞行表现。好处是能把离障碍物的安全距离守住，同时也说明飞得越快跟路线会差一些、动力受限会影响能不能安全飞。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        无人机在障碍物多的环境里按预设路线飞时，如果路线离障碍物很近，或者它本身能做出的动作有限，光会跟路线并不代表不会撞。这篇论文给正常飞行控制加了一道安全兜底：平时不随便改动作，只有快撞上时才自动调整，并且把加速能力有限这件事也算进去。好处是实验中几乎不会碰到障碍物，代价是跟预设路线会稍微差一些。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种基于高阶控制屏障约束与加速度约束二次规划的安全过滤轨迹跟踪框架，在威胁障碍安全间距时最小化对名义控制的修改。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将名义跟踪控制器与高阶控制屏障约束、加速度受限二次规划相结合，并分析名义指数跟踪、安全区域前向不变性、二次规划持续可行性及安全干预期间的跟踪误差有界性。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 平面数值实验中安全过滤使最小间距达到0.000–0.001 m，而名义控制下为负间距；参考速度增大使跟踪均方根误差由0.618升至0.950 m，并揭示加速度限制对控制努力与可行性的影响。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种基于高阶控制屏障约束与加速度约束二次规划的安全过滤轨迹跟踪框架，在标称加速度可行时保持不动、仅在障碍净空受威胁时修正。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将标称跟踪控制器与高阶控制屏障约束结合，构建加速度受限的二次规划安全滤波器，并用平面平移模型开展单/多圆形障碍物数值实验。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 安全过滤把最小障碍间距从标称控制的负值（约-1.6/-1.4 m，即碰撞）提升到约0–0.001 m，保证安全但跟踪误差随参考速度增加而上升，并揭示加速度限制对控制努力与可行性的影响。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Accurate <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">trajectory tracking</mark> alone does not guarantee safe quadrotor flight when the reference passes near obstacles or the available control authority is limited. This paper presents a safety-filtered trajectory-tracking framework for a quadrotor operating at a fixed altitude in obstacle-cluttered environments. A nominal tracking controller is combined with high-order control barrier constraints and an acceleration-constrained quadratic program. The safety filter preserves the nominal acceleration whenever it is admissible and modifies it only when the prescribed obstacle clearance is threatened. The analysis establishes nominal exponential tracking, forward invariance of the safe region under compatible initial conditions and continued quadratic-program feasibility, and bounded tracking error during safety intervention. Numerical experiments using an idealized planar translational model with single and multiple stationary circular obstacles show minimum clearances of $0.000$--$0.001$~m under the safety filter, compared with $-1.594/-1.421$~m under nominal control. Tracking RMSE increases from $0.618$ to $0.950$~m across reference-speed scales $0.6$--$1.6$, illustrating the effect of reference speed on tracking accuracy under safety constraints. Additional tests examine how acceleration limits affect control effort and feasibility. These findings inform safety-filter design for UAV <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">trajectory tracking</mark> under limited control authority.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Rahmadiansah2026261131889,
+      title={Barrier-Based Safety Filtering for Quadrotor Flight in Cluttered Environments Under Acceleration Limits},
+      author={Andi Rahmadiansah},
+      year={2026},
+      eprint={2611.31889v1},
+      archivePrefix={arXiv},
+      primaryClass={eess.SY},
+      url={http://arxiv.org/abs/2611.31889v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.34866v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                5. <a href="http://arxiv.org/abs/2611.34866v1" style="color:#0b5cab;text-decoration:none;">Adaptive Control Barrier Functions for Nonlinear Singularly Perturbed Systems</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Prashanth Krishnamurthy, Farshad Khorrami</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">eess.SY (Systems and Control)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">math.OC (Optimization and Control)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.34866v1 &nbsp;|&nbsp; 首发日期: 2026-11-25 18:31 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.34866v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.34866v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key obstacle avoidance</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        有些机器或车辆同时有反应慢的主体和反应很快的部件，参数还不准，既要正常干活又不能撞到东西，很难保证安全。论文设计了一套边运行边估计未知参数、并留出安全余量的控制办法，让慢的部分和快的部分都尽量不越安全线。好处是即使参数不确定、快慢两部分相互影响，也能把危险控制在很小范围内，并用仿真验证了避障等场景。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        现实中有一些机器或系统在运行时既要完成动作，又绝不能越过危险边界，而且它们内部有些部分变化很快、有些部分变化较慢，关键数值还事先不完全知道，传统办法很难同时保证安全。论文想出一套能一边运行一边估算这些未知数值、并给快慢两部分都留出安全余量的控制办法。好处是即使情况不完全清楚、快慢变化差别很大，也能让系统尽量待在安全范围附近。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                <p style="margin:4px 0;color:#777;font-size:13px;">备注: 13 pages, 2 figures</p>
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出面向含参数不确定性的非线性奇异摄动系统的自适应控制屏障函数框架，可同时保障慢子系统和快子系统的安全。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 基于在线参数估计评估降阶慢模型及慢、快控制屏障函数条件，并用状态相关的鲁棒安全裕度补偿估计模型与真实模型之间的参数失配。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 理论证明慢子系统在奇异摄动参数足够小时保持O(ε)安全邻域，并给出联合慢-快安全条件；仿真在四阶双时间尺度系统和带快速转向执行器的独轮车避障中验证了有效性。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出了面向含不确定参数的非线性奇异摄动系统的自适应控制屏障函数框架，可同时约束慢子系统和快子系统，并用状态依赖鲁棒安全裕度处理估计模型与真实降阶模型的参数失配。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 利用在线参数估计评估降阶慢模型及慢、快控制屏障函数条件，在不等式约束中引入状态相关鲁棒裕度，给出联合慢快安全性条件并通过仿真验证。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 理论表明慢控制器在带安全裕度条件下可使慢子系统保持于安全集的O(ε)邻域，满足联合条件时可在参数不确定下实现慢快联合安全，两个仿真案例验证了框架有效性。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Control barrier functions (CBFs) have emerged as a flexible and efficient approach for enforcing dynamic safety constraints. In this paper, we consider a class of uncertain nonlinear systems with singular perturbations and develop an adaptive CBF framework for such systems to enforce safety constraints on both the slow and fast subsystems in the overall singularly perturbed nonlinear system with uncertain parameters. We first develop a robustness property showing that if an adaptive controller for the slow subsystem satisfies the slow CBF condition with an appropriate safety margin, then for sufficiently small values of the singular perturbation parameter $\varepsilon$, the slow subsystem remains within an $O(\varepsilon)$-neighborhood of its safe set. We then consider the more general case of safety constraints on both the fast and slow subsystems and provide conditions under which joint slow-fast safety is achieved despite the parametric uncertainties. The reduced-order slow model and the slow and fast CBF conditions are evaluated using an online parameter estimate and the parameter mismatch between the estimated and true reduced-order models is addressed via a state-dependent robustness margin in the CBF inequalities. To illustrate the proposed framework, we present simulation studies for two systems with parametric uncertainties: a synthetic two-time-scale fourth-order example system and a unicycle with a fast turn-rate actuator and an <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">obstacle avoidance</mark> safety constraint.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Krishnamurthy2026261134866,
+      title={Adaptive Control Barrier Functions for Nonlinear Singularly Perturbed Systems},
+      author={Prashanth Krishnamurthy and Farshad Khorrami},
+      year={2026},
+      eprint={2611.34866v1},
+      archivePrefix={arXiv},
+      primaryClass={eess.SY},
+      url={http://arxiv.org/abs/2611.34866v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.34136v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                6. <a href="http://arxiv.org/abs/2611.34136v1" style="color:#0b5cab;text-decoration:none;">SOC-Net: Second-Order-Cone-Constrained Neural Networks</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Seungseok Oh, Youngjae Min, Navid Azizan, Namhoon Cho</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.LG (Machine Learning)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">eess.SY (Systems and Control)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.34136v1 &nbsp;|&nbsp; 首发日期: 2026-11-25 10:35 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.34136v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.34136v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key obstacle avoidance</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        很多控制任务里，智能模型给出的动作必须始终符合物理规律和安全边界，但现有做法往往要反复计算，甚至可能算不出合格结果。这篇论文把这种“必须合格”的要求直接做进模型结构里，让模型无论遇到什么情况都自动给出符合限制的结果，连训练时没见过的输入也不例外，而且计算更快。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        很多用在机器或设备上的人工智能，给出的结果必须符合现实中的安全限制和物理规则，但现有做法要么算得慢，要么在某些情况下不能保证一定守规矩。这篇论文提出一种新的网络结构，会在给出结果前自动把结果调整到允许范围内，因此无论遇到训练时见过还是没见过的情形，都能守住限制，而且训练起来方便、使用时比旧办法更快。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                <p style="margin:4px 0;color:#777;font-size:13px;">备注: 19 pages, 4 figures, 3 tables</p>
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出 SOC-Net 架构，通过构造性投影保证任意输入下满足输入相关的二阶锥约束。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将主干网络输出的仿射提升投影到固定 Lorentz 锥乘积的可达切片，再映射回输出空间，并利用闭式或单标量方程投影及显式雅可比支持端到端训练。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在摩擦约束接触力分配和输入鲁棒 CBF 三维避障实验中，SOC-Net 在所有评估输入上均满足约束，且评估延迟低于所测试的求解器和迭代基线。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出SOC-Net，通过将主干网络输出的仿射提升投影到固定Lorentz锥积的可达切片上，在构造上保证对任意输入（包括分布外输入）满足输入相关的二阶锥约束，并保持主干网络表达能力且支持端到端训练。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 以主干网络输出作仿射提升，投影到固定Lorentz锥积的可达切片并映射回输出空间；可分离约束逐锥投影，闭合形式或单标量方程求解，并用显式雅可比反向传播端到端训练。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在带摩擦约束的接触力分配和基于输入鲁棒控制障碍函数的3维避障实验中，SOC-Net在每个评估输入上均满足约束，评估延迟低于所测试的基于求解器和迭代的基线。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        In many applications, neural networks must learn input-output maps that respect prior knowledge such as physical laws, safety requirements, and operating limits. These requirements constrain which outputs are admissible for a given input and often admit second-order cone (SOC) representations, including norm bounds and robust linear inequalities. Examples in control include friction cones, thrust bounds, and input-robust control barrier function (CBF) conditions. However, existing approaches to enforcing general input-dependent SOC constraints require a conic solver, an iterative scheme whose feasibility depends on convergence, or an interior feasible point for each input. We propose SOC-Net, a neural network architecture that enforces input-dependent SOC constraints by construction for every input, even outside the training distribution. SOC-Net projects an affine lifting of the backbone output onto the reachable slice of a fixed product of Lorentz cones and maps the correction back to the output space. For separable constraints, this projection splits into one projection per cone, and each is available in closed form or reduces to a single scalar equation, regardless of the cone dimension. We prove that SOC-Net retains the expressive power of the backbone network under regularity conditions and accommodates end-to-end training by standard backpropagation with an explicit Jacobian. Experiments on contact force allocation with friction constraints and 3-D <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">obstacle avoidance</mark> with an input-robust CBF demonstrate that SOC-Net satisfies the constraints at every evaluated input, with lower evaluation latency than the tested solver-based and iterative baselines.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Oh2026261134136,
+      title={SOC-Net: Second-Order-Cone-Constrained Neural Networks},
+      author={Seungseok Oh and Youngjae Min and Navid Azizan and Namhoon Cho},
+      year={2026},
+      eprint={2611.34136v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={http://arxiv.org/abs/2611.34136v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.34053v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                7. <a href="http://arxiv.org/abs/2611.34053v1" style="color:#0b5cab;text-decoration:none;">xFORM: Accelerating Fixed-Lag LiDAR Odometry with Exact Factor Compression</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Ruogu Li, Easton R. Potokar, Michael Kaess</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.34053v1 &nbsp;|&nbsp; 首发日期: 2026-11-25 09:31 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.34053v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.34053v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key state estimation</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        机器人或自动驾驶设备在移动时，需要不断处理大量扫描数据来判断自己走到了哪里，但这个过程很慢，会拖累后续的控制和路线规划。这篇论文把大量重复的比对信息压缩成很少的关键数字，并让多个计算同时进行，从而在不改变结果的情况下明显加快处理速度。这样设备就能更快知道自己的位置，后续动作也更及时。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        机器人或自动驾驶设备靠激光测距来认路时，一次要处理很多点，连续多帧一起计算会特别慢，容易耽误后面的行动决定。这篇论文把海量重复的测量信息打包压缩成少量关键数据，并分别用普通处理器和显卡来加快计算。这样算得更快，而且结果几乎不变，能让设备更及时地做出反应。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出精确因子压缩方法，将每对扫描中数十万特征匹配压缩为34个标量残差，同时保持原优化目标和高斯-牛顿系统不变。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 在FORM的三阶段流程中引入因子压缩，并实现CPU并行特征提取的xFORM-CPU与GPU加速特征处理、对应搜索和因子压缩的xFORM-GPU。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在三个数据集的15条完整序列上，xFORM-CPU和xFORM-GPU相对FORM分别取得1.1-1.4倍和2.0-4.0倍的整体加速，且数值结果无显著差异。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出精确因子压缩，将每对扫描中数十万特征匹配压缩为34个标量残差，并在保持原目标与高斯-牛顿系统精确等价的前提下构建CPU和GPU两种加速版本。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将压缩优化器集成到FORM固定滞后激光里程计流程中，CPU版本并行化特征提取，GPU版本加速特征处理、对应搜索和因子压缩。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在三个数据集的15条完整序列上，xFORM-CPU和xFORM-GPU相对FORM分别取得1.1-1.4倍和2.0-4.0倍加速，且与原实现无显著数值差异。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Light Detection and Ranging (LiDAR) sensors are increasingly popular for <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">state estimation</mark> because of their precision, long range, and high measurement rate. Unfortunately, LiDAR Odometry (LO) systems incur substantial computational cost when processing large point clouds, particularly those that jointly refine a window of scan poses. While our prior LO work FORM is real-time, the costs of feature extraction, correspondence search, and the evaluation and linearization of residuals during pose optimization can introduce significant latency. This latency makes downstream tasks such as control and path planning difficult. To overcome this, we present xFORM, which accelerates the three stages of FORM. xFORM uses factor compression to reduce an optimization problem involving hundreds of thousands of feature matches to 34 scalar residuals per scan pair, while preserving the original objective and Gauss-Newton system in exact arithmetic. We integrate this optimizer into two variants: xFORM-CPU, which additionally parallelizes feature extraction on the CPU, and xFORM-GPU, which accelerates feature processing, correspondence search, and factor compression on the GPU. Across fifteen complete sequences from three datasets, xFORM-CPU and xFORM-GPU achieve overall speedups of 1.1-1.4$\times$ and 2.0-4.0$\times$ over FORM, respectively, with no numerically significant differences to the original implementation.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Li2026261134053,
+      title={xFORM: Accelerating Fixed-Lag LiDAR Odometry with Exact Factor Compression},
+      author={Ruogu Li and Easton R. Potokar and Michael Kaess},
+      year={2026},
+      eprint={2611.34053v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={http://arxiv.org/abs/2611.34053v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.34046v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                8. <a href="http://arxiv.org/abs/2611.34046v1" style="color:#0b5cab;text-decoration:none;">End-to-End Image-Goal Navigation for Agile Quadrotors via Recurrent State Distillation</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Simone Nascivera, Ismail Geles, Davide Scaramuzza</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.CV (Computer Vision and Pattern Recognition)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.34046v1 &nbsp;|&nbsp; 首发日期: 2026-11-25 09:23 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.34046v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.34046v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key state estimation</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        无人机只看一张目标照片，就要自己飞过去并停在那个位置；现实里没有地图、也不知道自己在哪，这很难做到。研究让无人机直接根据看到的画面决定怎么飞，边飞边记住自己的运动，不需要额外定位系统，也不用先算速度再控制，因此在没去过的地方也能较稳地飞到目标画面附近。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        现实中，想让无人机只看一张目标照片就自己飞过去很难，因为照片本身看不出距离和速度，环境又可能完全陌生，现有办法常常只能在小范围里平面移动，还得靠额外设备帮忙判断位置和速度。论文让无人机直接把看到的画面变成飞行动作，先学习画面和运动的关系，再跟着一个经验丰富的飞行教练学，最后自己反复练习改进。这样它不用额外定位设备，也能在陌生立体空间里飞向目标照片，成功率高，而且停得比较准。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出首个无需状态估计或独立速度控制器、可直接输出推力与角速率、面向未见三维环境的图像目标导航策略。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 采用几何与运动监督、特权教师蒸馏和端到端强化学习微调的四阶段流程训练循环视觉策略。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在未见环境的1000次留出飞行中成功率达82.3%、成功飞行平均终点误差0.10米，并在真实四旋翼上零样本达到84%成功率（25次试验）。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出了首个在未见三维环境中直接输出推力和角速率、无需状态估计或独立速度控制器的图像目标导航策略。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 采用四阶段训练流程，将几何与运动监督、特权教师蒸馏和端到端强化学习微调相结合，训练基于循环视觉的策略。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在1000次未见环境留出飞行中成功率达82.3%，成功飞行平均终点位置误差0.10 m；真实四旋翼零样本部署在未见室内环境25次试验中成功率达84%。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Image-goal navigation asks a robot to reach the viewpoint of a target photograph without a map or goal pose. In three dimensions, this requires not only recognizing the goal but also estimating 3D displacement and generating continuous control actions to approach and settle at the target view. This is difficult because the same visual difference between current and goal image can require very different actions depending on the robot&#x27;s velocity, yet monocular images alone reveal neither metric scale nor body motion. As a result, existing image-goal policies are limited to planar action spaces and rely on a state estimator for flight control. Policies that map directly from images to low-level control commands have been demonstrated for agile flight, but not toward goal images in unseen environments. We present the first image-goal navigation policy that directly commands thrust and angular rates for agile quadrotor flight in unseen 3D environments, without relying on <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">state estimation</mark> (e.g., SLAM, VO, or SfM) or a separate velocity controller. We train a recurrent vision-based policy through a four-stage pipeline that combines geometric and motion supervision with privileged-teacher distillation and end-to-end reinforcement learning fine-tuning. On 1000 held-out flights in unseen environments, the policy achieves an 82.3% success rate with a mean terminal position error of 0.10m across successful flights. Deployed zero-shot on a real quadrotor, the policy reaches an 84% success rate over 25 trials in an unseen indoor environment.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Nascivera2026261134046,
+      title={End-to-End Image-Goal Navigation for Agile Quadrotors via Recurrent State Distillation},
+      author={Simone Nascivera and Ismail Geles and Davide Scaramuzza},
+      year={2026},
+      eprint={2611.34046v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={http://arxiv.org/abs/2611.34046v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.33991v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                9. <a href="http://arxiv.org/abs/2611.33991v1" style="color:#0b5cab;text-decoration:none;">QK-Bench: Benchmarking Quantitative Kinematic Understanding for Dynamic Spatial Intelligence</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Lennox Wei, Jiaqi Yao, Shixin Sun, Yuanzheng Zhang, Jianhua Han, Meng Tian, Shaohui Liu, Wangmeng Zuo</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.CV (Computer Vision and Pattern Recognition)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.33991v1 &nbsp;|&nbsp; 首发日期: 2026-11-25 08:45 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.33991v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.33991v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key trajectory tracking</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        现实里很多智能系统能看出东西在动、在靠近，却说不清到底多快、会不会撞上，这在避障、跟踪、抓取时很要命。论文做了一个包含很多视频选择题的测试集，专门考机器从画面判断速度、时间、相对位置和接下来怎么动，好处是能清楚暴露现有机器在这方面的短板。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        现实里很多自动设备需要根据视频判断东西移动得多快、什么时候到、会不会撞上，但现在的智能程序常常只会说“它们在靠近”，却算不准具体快慢和相遇时间。研究者做了一个包含很多视频和选择题的测试题库，用可靠规则给出标准答案，专门考这类判断准不准。这样能清楚看出哪些系统只是说得像、实际算不准，为以后改进避免相撞、跟住移动目标和及时伸手拿东西等应用提供依据。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出QK-Bench基准，系统评测多模态大模型对运动量级、速率、参考系依赖和未来空间演化的定量运动学理解。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 构建涵盖379个视频、2341道多选题和17项任务的基准，利用隐藏几何与时间信号及固定运动学规则生成可验证答案，并统一以单目RGB输入评测专有、开源和空间多模态大模型。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 最强模型总体准确率仅41.2%，空间多模态大模型也无一致优势，表明当前空间智能进展不能可靠迁移到定量运动学理解。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出了QK-Bench，一个面向多模态大模型定量运动学理解的基准，覆盖物体中心运动、相机自身运动和多物体运动关系共17类任务、2341个选择题。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 基于379个视频构建多选题，利用隐藏的几何与时间信号辅助轨迹构建和筛选，并通过固定运动学规则将物理量映射为可验证答案，在统一单目RGB输入下评测多种多模态大模型。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 现有模型在定量运动学理解上存在显著不足，最强模型总体准确率仅41.2%，空间多模态大模型也无一致优势，表明当前空间智能进展未能可靠迁移到定量运动学理解。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Spatial intelligence concerns both scene structure and its temporal evolution. Yet a semantically correct description can conceal a quantitative error: recognizing that objects are approaching does not determine their closing speed or whether they will meet. Such errors are critical in collision avoidance, <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">trajectory tracking</mark>, and reactive grasping, where actions depend on motion magnitude, timing, and relative geometry. We study quantitative kinematic understanding in multimodal large language models (MLLMs): resolving motion magnitude, rate, reference-frame dependence, and future spatial evolution from visual evidence. We introduce the Quantitative Kinematics Benchmark (QK-Bench), comprising 2,341 multiple-choice QA pairs from 379 videos and 17 tasks spanning Object-Centric Kinematics, Camera Ego-Motion Kinematics, and Multi-Object Kinematic Relations. Hidden geometric and temporal signals support trajectory construction and filtering, while fixed kinematic rules map physical quantities to verifiable answers, including categorical labels. Trajectory and question validation ensure target reliability and sufficient visual support in the sampled frames. All models receive a unified monocular RGB input. Evaluations of proprietary, open-source, and spatial MLLMs reveal substantial limitations: the strongest model achieves only 41.2\% overall accuracy, and spatial MLLMs show no consistent advantage. These findings indicate that current advances in spatial intelligence do not reliably transfer to quantitative kinematic understanding.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Wei2026261133991,
+      title={QK-Bench: Benchmarking Quantitative Kinematic Understanding for Dynamic Spatial Intelligence},
+      author={Lennox Wei and Jiaqi Yao and Shixin Sun and Yuanzheng Zhang and Jianhua Han and Meng Tian and Shaohui Liu and Wangmeng Zuo},
+      year={2026},
+      eprint={2611.33991v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={http://arxiv.org/abs/2611.33991v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.32642v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                10. <a href="http://arxiv.org/abs/2611.32642v1" style="color:#0b5cab;text-decoration:none;">BARE: Body-Aware Reflexive Evasion for Humanoid Robots</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Zihao Li, Tong Chen, Hua Song, Zitong Ding, Zihao Xu, Ce Hao, Weibang Bai</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.AI (Artificial Intelligence)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.32642v1 &nbsp;|&nbsp; 首发日期: 2026-11-24 14:01 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.32642v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.32642v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key obstacle avoidance</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        这篇论文想解决的是：人形机器人在现实环境里遇到突然飞来的物体时，怎样及时躲开，同时又不因为只动一小块身体而摔倒。它的办法是借鉴人躲闪时的动作，根据哪个部位有危险、危险有多急来挑选和调整动作，再让机器人学会一边局部躲闪一边保持全身平衡。这样做的实际好处是，机器人能用更小、更快的动作避开危险，不需要整个人大幅挪开，也不容易失去平衡。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        这篇论文要解决的是：人形机器人在现实环境里碰到突然冲过来的东西时，如果整个身体大范围躲闪，往往来不及、需要很大空地，还容易站不稳摔倒。它提出的办法是只让快要被撞到的身体部位快速做局部小调整，同时兼顾全身平衡，并参考人的躲闪动作来决定怎么动。这样做的实际好处是反应更快、占用空间更小，同时还能保持站稳。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出BARE，一种基于人体运动先验、风险引导动作适配与强化学习的人形机器人局部反射式避障框架，在局部躲避的同时保持全身稳定。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 从重定向人体避障动作库中按受威胁部位选择参考动作并按碰撞紧迫度调整相位，结合链路级碰撞风险用强化学习训练反射避障策略，以协调局部身体调整与全身稳定。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 仿真和真机实验验证BARE能够执行目标局部躲避并保持全身稳定。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出BARE框架，利用人体避障动作先验和风险引导动作适配，实现人形机器人局部反射式躲避并保持全身稳定。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 基于重定向人体躲避动作库，按受威胁身体区域和碰撞紧迫度选择并调整参考动作，再用强化学习训练局部躲避与全身稳定协调策略。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 仿真和真实实验验证BARE能够进行目标局部躲避并保持全身稳定。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Dynamic <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">obstacle avoidance</mark> is essential for safely deploying humanoid robots in real-world environments, where rapidly approaching objects require immediate evasive responses. Recent advances in reflexive evasion have focused primarily on quadrupeds, which typically rely on large-scale whole-body maneuvers. In contrast, humanoids can exploit their rich body articulation to evade through small, localized body adjustments. By moving threatened body regions without repositioning the entire body, these responses may require less execution time and less surrounding free space. However, local adjustments can alter mass distribution or support conditions, making it challenging to achieve rapid evasion while maintaining whole-body stability. To this end, we propose BARE (Body-Aware Reflexive Evasion), a humanoid reflexive evasion framework guided by human motion priors that enables rapid local evasion while maintaining whole-body stability. A risk-guided motion adapter is designed to select reference motions from a retargeted human evasive motion library based on the threatened body region and to adjust their temporal phases based on collision urgency, allowing the robot to reach evasive postures before potential contact. Conditioned on the adapted reference and link-level collision risk, a reflexive evasion policy learns through reinforcement learning to coordinate local body adjustments with whole-body stabilization. We validate BARE in simulation and real-world experiments, demonstrating its ability to perform targeted local evasion while maintaining whole-body stability.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Li2026261132642,
+      title={BARE: Body-Aware Reflexive Evasion for Humanoid Robots},
+      author={Zihao Li and Tong Chen and Hua Song and Zitong Ding and Zihao Xu and Ce Hao and Weibang Bai},
+      year={2026},
+      eprint={2611.32642v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={http://arxiv.org/abs/2611.32642v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.32584v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                11. <a href="http://arxiv.org/abs/2611.32584v1" style="color:#0b5cab;text-decoration:none;">An XR-Based System for Enhanced Spatial Awareness in Mobile Robot Teleoperation</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Subhransu Sourav Priyadarshan, Valentina Pericu, Federico Rollo, Gianni Viardo Vercelli, Navvab Kashiri</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.32584v1 &nbsp;|&nbsp; 首发日期: 2026-11-24 13:24 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.32584v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.32584v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key obstacle avoidance</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        在危险环境里遥控机器人时，人往往看不清周围情况，容易撞到东西，而且戴着头戴设备看全景画面还容易头晕。这个研究用前后两个摄像头来减少头晕，并让手持设备通过震动提示障碍物，让人不用一直盯着画面也能避开障碍；测试发现这样能减轻避障时的脑力负担。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        在危险环境里让人远程操控机器人时，操作者常常看不清周围、容易撞到东西，而戴着头戴屏幕看四周画面还容易头晕。论文做了一套前后两个画面加手柄震动提醒的办法，让操作者不用一直盯着画面也能发现障碍，实验发现这样避障时更省心、更容易。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                <p style="margin:4px 0;color:#777;font-size:13px;">备注: 8 pages, 6 figures, 1 table. Author accepted manuscript published in the 2026 IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM)</p>
+                <p style="margin:4px 0;color:#777;font-size:13px;">期刊/会议信息: 2026 IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM), 2026</p>
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种集成沉浸视觉与振动触觉反馈、采用固定双摄像头配置以缓解晕动的多模态XR机器人遥操作与场景探索系统。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 系统使用前向相机导航、后向相机增强态势感知，并利用16线LiDAR实时生成2D占据栅格地图，将其转换为手持控制器的振动触觉反馈，并通过20名参与者进行用户评估。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 用户评估表明，振动触觉模态显著降低了遥操作避障过程中的认知负荷。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种集成固定双相机视觉与LiDAR占据栅格–振动触觉反馈的多模态XR遥操作系统，以缓解头显全景晕动并降低避障认知负荷。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 采用前向相机主导航、后向相机增强态势感知，利用16线LiDAR生成实时2D占据栅格并映射为手柄振动反馈，并通过20名参与者开展用户评估。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 用户评估表明，振动触觉反馈模态显著降低了移动机器人遥操作避障过程中的认知负荷。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Teleoperation of mobile robots represents a critical capability for operations in hazardous environments, yet maintaining adequate situational awareness remains challenging without effective visualization and control interfaces. This work presents a multi-modal extended reality (XR) system for robot teleoperation and scene exploration that integrates immersive visual and haptic feedback modalities. To address motion sickness commonly induced by 360-degree camera feeds in head-mounted displays (HMDs), the system employs a fixed dual-camera configuration: a forward-facing camera for primary navigation and a rear-facing camera for enhanced situational awareness without operator discomfort. For navigation in confined or low-visibility conditions, a 16-channel Velodyne LiDAR generates real-time 2D occupancy grid maps, which are converted into vibrational haptic feedback on handheld controllers to provide intuitive, non-visual obstacle detection. User evaluation with 20 participants demonstrates that this haptic modality significantly reduces the cognitive load associated with <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">obstacle avoidance</mark> during teleoperation.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Priyadarshan2026261132584,
+      title={An XR-Based System for Enhanced Spatial Awareness in Mobile Robot Teleoperation},
+      author={Subhransu Sourav Priyadarshan and Valentina Pericu and Federico Rollo and Gianni Viardo Vercelli and Navvab Kashiri},
+      year={2026},
+      eprint={2611.32584v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={http://arxiv.org/abs/2611.32584v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.32523v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                12. <a href="http://arxiv.org/abs/2611.32523v1" style="color:#0b5cab;text-decoration:none;">AirLeg: A Robust and Accurate Self-Supervised Visual-Inertial-Leg SLAM System</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Kuan Xu, Tianxin Hu, Ruofei Bai, Ruimeng Liu, Yuefan Hao, Zeyu Jiang, Zitong Zhan, Shenghai Yuan, Chen Wang, Lihua Xie</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.32523v1 &nbsp;|&nbsp; 首发日期: 2026-11-24 12:50 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.32523v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.32523v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key state estimation</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        带腿机器人要知道自己走到哪里，但只靠摄像头和身体关节容易越走越偏；在电脑模拟里训练又不准，真实数据又贵又麻烦。这篇论文让摄像头和腿部感觉互相纠正，边用边学，不需要额外昂贵设备。好处是在便宜机器人上也能实时定位，用很少的无标注数据就能明显减少走偏。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        带腿的机器人想知道自己在哪儿，常常只能靠摄像头和身上已有的测量部件；但教它用腿的动作判断位置时，在电脑模拟里学会的本事放到真机上容易不灵，真机标注又贵又容易带错。这篇论文让摄像头和腿的感觉互相纠正、边用边学，不需要额外贴标签，再把几路信息合起来判断位置。结果是在便宜的四足机器上也能判断得准，走久了位置误差也很小，还能在机载小电脑上马上算出结果。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                <p style="margin:4px 0;color:#777;font-size:13px;">备注: 19 pages,9 figures</p>
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出自监督视觉-惯性-腿式SLAM系统AirLeg，使视觉与腿式本体感知在训练和部署中相互促进。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 先在仿真中预训练腿式里程计网络，再通过多传感器光束法平差用腿式里程计精化视觉地图并反向监督网络，部署时用双窗口估计器融合视觉、IMU和腿式里程计并在线自适应。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> AirLeg在GrandTour全部17个序列上平均误差0.19 m、为19种方法中最低，并在低成本四足机器人上仅用0.5小时无标注数据实现0.6%漂移和嵌入式实时运行。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出自监督视觉-惯性-腿式SLAM系统，通过多传感器联合优化让视觉与腿式里程计在训练和部署中相互监督增强，并引入形变感知足地约束与方差分量估计加权。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 先在仿真中预训练腿式里程计网络，再用多传感器光束法平差以腿式里程计精化视觉地图并反向监督网络，部署时用双窗估计器融合视觉、惯性、腿式里程计并在线自适应。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在GrandTour全部17个序列上平均误差0.19 m为19种方法最低；低成本四足机器人仅用0.5 h无标签数据达到0.6%最低漂移，并在嵌入式计算机实时运行。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Visual-inertial-leg (VIL) <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">state estimation</mark> offers cost-effective localization for legged robots, adding only a camera to the onboard IMU and joint encoders. However, learning-based leg odometry is limited by its supervision: networks trained in simulation suffer from the sim-to-real gap, while real-world labels require costly sensors or inherit the errors of visual estimates. To address this, we present AirLeg, a self-supervised VIL SLAM system in which vision and leg proprioception improve each other from training to deployment. We pre-train the leg odometry network in simulation and adapt it to the robot without ground truth through imperative learning, where multi-sensor bundle adjustment uses the leg odometry to refine the visual map, which in turn supervises the network. During deployment, the fused estimates adapt the network online. To improve both localization and this supervision, a dual-window estimator fuses vision, IMU, and leg odometry, relates loaded feet to the visually reconstructed terrain through a deformation-aware constraint, and weights the constraints by variance component estimation. AirLeg completes all 17 GrandTour sequences with the lowest average error (0.19 m) among 19 methods. On a low-cost quadruped, it achieves the lowest drift (0.6%) with only 0.5 h of unlabeled data, in real time on an embedded computer.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Xu2026261132523,
+      title={AirLeg: A Robust and Accurate Self-Supervised Visual-Inertial-Leg SLAM System},
+      author={Kuan Xu and Tianxin Hu and Ruofei Bai and Ruimeng Liu and Yuefan Hao and Zeyu Jiang and Zitong Zhan and Shenghai Yuan and Chen Wang and Lihua Xie},
+      year={2026},
+      eprint={2611.32523v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={http://arxiv.org/abs/2611.32523v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.32279v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                13. <a href="http://arxiv.org/abs/2611.32279v1" style="color:#0b5cab;text-decoration:none;">Online outlier-resilient data-driven moving horizon estimation for linear discrete-time systems</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Jingshi Yao, Zenghong Huang, Xiaojie Li, Xunyuan Yin</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">eess.SY (Systems and Control)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.32279v1 &nbsp;|&nbsp; 首发日期: 2026-11-24 09:43 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.32279v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.32279v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key state estimation</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        这篇论文想解决的是：系统在运行中，测量数据偶尔会被特别离谱的错误值污染，这时还想尽量准确地知道系统内部真实状态。它的办法是不用先建好系统模型，只靠以前记录下来的输入输出数据，并在在线估计时把明显离谱的偏差截断掉，减少坏数据的影响。好处是即使有零散但很大的错误测量，也能给出较准确的估计，而且估计误差不会无限变大。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        现实里很多设备或系统需要根据不断传来的观测数据判断当前运行情况，但数据里偶尔会混进少数错得离谱的读数，直接照着算就会判断跑偏。这篇论文想出利用系统过去积累的操作记录和观测记录来学习怎么判断，并且把当前明显不对劲的读数压住或排除，不让它们带坏结果。这样即使偶尔出现少量大错误读数，也能较准确地推断系统当前情况。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出了一种基于Willems基本引理、采用截断二次损失抑制稀疏任意幅值异常值的在线抗异常值数据驱动移动视界状态估计方案OORD-MHE。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 仅利用离线输入-状态-输出数据，基于基本引理构造数据驱动移动视界估计，并对输出残差施加带截断阈值的截断二次损失。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 给出了估计误差一致有界的充分条件，仿真表明该方案在存在稀疏在线异常值时仍能获得准确的状态估计。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出了一种基于Willems基本引理、无需显式辨识模型且对任意幅值稀疏在线输出异常值鲁棒的数据驱动移动视界状态估计方案OORD-MHE。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 仅利用离线输入-状态-输出数据构造数据驱动估计框架，并对在线输出残差采用带截断阈值的截断二次损失以抑制稀疏异常值，同时给出估计误差一致有界的充分条件。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 仿真结果表明，所提OORD-MHE在存在稀疏在线异常值时仍能生成准确的状态估计，且估计误差在给定条件下保持一致有界。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        This paper addresses data-driven <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">state estimation</mark> for linear systems of which online output measurements may be corrupted by sparse outliers of arbitrary magnitude. Using only offline input-state-output data without explicitly identifying a system model, we propose an outlier-resilient data-driven moving horizon estimation scheme, termed OORD-MHE, based on Willems&#x27; fundamental lemma. The scheme employs a truncated-quadratic loss on the output residuals, parameterized by a truncation threshold, to mitigate the influence of online outliers. We establish sufficient conditions under which the resulting estimation error remains uniformly bounded. Simulation results demonstrate that the proposed OORD-MHE scheme generates accurate state estimates in the presence of sparse online outliers.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Yao2026261132279,
+      title={Online outlier-resilient data-driven moving horizon estimation for linear discrete-time systems},
+      author={Jingshi Yao and Zenghong Huang and Xiaojie Li and Xunyuan Yin},
+      year={2026},
+      eprint={2611.32279v1},
+      archivePrefix={arXiv},
+      primaryClass={eess.SY},
+      url={http://arxiv.org/abs/2611.32279v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.32228v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                14. <a href="http://arxiv.org/abs/2611.32228v1" style="color:#0b5cab;text-decoration:none;">Disentangling Visual Dynamics for World Model Planning</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Yuhong Shi, Yihan Guo, Jie Wei, Jianyi Liu, Jingwen Fu</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.32228v1 &nbsp;|&nbsp; 首发日期: 2026-11-24 09:11 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.32228v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.32228v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key state estimation</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        训练会看画面的智能体做规划时，画面里自己的动作和周围环境的变化常常混在一起，容易看不清任务到底进展到哪一步。作者把这两类变化拆开，再让拆出来的信息分别帮助判断状态、给路线打分和做计划，结果在多个模拟任务里成功率更高。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        机器人在看画面做计划时，常把自身动作造成的变化和外部环境的变化混在一起，导致分不清任务到底进展到哪一步。这篇论文把这两类变化分开处理，并让分开后的信息直接帮助判断当前情况、比较路线和做选择，从而在多个模拟任务里更容易成功。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出FactorWorld解耦视觉动力学框架，通过CCRF和语义路由分离智能体与外源动态并服务于世界模型规划。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 利用双向反事实对引导CCRF分离共享上下文与动态残差，结合平均与最差伙伴约束及状态和运动监督保留有用信息，再用语义路由细化任务预测以支持状态估计、轨迹评分和任务适配规划。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在MiniGrid、MetaDrive和CARLA上提升了双向因子稳定性，MiniGrid平均成功率由78.80%升至82.40%，四个连续控制任务平均成功率达91.67%至100%。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出FactorWorld解耦视觉动力学框架，将智能体动态与外源动态分离并语义路由到规划决策中。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 利用双向反事实对引导的CCRF分离共享上下文与动态残差，并结合平均与最差伙伴约束及状态、运动监督，再通过语义路由细化任务预测以支持状态估计、轨迹评分和任务自适应规划。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在MiniGrid、MetaDrive、CARLA及四个连续控制任务上提升了因子稳定性与规划成功率，MiniGrid平均成功率由78.80%升至82.40%，连续控制任务成功率达91.67%至100%。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Visual world models enable planning through predictive latent states. However, entangled agent and exogenous dynamics can obscure task progress. Disentangling visual dynamics for planning requires addressing two challenges: 1) suppressing cross-factor interference while retaining useful information; and 2) linking factors to task-relevant signals, since stability alone does not ensure meaningful planning distances. Therefore, we introduce FactorWorld, a disentangled visual dynamics framework for world model planning. To separate agent and exogenous dynamics, we propose a Counterfactual Consensus Residual Factorizer (CCRF) guided by bidirectional counterfactual pairs. CCRF separates shared context from dynamic residuals, combining average and worst-partner constraints to suppress interference with state and motion supervision to retain useful information. To translate these factors into planning decisions, we introduce semantic routing to refine full-representation task predictions for <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">state estimation</mark>, trajectory scoring, and task-adapted planning. Experiments on MiniGrid, MetaDrive, and CARLA show improved bidirectional factor stability across two backbones. On MiniGrid, factor routing raises mean SR from 78.80% to 82.40%. Across four continuous control tasks, including Push-T, FactorWorld achieves mean success rates ranging from 91.67% to 100% across tasks. These results demonstrate that combining decoupled visual dynamics with explicit tasks can significantly improve the planning capabilities of world models.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Shi2026261132228,
+      title={Disentangling Visual Dynamics for World Model Planning},
+      author={Yuhong Shi and Yihan Guo and Jie Wei and Jianyi Liu and Jingwen Fu},
+      year={2026},
+      eprint={2611.32228v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={http://arxiv.org/abs/2611.32228v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.32184v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                15. <a href="http://arxiv.org/abs/2611.32184v1" style="color:#0b5cab;text-decoration:none;">Wind-Aware Trajectory Planning for Deformable Aerial Formations</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Haozhe Wang, Xun Huang</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.32184v1 &nbsp;|&nbsp; 首发日期: 2026-11-24 08:35 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.32184v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.32184v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key trajectory tracking</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        在城市楼群之间，多架小飞机一起运送东西时，既要穿过狭窄空隙，又会遇到楼边不断变化的风，很容易飞不稳甚至撞上。这篇论文让它们共用一条安全飞行通道，并在飞行中自动调整队形和速度，把风的影响也算进去。这样能让编队更安全、更平稳地穿过复杂城市环境，飞得也更准。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        几架无人机一起吊着东西穿过高楼密集的城区时，楼边风向乱、通道又窄，队伍既要挤过去又要不被风吹偏。这篇论文提前算好整队怎么走、怎么变形和什么时候变，并把沿途的风提前考虑进去，让它们更安全地穿过狭窄空间，也更能按计划飞稳。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                <p style="margin:4px 0;color:#777;font-size:13px;">备注: 8 pages, 5 figures, 2 tables</p>
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出风感知的轨迹族规划方法 Family-Air，将虚拟管、编队形变与时空优化统一耦合。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 构建共享无碰撞虚拟管，以仿射变换表示连续轨迹族，将空间变化风场和形变速度纳入统一空气相对运动目标，并施加管约束、机间间距和运动学可行性约束进行联合优化。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 四类城市风场仿真表明局部风场与形变耦合很重要，飞行仿真进一步显示轨迹跟踪精度提升，验证了该方法用于复杂城市协同空中运输的潜力。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出 Family-Air 风感知轨迹族规划器，将虚拟管、队形变形与时空联合优化统一起来，并显式建模局部风与变形诱导速度的耦合。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 以虚拟管作为共享无碰撞飞行空间，用共享仿射变换表示连续轨迹族，联合优化编队中心运动、变形与时间分配，并施加管内容纳、机间分离和运动学可行性约束。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 四类城市风场仿真表明局部风—变形耦合不可忽视，飞行仿真中轨迹跟踪精度得到提升，验证了该方法用于复杂城市协同空运的潜力。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Coordinated aerial transport in dense urban environments requires drone formations to navigate confined spaces and adapt to spatially varying winds around buildings. Formation deformation enables passage through narrow spaces but changes individual drone velocities and the local winds they encounter, coupling formation motion with aerodynamic effects. We propose Family-Air, a wind-aware trajectory-family planner that constructs a virtual tube as shared collision-free flight space and jointly optimizes formation-center motion, deformation, and timing. A shared affine transformation represents a continuous trajectory family, incorporating spatially varying wind and deformation-induced velocities into a unified air-relative motion objective. The optimization enforces virtual-tube containment, inter-drone separation, and kinematic feasibility. Simulations across four urban wind-field scenarios demonstrate the importance of local wind-deformation coupling. Flight simulations further show improvements in <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">trajectory tracking</mark> accuracy. These results demonstrate the potential of wind-aware trajectory-family planning for coordinated aerial transport in complex urban environments.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Wang2026261132184,
+      title={Wind-Aware Trajectory Planning for Deformable Aerial Formations},
+      author={Haozhe Wang and Xun Huang},
+      year={2026},
+      eprint={2611.32184v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={http://arxiv.org/abs/2611.32184v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.30495v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                16. <a href="http://arxiv.org/abs/2611.30495v1" style="color:#0b5cab;text-decoration:none;">DexDuet: Learning Contact-Preserving Bimanual Dexterity from Human Demonstrations</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Haoran Zhang, Haokai Ding, Han Zhou, Zuxing Lu, Heng Zhang, Xingxing Zuo</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.30495v1 &nbsp;|&nbsp; 首发日期: 2026-11-23 11:13 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.30495v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.30495v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key trajectory tracking</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        人类演示能教机器人双手做灵巧操作，但现有方法只盯着物体轨迹，常导致机器人摸错位置或手指打滑，操作不稳。这篇论文让机器人只学一次人类演示，就同时学会手该怎么接触物体、两只手怎么配合，并在难学的阶段给予适当帮助。这样机器人更容易保持正确接触，抓取和操作更稳定，物体跟踪效果也更好。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        想让机器人学会像人一样用两只手灵活摆弄东西时，常常很难把人的示范搬过去；现有教法只盯着东西有没有按原路线动，却没管手指碰到哪里，结果机器人可能抓错地方或打滑。它只用人做一次示范，就同时学着让东西按原样动、让手指碰在对的位置，还让两只手互相配合，练到难的地方会给一点帮助。这样东西跟得更准，碰得也更稳。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出DexDuet框架，通过交互奖励、双手权重共享且相互条件化的单手机策略以及自适应辅助参考状态初始化课程，从单次人类演示中学习保持接触的双手机器人灵巧操作。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 以单次人类演示为输入，利用保持人手-物体构型与接触的交互奖励训练两个相互条件化的权重共享单手机策略，并用A-RSI自适应调整物体辅助和训练起始段。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在三个模拟器和五种机器人本体的四个基准上，DexDuet将物体跟踪ADD-AUC较基线提升11至41点，并在122组跟踪精度可比的配对运行中有117组更好地保持了人类接触。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出从单次人类演示中学习保持人-物接触构型的双手灵巧操作框架。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 用两个交互奖励保留人手-物体配置与接触，将双手策略分解为共享权重且互相条件化的单手策略，并用自适应课程调整物体辅助与训练起点。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在四个基准、三个模拟器和五种机器人上，物体跟踪ADD-AUC提升11至41点且接触保持更好，122对可比运行中117例接触保持更优。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Human demonstrations provide a rich source of bimanual dexterous skills, yet transferring them to robot hands remains challenging. Existing methods primarily optimize object <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">trajectory tracking</mark>, often overlooking how human hands interact with the object. Even with accurate tracking, robots may contact incorrect object parts or slide their fingers, resulting in unstable manipulation. We present DexDuet, a framework that learns contact-preserving bimanual dexterity from a single human demonstration. DexDuet employs two interaction rewards to preserve human hand-object configurations and contacts. To enable coordinated manipulation, we factorize the bimanual policy into two weight-sharing per-hand policies that condition on each other&#x27;s states. We further propose assisted reference-state initialization (A-RSI), an adaptive curriculum that adjusts object assistance and training starts across demonstration segments to overcome difficult manipulation phases. Across four benchmarks spanning three simulators and five robot embodiments, DexDuet improves object-tracking ADD-AUC by 11 to 41 points over the corresponding baselines while consistently achieving better contact preservation. Notably, among 122 paired runs with comparable object-tracking accuracy, DexDuet preserves the human&#x27;s contacts better in 117 cases. Code and videos are available at https://rcl-robotics.github.io/Dexduet.io/
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Zhang2026261130495,
+      title={DexDuet: Learning Contact-Preserving Bimanual Dexterity from Human Demonstrations},
+      author={Haoran Zhang and Haokai Ding and Han Zhou and Zuxing Lu and Heng Zhang and Xingxing Zuo},
+      year={2026},
+      eprint={2611.30495v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={http://arxiv.org/abs/2611.30495v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.30463v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                17. <a href="http://arxiv.org/abs/2611.30463v1" style="color:#0b5cab;text-decoration:none;">Autonomous UAV Navigation in an Unknown Environment via Multi-Trajectory Model Predictive Control</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Danilo Saccani, Lorenzo Fagiano</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">eess.SY (Systems and Control)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.30463v1 &nbsp;|&nbsp; 首发日期: 2026-11-23 10:55 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.30463v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.30463v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key obstacle avoidance</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        让无人机在陌生又有障碍的地方自己飞，既要别撞上东西，又要尽量飞到指定地点；难点是它只能看到周围一部分，飞行中情况还会不断变化。论文想出的办法是规划时同时设想好几条未来可能走的路线，把“别撞”和“往目标飞”分开权衡；好处是更安全、更不容易卡住，在电脑模拟里比常规做法表现更好。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        无人机在陌生环境里自己飞时，最怕的是只能看到周围一部分、障碍位置又不确定，一边容易撞上，一边还得赶到目标点。这篇论文的办法是让飞机一次性设想多条未来飞行路线，再从中挑出既更安全又能更快到达的那条。这样能在尽量不撞障碍的同时更稳地接近目标，模拟结果也比常规做法更好。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                
+                <p style="margin:4px 0;color:#777;font-size:13px;">期刊/会议信息: 2021 European Control Conference (ECC), pp. 1577-1582, 2021</p>
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出多轨迹模型预测控制（mt-MPC），在同一有限时域最优控制问题中考虑多条未来状态轨迹，实现约束满足与代价最小化的部分解耦。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 采用分层控制：底层稳定无人机轨迹并跟踪设定点，高层mt-MPC基于LiDAR获得的部分环境信息在时变约束下规划兼顾避障与目标趋近的轨迹。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在时间不变环境假设下可保证递归可行性和持续避障，仿真对比标准MPC显示性能有明显提升。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出多轨迹模型预测控制（mt-MPC），在同一有限时域优化问题中考虑多条未来状态轨迹，实现约束满足（安全）与代价最小化（利用）的部分解耦。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 采用分层控制：高层mt-MPC基于LiDAR提供的部分环境信息规划轨迹，低层控制回路稳定飞行并跟踪设定点，并在仿真中与标准MPC对比。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在时不变环境假设下可保证递归可行性和持续避障，仿真结果表明该方法较标准MPC有明显改进。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        A novel model predictive control (MPC) formulation, named multi-trajectory MPC (mt-MPC), is presented and applied to the problem of autonomous navigation of an unmanned aerial vehicle (UAV) in an unknown environment. The UAV is equipped with a LiDAR sensor, providing only a partial description of the surroundings and resulting in time-varying constraints as the vehicle navigates among the obstacles. The control system layout is hierarchical: the low-level loops stabilize the vehicle&#x27;s trajectories and track the set-points commanded by the high-level, mt-MPC controller. The latter is required to plan the UAV trajectory trading off safety, i.e. to avoid collisions with the uncertain obstacles, and exploitation, i.e. to reach an assigned target location. To achieve this goal, mt-MPC considers different future state trajectories in the same Finite Horizon Optimal Control Problem (FHOCP), enabling a partial decoupling between constraint satisfaction (safety) and cost function minimization (exploitation). Recursive feasibility and, consequently, persistent <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">obstacle avoidance</mark> guarantees are derived under the assumption of a time invariant environment. The performance of the approach is studied in simulation and compared with that of a standard MPC, showing good improvement.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Saccani2026261130463,
+      title={Autonomous UAV Navigation in an Unknown Environment via Multi-Trajectory Model Predictive Control},
+      author={Danilo Saccani and Lorenzo Fagiano},
+      year={2026},
+      eprint={2611.30463v1},
+      archivePrefix={arXiv},
+      primaryClass={eess.SY},
+      url={http://arxiv.org/abs/2611.30463v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.29158v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                18. <a href="http://arxiv.org/abs/2611.29158v1" style="color:#0b5cab;text-decoration:none;">Implementation and Software-in-the-Loop Evaluation of a Trans-Domain Digital Twin Architecture for Autonomous Guidance of the Phoenix VTOL UAV Without Online GNSS</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Mansoorali Amiri</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.SE (Software Engineering)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">eess.SY (Systems and Control)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.29158v1 &nbsp;|&nbsp; 首发日期: 2026-11-22 02:30 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.29158v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.29158v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key state estimation</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        无人机在室内、被高楼山体挡住、或者遇到信号干扰和欺骗时，常常收不到可靠的卫星定位，导致没法安全自主飞行。这项研究在电脑里造了一个和真飞机同步更新的虚拟副本，把飞机自己感受到的位置变化、气压、风速等信息和环境信息合在一起，不断估计位置、预测下一步、做决定并发出控制命令。这样即使没有卫星定位，飞机也能按计划起飞、飞向目标、降落和自主停下，而且每个决定都能追溯，整套办法还能在电脑里重复测试。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        很多小型飞行器在室内、楼宇遮挡或信号被干扰时，卫星定位会失灵，导致它们不能可靠地自己飞。这项研究给它配了一套会不断跟着飞行状态更新和校正的电脑模拟系统，把身上各种感应器读到的信息和周围环境合在一起，边判断边预测边下指令，再根据结果修正。这样在测试中它不靠卫星也能完成垂直起飞、飞向目标、降落和自动停住，还能把每一步决定查清楚，方便以后重复验证。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                <p style="margin:4px 0;color:#777;font-size:13px;">备注: 34 pages, 17 figures, 4 tables. Software-in-the-loop evaluation of GNSS-independent Phoenix VTOL guidance using a trans-domain digital twin architecture. Source code and reproducibility materials: https://doi.org/10.5281/zenodo.24419538</p>
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出一种面向跨域数字孪生的自主导航架构，通过共享状态、时间同步、信息溯源和指令可追溯，实现无在线卫星定位条件下的闭环制导。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 集成独立导航、飞行动力学与气象模型，利用惯性、磁、气压、空速及环境数据，在状态估计、预测、决策、执行与反馈循环中协调运行，并在软件在环环境中仿真验证。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 测试中实现了垂直起降、向目标移动、着陆与自主停止，验证了系统协同运行、决策可追溯和闭环制导能力，并提供了可复现的无卫星定位导航开发与评估平台。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出并实现了一种面向Phoenix垂直起降无人机的跨域数字孪生架构，用于无在线GNSS条件下的自主制导，并强调多模型协同、共享状态、时间同步、信息来源保持与指令可追溯。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 在软件在环环境中，将独立导航、飞行动力学和气象模型与惯性、磁、气压、空速及环境信息结合，按状态估计、预测、决策、指令执行和反馈循环协调运行，并用仿真物理孪生开展测试。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 软件在环试验记录了垂直起飞、向目标移动、着陆和自主停止，验证了测试条件下操作协调、决策可追溯和闭环制导有效，并提供了可复现的无卫星定位导航开发与评估平台。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Autonomous UAV guidance in emergency response, infrastructure monitoring, and cargo transportation requires reliable navigation. However, satellite-based positioning may become unavailable or unreliable in enclosed spaces, blind spots caused by natural obstacles and structures, and environments affected by radio interference and signal spoofing during electronic warfare. This study designs, implements, and evaluates a system based on a Trans-Domain Digital Twin (TDDT) for autonomous guidance of the Phoenix VTOL UAV. Independent navigation, flight dynamics, and meteorological models are coordinated within a cycle of <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">state estimation</mark>, prediction, decision-making, command execution, and feedback. Data from inertial, magnetic, pressure, and airspeed sensors, together with environmental information, form the basis for estimation and prediction. Furthermore, a shared state, temporal synchronization, preservation of information provenance, and command traceability establish continuity between models and decisions. The system was tested with a simulated physical twin in a software-in-the-loop environment. Vertical takeoff, movement toward the destination, landing, and autonomous stopping were recorded, and the dynamic model was adjusted to a limited extent based on sensor-derived feedback. Separating the evaluation reference from navigation inputs enabled independent assessment of positioning error and computational performance. The results confirm operational coordination, decision traceability, and closed-loop guidance under the tested conditions, providing a reproducible platform for the development and evaluation of navigation without satellite-based positioning.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Amiri2026261129158,
+      title={Implementation and Software-in-the-Loop Evaluation of a Trans-Domain Digital Twin Architecture for Autonomous Guidance of the Phoenix VTOL UAV Without Online GNSS},
+      author={Mansoorali Amiri},
+      year={2026},
+      eprint={2611.29158v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={http://arxiv.org/abs/2611.29158v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.29100v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                19. <a href="http://arxiv.org/abs/2611.29100v1" style="color:#0b5cab;text-decoration:none;">Neural Costate Guidance for Autonomous Cislunar Low-Thrust Trajectory Generation</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Jannik Graebner, Ryne Beeson</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">eess.SY (Systems and Control)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.LG (Machine Learning)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">math.OC (Optimization and Control)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.29100v1 &nbsp;|&nbsp; 首发日期: 2026-11-21 23:45 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.29100v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.29100v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key trajectory tracking</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        飞船飞往月球附近时，导航误差或发动机故障会让它偏离原定路线，而船上电脑算力有限，很难临时快速算出一条省燃料的新路线。作者训练了一个电脑模型，让它能很快猜出该怎么飞，并反复用它快速生成修正路线。这样飞船更常能到达目标轨道，而且所需计算量比传统临时重算少一个数量级以上。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        航天器飞往月球附近时，常会因定位偏差或发动机故障偏离原定路线，而航天器上的电脑算力有限，很难临时重新算出一条新路线。这项研究训练了一个电脑程序，让它能快速给出调整后的飞行方案；这样出现偏差时更常能到达目标，而且比现场重新计算省下大量机上算力。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出用数据增强与训练让神经网络预测间接法初始协态，并结合锚轨迹、协态重缩放和哈密顿损失，实现地月低推力自主制导。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 采用反向生成最优样例方法扩展至圆型限制三体问题生成训练数据，训练网络预测协态，再通过重复网络查询构建恢复轨迹的制导算法。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在地球高轨到L1/L2晕轨道的转移中，导航误差和推力器故障下所提方法到达目标轨道的成功率高于标称轨迹跟踪或全数值重优化，且星上计算量降低一个数量级以上。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出利用数据增强与训练技巧的神经网络预测间接法初始协态，并结合锚定轨迹、协态重缩放和哈密顿损失项，实现地月低推力自主轨迹生成。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 将向后生成最优样本方法扩展至圆型限制性三体问题构建训练数据，训练网络预测初始协态，再通过高效制导算法反复查询网络构造恢复轨迹。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在地月高地球轨道至L1/L2晕轨道转移的导航误差与推力器故障场景下，所提方法到达目标轨道的成功率高于标称轨迹跟踪和完全数值重优化，且机上计算量降低一个数量级以上。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Future missions will benefit from onboard autonomous low-thrust trajectory generation to correct deviations from the nominal flight path caused by navigation errors and thruster outages. Onboard computing resources rarely allow the solution of a cold-started, long-duration nonconvex optimal control problem, especially in dynamically challenging regions such as the cislunar to translunar corridor of the Earth-Moon system. This paper develops data augmentation and training techniques that enable a neural network to predict accurate initial costates of the indirect method. A recovery trajectory is then built from repeated network queries in a computationally efficient guidance algorithm. Training data are produced by the backward generation of optimal examples method, extending prior approaches to the circular restricted three-body problem. A novel anchor trajectory approach is developed to cover the relevant state space, and costate rescaling and a Hamiltonian loss term are used to improve learning. The method is demonstrated on Earth-Moon transfers from a high Earth orbit to halo orbits about L1 and L2. Under navigation errors and thruster outages, a spacecraft reaches the target orbit more often with the proposed method than with nominal-<mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">trajectory tracking</mark> or fully numerical reoptimization. Onboard computation is reduced by more than an order of magnitude compared with reoptimization.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Graebner2026261129100,
+      title={Neural Costate Guidance for Autonomous Cislunar Low-Thrust Trajectory Generation},
+      author={Jannik Graebner and Ryne Beeson},
+      year={2026},
+      eprint={2611.29100v1},
+      archivePrefix={arXiv},
+      primaryClass={eess.SY},
+      url={http://arxiv.org/abs/2611.29100v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <div id="2611.29037v1" style="margin-bottom:30px;padding:18px 20px;border:1px solid #e2e6ea;border-radius:8px;background:#fafbfc;">
+            <h3 style="margin:0 0 10px 0;font-size:17px;line-height:1.4;">
+                20. <a href="http://arxiv.org/abs/2611.29037v1" style="color:#0b5cab;text-decoration:none;">Distributed Interactive Conformal Prediction for Multi-Agent Systems</a>
+            </h3>
+            <p style="margin:4px 0;color:#333;font-size:13.5px;line-height:1.6;"><strong>作者:</strong> Daniel M. Cherenson, Dimitra Panagou</p>
+            <p style="margin:6px 0;color:#555;font-size:13px;">
+                <span style="background:#0b5cab;color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">cs.RO (Robotics)</span><span style="background:#eef3fa;color:#0b5cab;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">eess.SY (Systems and Control)</span>
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <strong>arXiv 编号:</strong> 2611.29037v1 &nbsp;|&nbsp; 首发日期: 2026-11-21 20:57 UTC
+            </p>
+            <p style="margin:4px 0;color:#555;font-size:13px;">
+                <a href="http://arxiv.org/abs/2611.29037v1" style="color:#0b5cab;">arXiv 详情页</a> &nbsp;|&nbsp;
+                <a href="https://arxiv.org/pdf/2611.29037v1" style="color:#0b5cab;">PDF 直达</a>
+            </p>
+            <p style="margin:8px 0 0 0;"><span style="background:#e6f4ea;color:#1e7a3c;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">相关度 1</span><span style="background:#ffe8a1;color:#7a4a00;padding:2px 8px;border-radius:10px;font-size:12px;margin-right:6px;">key obstacle avoidance</span></p>
+            
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · 免费模型</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        很多机器人一起干活时，身上带着会学习、会估算的部件，出错和不确定性会让整个任务很难稳稳达标；现有办法还没同时处理好机器人之间互相影响、大家分散调整、以及一改安全余地就反过来改变机器人行为这些麻烦。作者提出一种分散式办法：让机器人只和邻居来回传几次消息，把每个机器人的出错情况汇总成整个任务层面的安全分数，再据此给每类机器人留出合适的安全余地，并考虑留余地后行为变化带来的影响。这样能在机器人互相依赖、没有中心统一调整的情况下，仍然以很高概率满足任务要求。
+                    </p>
+                </div>
+                
+                <div style="margin-top:12px;padding:14px 16px;background:#fffbe6;border:1.5px solid #ffd666;border-radius:8px;">
+                    <p style="margin:0 0 6px 0;font-size:13.5px;color:#ad6800;font-weight:bold;">大白话人话速读 · DeepSeek</p>
+                    <p style="margin:0;line-height:1.75;font-size:14.5px;color:#333;">
+                        很多机器人一起干活时，彼此会互相影响，加上估计不准和环境变化，任务能不能顺利完成常常没把握。这篇论文让机器人之间互相传消息，共同算出每次任务该留多少安全余量，还考虑了留余量后机器人行动会发生变化。这样不用事先知道出错规律，也能有很大把握完成任务，而且更贴近实际配合场景。
+                    </p>
+                </div>
+                
+            <div style="margin-top:14px;">
+                
+                
+                
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · 免费模型</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出分布式多智能体交互式保形预测框架 MA-ICP，将机器人级非一致性分数聚合为按机器人类别的任务级分数，并在闭环分布偏移下提供校准条件覆盖保证。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 利用有限轮邻居通信计算任务级分数与分位数，并用类别相关敏感度上界估计更新鲁棒裕度造成的分数偏移，进而完成分布式校准。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在协同载荷控制、避障编队控制和分布式目标跟踪中验证，MA-ICP 能为更新后的鲁棒裕度提供按机器人类别的校准条件覆盖保证，并以高概率满足任务要求。</p>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px 14px;background:#fff7ec;border-left:3px solid #d98324;border-radius:4px;">
+                <p style="margin:0 0 6px 0;font-size:12.5px;color:#d98324;text-transform:uppercase;letter-spacing:0.5px;">AI 精读要点 · DeepSeek</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>创新点:</strong> 提出MA-ICP分布式框架，将机器人级非一致性分数聚合为每类机器人的任务级分数，并利用类别相关分数敏感性界定更新鲁棒裕度引起的分数偏移，给出校准条件覆盖保证。</p>
+                <p style="margin:0 0 4px 0;font-size:14px;color:#222;"><strong>方法:</strong> 通过邻居间有限轮通信计算任务级分数与分位数，基于类别相关敏感性上界更新裕度后的分数变化，并建立每类机器人的校准条件覆盖保证。</p>
+                <p style="margin:0;font-size:14px;color:#222;"><strong>结论:</strong> 在协同载荷控制、避障编队控制和分布式目标跟踪任务中验证了MA-ICP的有效性。</p>
+            </div>
+            
+                
+                <div style="margin-top:12px;padding:12px 14px;background:#ffffff;border-left:3px solid #0b5cab;border-radius:4px;">
+                    <p style="margin:0 0 6px 0;font-size:12.5px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Abstract</p>
+                    <p style="margin:0;line-height:1.75;font-size:14px;color:#222;text-align:justify;font-family:Georgia, 'Times New Roman', serif;">
+                        Multi-agent systems increasingly rely on learning-enabled components and distributed algorithms for perception, estimation, and control, introducing uncertainty that makes it challenging to satisfy mission requirements. Conformal prediction quantifies uncertainty with distribution-free guarantees, but existing methods do not address the challenging combination of dependence among robots, distributed calibration, and the distribution shift induced when calibrated uncertainty bounds modify the closed-loop system. We introduce Multi-Agent Interactive Conformal Prediction (MA-ICP), a distributed framework for computing robustness margins in heterogeneous systems to satisfy mission requirements with high probability. MA-ICP aggregates robot-level nonconformity scores, which measure errors in modeled or estimated quantities, into one mission-level score per robot class, allowing dependence among robots within each mission. Mission-level scores and quantiles are computed using neighbor-to-neighbor communication in a finite number of communication rounds. Updating the robustness margins changes robot trajectories and distributed algorithm outputs, so we use class-dependent score sensitivities to upper bound the shift in mission-level scores. We then establish calibration-conditional coverage guarantees per robot class for the updated margins. We demonstrate MA-ICP on cooperative payload control, formation control with <mark style="background:#fff3a3;padding:0 2px;border-radius:2px;">obstacle avoidance</mark>, and distributed target tracking missions.
+                    </p>
+                </div>
+                <details style="margin-top:12px;">
+                    <summary style="cursor:pointer;color:#0b5cab;font-size:13px;">BibTeX 引用(点击展开/折叠)</summary>
+                    <pre style="background:#2d2d2d;color:#e6e6e6;padding:12px;border-radius:6px;overflow-x:auto;
+                                font-size:12.5px;line-height:1.6;margin-top:8px;white-space:pre-wrap;word-break:break-all;">@misc{Cherenson2026261129037,
+      title={Distributed Interactive Conformal Prediction for Multi-Agent Systems},
+      author={Daniel M. Cherenson and Dimitra Panagou},
+      year={2026},
+      eprint={2611.29037v1},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={http://arxiv.org/abs/2611.29037v1}
+}</pre>
+                </details>
+            </div>
+        </div>
+        
+        <p style="color:#999;font-size:12px;margin-top:24px;border-top:1px solid #eee;padding-top:12px;">
+            本页面由 arxiv_digest 定时任务自动生成, 数据来源于 arXiv 官方 API
+        </p>
+    </body>
+    </html>
+    
